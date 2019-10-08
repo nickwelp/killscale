@@ -9,8 +9,9 @@ import { Suppressors } from '../models/units/fastAttack/Suppressors';
 import { Tarantula } from '../models/units/fastAttack/Tarantula';
 import { Elminators } from '../models/units/heavySupport/Elminators';
 import { IUnit } from '../models/interfaces';
+import { RepulsorExecutioner } from '../models/units/heavySupport/RepulsorExecutioner';
 
-const shooters = [Intercessor, Invictors, ContemptorMortis, Elminators, Suppressors, Tarantula, VernerableDreadnaughts, Dreadnaughts];
+const shooters = [Intercessor, Invictors, ContemptorMortis, Elminators, Suppressors, Tarantula, VernerableDreadnaughts, Dreadnaughts, RepulsorExecutioner];
 
 interface IDispatch {
     element: HTMLInputElement;
