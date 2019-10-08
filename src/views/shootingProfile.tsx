@@ -74,8 +74,8 @@ const ShootingProfile = ({ shooter, targets, sumWounds, rerollProfile, doctrine,
                 <small>{data.target}</small><br />
                 <small>{data.pruned.worst}</small> - {data.pruned.lowerMedian} - <strong>{data.pruned.median}</strong> - {data.pruned.upperMedian} - <small>{data.pruned.best}</small><br />
                 <div style={{ display: 'flex', flexDirection: 'row' }}>
-                    <small style={{ margin: '3px', flexGrow: 1 }}>{(Math.round((shooter.points * modelCount / data.mean) * 100) / 100)}<br /> <span style={{ fontSize: '9px' }}>Points Per Mean</span></small><br />
-                    <small style={{ margin: '3px', flexGrow: 1 }}>{(Math.round(100 * data.standardDeviation) / 100)} <br /><span style={{ fontSize: '9px' }}>Variance</span></small>
+                    <small style={{ margin: '3px', flexGrow: 1 }}>{(Math.round((shooter.points * modelCount / data.mean) * 100) / 100)}<br /> <span style={{ fontSize: '9px' }}>ppm</span></small><br />
+                    <small style={{ margin: '3px', flexGrow: 1 }}>{(Math.round(100 * data.standardDeviation) / 100)} <br /><span style={{ fontSize: '9px' }}>v</span></small>
                 </div>
             </div>
         ));

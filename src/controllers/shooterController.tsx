@@ -35,7 +35,7 @@ export const ShooterController = (dashboard: (a: IUnit[], b: number[]) => any) =
     const [showOptions, setShowOptions] = useState(false);
     const options = shooters.map((shooter, i) => {
         return (
-            <li>
+            <li key={i}>
                 <label>
                     <input type={'checkbox'} name={'shooterSelection'} value={i} checked={activeList.includes(i)} onChange={(e: ChangeEvent<HTMLInputElement>) => dispatch({ element: e.currentTarget })} />
                     {shooter.name}
@@ -46,8 +46,8 @@ export const ShooterController = (dashboard: (a: IUnit[], b: number[]) => any) =
     return (
         <>
             <div>
-                <label>select Offensive Units <input type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowOptions(!!e.currentTarget.checked)} /></label>
-                <ul>
+                <label>Select Offensive Units <input type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowOptions(!!e.currentTarget.checked)} /></label>
+                <ul style={{ fontSize: 'small' }}>
                     {showOptions && options}
                 </ul>
             </div>
