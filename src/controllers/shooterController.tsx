@@ -10,8 +10,9 @@ import { Tarantula } from '../models/units/fastAttack/Tarantula';
 import { Elminators } from '../models/units/heavySupport/Elminators';
 import { IUnit } from '../models/interfaces';
 import { RepulsorExecutioner } from '../models/units/heavySupport/RepulsorExecutioner';
+import { Repulsor } from '../models/units/transport/Repulsor';
 
-const shooters = [Intercessor, Invictors, ContemptorMortis, Elminators, Suppressors, Tarantula, VernerableDreadnaughts, Dreadnaughts, RepulsorExecutioner];
+const shooters = [Intercessor, Invictors, ContemptorMortis, Elminators, Suppressors, Tarantula, VernerableDreadnaughts, Dreadnaughts, RepulsorExecutioner, Repulsor];
 
 interface IDispatch {
     element: HTMLInputElement;
