@@ -8,6 +8,10 @@ import Leviathan from '../models/targets/basicMarines/leviathan';
 import Tacticals from '../models/targets/basicMarines/tacticals';
 import PlagueBearers from '../models/targets/vessel/plagueBearers';
 import DeathshroudTerminators from '../models/targets/vessel/DeathshroudTerminators';
+import Guardsmen from '../models/targets/imperialGuard/Guardsmen';
+import Boyz from '../models/targets/orks/Boyz';
+import Cultists from '../models/targets/chaosMarines/Cultists';
+
 
 import ShootingProfile from './shootingProfile';
 import { ITarget, IUnit } from '../models/interfaces';
@@ -52,7 +56,7 @@ const Dashboard = (shooters: IUnit[], activeList: number[]) => {
     const [showOptions, setShowOptions] = useState(true);
     const [showHelp, setShowHelp] = useState(false);
 
-    const targets = [PlagueBearers, DeathshroudTerminators, Intercessors, Leviathan, Tacticals, IronHandsRepulsorExecutioner, RepulsorExecutioner, Rhino];
+    const targets = [PlagueBearers, DeathshroudTerminators, Intercessors, Tacticals, Guardsmen, Cultists, Boyz, Rhino, Leviathan, IronHandsRepulsorExecutioner, RepulsorExecutioner];
 
     const display = () => {
         const selectedTargets: ITarget[] = targets.filter((_, i) => targetList.includes(i));
@@ -93,7 +97,7 @@ const Dashboard = (shooters: IUnit[], activeList: number[]) => {
             </div>
             <div><br />
                 <label>
-                    Select Target:
+                    Select Target (hold ctrl/cmd to select multiple targets):
                 </label><br />
                 <select multiple={true} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => dispatch({ element: e.currentTarget })}>
                     {targets.map((t, i) => {
@@ -102,6 +106,7 @@ const Dashboard = (shooters: IUnit[], activeList: number[]) => {
                         );
                     })}
                 </select>
+                (this is a multiselect, initiate!)
             </div>
             <div>
                 <label><small>Hide Unchecked Weapons </small><input type={'checkbox'} checked={hideUncheckedWeapons} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setHideUncheckedWeapons(!!e.currentTarget.checked)} name={'hideUncheckedWeapons'} /> </label>
