@@ -1,5 +1,5 @@
 import { IUnit } from '../../interfaces';
-import { d6, d3 } from '../../../controllers/util';
+import { d3 } from '../../../controllers/util';
 
 
 export const Repulsor: IUnit = {

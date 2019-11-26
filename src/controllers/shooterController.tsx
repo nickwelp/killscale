@@ -1,4 +1,4 @@
-import React, { useReducer, ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 
 import { ContemptorMortis } from '../models/units/heavySupport/ContemptorMortis';
 import { Invictors } from '../models/units/elite/Invictors';
@@ -15,32 +15,23 @@ import { Devastators } from '../models/units/heavySupport/Devastators';
 
 const shooters = [Intercessor, Infiltrator, Invictors, ContemptorMortis, Elminators, Suppressors, Tarantula, VernerableDreadnaughts, Dreadnaughts, RepulsorExecutioner, Repulsor, Devastators];
 
-interface IDispatch {
-    element: HTMLInputElement;
-}
-
-const reducer = (state: number[], { element }: IDispatch) => {
-    let newState: number[] = [];
-    const value = parseInt(element.value);
-    if (element.checked && !state.includes(value)) {
-        newState = [...state];
-        newState.push(value);
-    }
-    if (!element.checked) {
-        newState = state.filter((_, i) => i !== value);
-    }
-    return newState;
-};
-
-
 export const ShooterController = (dashboard: (a: IUnit[], b: number[]) => any) => {
-    const [activeList, dispatch] = useReducer(reducer, shooters.map((_, i) => i));
+    const [activeList, updateActiveList] = useState(shooters.map((_, i) => i));
+    const setActiveList = (e: ChangeEvent<HTMLInputElement>) => {
+        const index = parseInt(e.currentTarget.value, 10);
+        const status = e.currentTarget.checked === true;
+        if (status) {
+            updateActiveList([index, ...activeList]);
+        } else {
+            updateActiveList(activeList.filter((e) => e !== index));
+        }
+    }
     const [showOptions, setShowOptions] = useState(false);
     const options = shooters.map((shooter, i) => {
         return (
             <li key={i}>
                 <label>
-                    <input type={'checkbox'} name={'shooterSelection'} value={i} checked={activeList.includes(i)} onChange={(e: ChangeEvent<HTMLInputElement>) => dispatch({ element: e.currentTarget })} />
+                    <input type={'checkbox'} name={'shooterSelection'} value={i} checked={activeList.includes(i)} onChange={setActiveList} />
                     {shooter.name}
                 </label>
             </li>
