@@ -1,7 +1,7 @@
 import React, { useReducer, useState } from 'react';
 
 import { processSet } from '../controllers/Shooting';
-import { IDoctrine, ITarget, IUnit, IRerollSet } from '../models/interfaces';
+import { IDoctrine, IRerollSet, ITarget, IUnit } from '../models/interfaces';
 
 interface IUISettings {
     [key: string]: boolean;

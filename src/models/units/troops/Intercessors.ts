@@ -56,4 +56,4 @@ export const Intercessor: IUnit = {
             damage: () => 1,
         }
     ]
-}
+};

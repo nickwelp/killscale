@@ -31,4 +31,4 @@ export const Dreadnaughts: IUnit = {
             damage: () => 2,
         }
     ]
-}
+};

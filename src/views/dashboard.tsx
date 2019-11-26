@@ -1,20 +1,20 @@
-import React, { useState, useReducer, ChangeEvent } from 'react';
+import React, { ChangeEvent, useReducer, useState } from 'react';
 
-import Intercessors from '../models/targets/hooson/intercessors';
-import IronHandsRepulsorExecutioner from '../models/targets/ironHands/ihRepulsorExecutioner';
+import Leviathan from '../models/targets/basicMarines/leviathan';
 import RepulsorExecutioner from '../models/targets/basicMarines/repulsorExecutioner';
 import Rhino from '../models/targets/basicMarines/rhino';
-import Leviathan from '../models/targets/basicMarines/leviathan';
 import Tacticals from '../models/targets/basicMarines/tacticals';
-import PlagueBearers from '../models/targets/vessel/plagueBearers';
-import DeathshroudTerminators from '../models/targets/vessel/DeathshroudTerminators';
-import Guardsmen from '../models/targets/imperialGuard/Guardsmen';
-import Boyz from '../models/targets/orks/Boyz';
 import Cultists from '../models/targets/chaosMarines/Cultists';
+import Intercessors from '../models/targets/hooson/intercessors';
+import Guardsmen from '../models/targets/imperialGuard/Guardsmen';
+import IronHandsRepulsorExecutioner from '../models/targets/ironHands/ihRepulsorExecutioner';
+import Boyz from '../models/targets/orks/Boyz';
+import DeathshroudTerminators from '../models/targets/vessel/DeathshroudTerminators';
+import PlagueBearers from '../models/targets/vessel/plagueBearers';
 
 
-import ShootingProfile from './shootingProfile';
 import { ITarget, IUnit } from '../models/interfaces';
+import ShootingProfile from './shootingProfile';
 
 interface IDispatch {
     element: HTMLSelectElement;
@@ -63,7 +63,7 @@ const Dashboard = (shooters: IUnit[], activeList: number[]) => {
         const profiles = shooters.map((shooter, i) => {
             const uiSettings = {
                 hideUncheckedWeapons
-            }
+            };
             const rerollProfile = {
                 rerollHits,
                 rerollHitRollsOfOne,
@@ -84,16 +84,16 @@ const Dashboard = (shooters: IUnit[], activeList: number[]) => {
             <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
                 {profiles}
             </div>
-        )
+        );
     };
 
     const interfaceOptions = (<div style={{ display: 'flex', flexDirection: 'row', margin: '5px' }}>
         <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
             <div>
-                <label>Count Total Wounds <input name={'deadModels'} checked={sumWounds} value='false' onClick={(e: React.MouseEvent<HTMLInputElement>) => setState(true)} type={'radio'} /></label> <small>useful against knights and big things</small>
+                <label>Count Total Wounds <input name={'deadModels'} checked={sumWounds} value="false" onClick={(e: React.MouseEvent<HTMLInputElement>) => setState(true)} type={'radio'} /></label> <small>useful against knights and big things</small>
             </div>
             <div>
-                <label>Count Dead Models <input name={'deadModels'} checked={!sumWounds} value='true' onClick={(e: React.MouseEvent<HTMLInputElement>) => setState(false)} type={'radio'} /></label> <small>useful against many small things</small>
+                <label>Count Dead Models <input name={'deadModels'} checked={!sumWounds} value="true" onClick={(e: React.MouseEvent<HTMLInputElement>) => setState(false)} type={'radio'} /></label> <small>useful against many small things</small>
             </div>
             <div><br />
                 <label>
@@ -118,13 +118,13 @@ const Dashboard = (shooters: IUnit[], activeList: number[]) => {
                 <label>Reroll Wounds <input type={'checkbox'} value='1' onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRerollWounds(!!e.currentTarget.checked)} /></label>
             </div> */}
             <div>
-                <label>Reroll Wounds Rolls of One <input type={'checkbox'} value='1' checked={rerollWoundRollsOfOne} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRerollWouldRollsOfOne(!!e.currentTarget.checked)} /></label>
+                <label>Reroll Wounds Rolls of One <input type={'checkbox'} value="1" checked={rerollWoundRollsOfOne} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRerollWouldRollsOfOne(!!e.currentTarget.checked)} /></label>
             </div>
             <div>
-                <label>Reroll Hits<input type={'checkbox'} value='1' checked={rerollHits} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRerollHits(!!e.currentTarget.checked)} /></label>
+                <label>Reroll Hits<input type={'checkbox'} value="1" checked={rerollHits} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRerollHits(!!e.currentTarget.checked)} /></label>
             </div>
             <div>
-                <label>Reroll Hit Rolls of One<input type={'checkbox'} value='1' checked={rerollHitRollsOfOne} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRerollHitRollsOfOne(!!e.currentTarget.checked)} /></label>
+                <label>Reroll Hit Rolls of One<input type={'checkbox'} value="1" checked={rerollHitRollsOfOne} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRerollHitRollsOfOne(!!e.currentTarget.checked)} /></label>
             </div>
         </div>
         <div style={{ margin: '3px', flexGrow: 1, fontSize: '12px', textAlign: 'right' }}>
@@ -133,19 +133,19 @@ const Dashboard = (shooters: IUnit[], activeList: number[]) => {
                 <label>Reroll Wounds <input type={'checkbox'} value='1' onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRerollWounds(!!e.currentTarget.checked)} /></label>
             </div> */}
             <div>
-                <label>Devastator <input type={'checkbox'} value='1' checked={devastator} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDevastor(!!e.currentTarget.checked)} /></label>
+                <label>Devastator <input type={'checkbox'} value="1" checked={devastator} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDevastor(!!e.currentTarget.checked)} /></label>
             </div>
             <div>
-                <label>Tactical <input type={'checkbox'} value='1' checked={tactical} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTactical(!!e.currentTarget.checked)} /></label>
+                <label>Tactical <input type={'checkbox'} value="1" checked={tactical} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTactical(!!e.currentTarget.checked)} /></label>
             </div>
             <div>
-                <label>Assault <input type={'checkbox'} value='1' checked={assault} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAssault(!!e.currentTarget.checked)} /></label>
+                <label>Assault <input type={'checkbox'} value="1" checked={assault} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAssault(!!e.currentTarget.checked)} /></label>
             </div>
             <div>
-                <label>Crimson Fists/Imperial Fists exploding Bolter 6s <input type={'checkbox'} value='1' checked={explodingBolter6s} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setExplodingBolter6s(!!e.currentTarget.checked)} /></label>
+                <label>Crimson Fists/Imperial Fists exploding Bolter 6s <input type={'checkbox'} value="1" checked={explodingBolter6s} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setExplodingBolter6s(!!e.currentTarget.checked)} /></label>
             </div>
             <div>
-                <label>Crimson Fists +1 to Hit (applied in likely instances) <input type={'checkbox'} value='1' checked={crimsonFistsPlusToHit} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCrimsonFistsPlusToHit(!!e.currentTarget.checked)} /></label>
+                <label>Crimson Fists +1 to Hit (applied in likely instances) <input type={'checkbox'} value="1" checked={crimsonFistsPlusToHit} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCrimsonFistsPlusToHit(!!e.currentTarget.checked)} /></label>
             </div>
             {/* <div>
                 <label>Heavy Weapons cause +1D against Vehicles <input type={'checkbox'} value='1' checked={crimsonFistsPlusToHit} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCrimsonFistsPlusToHit(!!e.currentTarget.checked)} /></label>

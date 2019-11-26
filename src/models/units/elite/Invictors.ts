@@ -1,5 +1,5 @@
-import { IUnit } from '../../interfaces';
 import { d6 } from '../../../controllers/util';
+import { IUnit } from '../../interfaces';
 
 
 export const Invictors: IUnit = {
@@ -54,4 +54,4 @@ export const Invictors: IUnit = {
             damage: () => 1,
         }
     ]
-}
+};

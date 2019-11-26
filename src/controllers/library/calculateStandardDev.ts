@@ -1,4 +1,4 @@
-import { IUnit, ITarget } from '../../models/interfaces';
+import { ITarget, IUnit } from '../../models/interfaces';
 import { sortNumber } from '../util';
 
 const CalculateStandardDef = (
@@ -14,13 +14,13 @@ const CalculateStandardDef = (
     const setMean = sumOfSet / iterations;
 
     let sumOfDifference = 0;
-    let lowerMedian: number[] = [];
-    let upperMedian: number[] = [];
+    const lowerMedian: number[] = [];
+    const upperMedian: number[] = [];
 
     set.forEach((int) => {
         if (int > setMean) upperMedian.push(int);
         else lowerMedian.push(int);
-        let diffFromMean = int - setMean;
+        const diffFromMean = int - setMean;
         sumOfDifference += (diffFromMean * diffFromMean);
     });
 
@@ -61,5 +61,5 @@ export interface IStandDevReport {
     target: string;
     mean: number;
     standardDeviation: number;
-    pruned: IPrunedResults
+    pruned: IPrunedResults;
 }

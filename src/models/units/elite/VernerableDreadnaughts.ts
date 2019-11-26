@@ -31,4 +31,4 @@ export const VernerableDreadnaughts: IUnit = {
             damage: () => 2,
         }
     ]
-}
+};

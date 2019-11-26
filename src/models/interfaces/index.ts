@@ -23,8 +23,8 @@ export interface IUnit {
     points: number;
     modelCountPerUnit: number;
     woundsPerModel?: number;
-    FNP?: number; //7 is none
-    invuln?: number; //7 is none
+    FNP?: number; // 7 is none
+    invuln?: number; // 7 is none
     save?: number;
     weapons: IWeaponProfile[];
     tags: string[];
@@ -32,8 +32,8 @@ export interface IUnit {
 
 export interface ITarget {
     name: string;
-    FNP: number; //7 is none
-    invuln: number; //7 is none
+    FNP: number; // 7 is none
+    invuln: number; // 7 is none
     save: number;
     toughness: number;
     woundsPerModel: number;

@@ -19,4 +19,4 @@ export const Tarantula: IUnit = {
             damage: () => 1,
         }
     ]
-}
+};

@@ -1,7 +1,7 @@
 import { ITarget } from '../../interfaces';
 
 const rhino: ITarget = {
-    name: "chapterless Rhino",
+    name: 'chapterless Rhino',
     save: 3,
     woundsPerModel: 10,
     modelCount: 1,
@@ -9,6 +9,6 @@ const rhino: ITarget = {
     invuln: 7,
     toHit: 0,
     toughness: 7,
-}
+};
 
 export default rhino;   

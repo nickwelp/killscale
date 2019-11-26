@@ -1,5 +1,5 @@
-import { IUnit } from '../../interfaces';
 import { d3, d6 } from '../../../controllers/util';
+import { IUnit } from '../../interfaces';
 
 
 export const ContemptorMortis: IUnit = {
@@ -122,4 +122,4 @@ export const ContemptorMortis: IUnit = {
             damage: () => d6(),
         }
     ]
-}
+};

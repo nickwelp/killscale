@@ -19,4 +19,4 @@ export const Suppressors: IUnit = {
             damage: () => 2,
         }
     ]
-}
+};

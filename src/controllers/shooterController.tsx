@@ -1,17 +1,17 @@
 import React, { ChangeEvent, useState } from 'react';
 
-import { ContemptorMortis } from '../models/units/heavySupport/ContemptorMortis';
-import { Invictors } from '../models/units/elite/Invictors';
-import { Intercessor, Infiltrator } from '../models/units/troops';
-import { VernerableDreadnaughts } from '../models/units/elite/VernerableDreadnaughts';
+import { IUnit } from '../models/interfaces';
 import { Dreadnaughts } from '../models/units/elite/Dreadnaughts';
+import { Invictors } from '../models/units/elite/Invictors';
+import { VernerableDreadnaughts } from '../models/units/elite/VernerableDreadnaughts';
 import { Suppressors } from '../models/units/fastAttack/Suppressors';
 import { Tarantula } from '../models/units/fastAttack/Tarantula';
+import { ContemptorMortis } from '../models/units/heavySupport/ContemptorMortis';
+import { Devastators } from '../models/units/heavySupport/Devastators';
 import { Elminators } from '../models/units/heavySupport/Elminators';
-import { IUnit } from '../models/interfaces';
 import { RepulsorExecutioner } from '../models/units/heavySupport/RepulsorExecutioner';
 import { Repulsor } from '../models/units/transport/Repulsor';
-import { Devastators } from '../models/units/heavySupport/Devastators';
+import { Infiltrator, Intercessor } from '../models/units/troops';
 
 const shooters = [Intercessor, Infiltrator, Invictors, ContemptorMortis, Elminators, Suppressors, Tarantula, VernerableDreadnaughts, Dreadnaughts, RepulsorExecutioner, Repulsor, Devastators];
 
@@ -25,7 +25,7 @@ export const ShooterController = (dashboard: (a: IUnit[], b: number[]) => any) =
         } else {
             updateActiveList(activeList.filter((e) => e !== index));
         }
-    }
+    };
     const [showOptions, setShowOptions] = useState(false);
     const options = shooters.map((shooter, i) => {
         return (

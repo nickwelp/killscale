@@ -1,4 +1,4 @@
-import { IWeaponProfile, ITarget, IRerollSet } from '../../models/interfaces';
+import { IRerollSet, ITarget, IWeaponProfile } from '../../models/interfaces';
 import { d6 } from '../util';
 import toWound from './toWound';
 

@@ -5,5 +5,5 @@ const toWound = (toughness: number, strength: number) => {
     else if (toughness <= strength * 2) return 2;
     else if (toughness < strength) return 3;
     return 100;
-}
+};
 export default toWound;

@@ -32,4 +32,4 @@ export const Infiltrator: IUnit = {
             damage: () => 1,
         }
     ]
-}
+};

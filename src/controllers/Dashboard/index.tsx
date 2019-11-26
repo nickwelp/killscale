@@ -14,6 +14,6 @@ const Dashboard: React.FC = () => {
             </ThemeProvider>
         </div>
     );
-}
+};
 
 export default Dashboard;

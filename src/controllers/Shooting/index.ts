@@ -1,11 +1,11 @@
-import { IWeaponProfile, ITarget, IRerollSet, IDoctrine, IUnit } from '../../models/interfaces';
+import { IDoctrine, IRerollSet, ITarget, IUnit, IWeaponProfile } from '../../models/interfaces';
 import calculateStandardDef, { IStandDevReport } from '../library/calculateStandardDev';
 
+import applyFailedSaves from './applyFailedSaves';
+import applyFNPtoMortalWounds from './applyFNPtoMortalWounds';
+import generateFailedSaves from './generateFailedSaves';
 import generateHits from './generateHits';
 import generateWounds from './generateWounds';
-import generateFailedSaves from './generateFailedSaves';
-import applyFNPtoMortalWounds from './applyFNPtoMortalWounds';
-import applyFailedSaves from './applyFailedSaves';
 
 const iterations = 2000;
 const cache = {};
@@ -53,7 +53,7 @@ const processSetFunc = ({
         const set: number[] = [];
         for (let y = 0; y < iterations; y++) {
             let sumOfDamage = 0;
-            let woundCarryOver = 0;
+            const woundCarryOver = 0;
             for (let k = 0; k < weapons.length; k++) {
                 const [hits, autowounds]: [number, number] = generateHits(target, weapons[k], modelCount, rerollProfile, shooter);
                 const [wounds, mortalWounds]: [number, number] = generateWounds(hits, target, weapons[k], autowounds, rerollProfile);

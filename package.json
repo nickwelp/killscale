@@ -14,13 +14,15 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.2",
     "styled-components": "^4.4.0",
+    "tslint": "^5.20.1",
     "typescript": "3.6.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "tslint -p ./"
   },
   "eslintConfig": {
     "extends": "react-app"

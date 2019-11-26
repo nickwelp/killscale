@@ -1,5 +1,5 @@
-import { d6 } from '../util';
 import { ITarget } from '../../models/interfaces';
+import { d6 } from '../util';
 
 const applyFNPtoMortalWounds = (mortalWounds: number, target: ITarget) => {
     let mortalWoundSum = 0;
@@ -9,5 +9,5 @@ const applyFNPtoMortalWounds = (mortalWounds: number, target: ITarget) => {
         }
     }
     return mortalWoundSum;
-}
+};
 export default applyFNPtoMortalWounds;

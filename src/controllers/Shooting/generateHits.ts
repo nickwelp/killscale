@@ -1,6 +1,6 @@
-import sumShotsPerModel from './sumShotsPerModel';
-import { IWeaponProfile, ITarget, IRerollSet, IUnit } from '../../models/interfaces';
+import { IRerollSet, ITarget, IUnit, IWeaponProfile } from '../../models/interfaces';
 import { d6 } from '../util';
+import sumShotsPerModel from './sumShotsPerModel';
 
 const generateHits = (target: ITarget, weapon: IWeaponProfile, modelCount: number, rerollProfile: IRerollSet, shooter: IUnit): [number, number] => {
     let hits = 0;

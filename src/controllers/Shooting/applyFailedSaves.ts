@@ -1,5 +1,5 @@
-import { d6 } from '../util';
 import { ITarget, IWeaponProfile } from '../../models/interfaces';
+import { d6 } from '../util';
 
 const applyFailedSaves = (
     failedSaves: number,
@@ -10,7 +10,7 @@ const applyFailedSaves = (
     // this counts either wounds or dead models based on sumWounds boolean
     let sumOfDamageUnits: number = 0;
     for (let g = 0; g < failedSaves; g++) {
-        let dam = weapon.damage();
+        const dam = weapon.damage();
         let damCount = 0;
 
         for (let r = 0; r < dam; r++) {

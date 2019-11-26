@@ -1,7 +1,7 @@
 import { ITarget } from '../../interfaces';
 
 const plagueBearers: ITarget = {
-    name: "Plague Bearers",
+    name: 'Plague Bearers',
     save: 7,
     woundsPerModel: 1,
     modelCount: 30,
@@ -9,6 +9,6 @@ const plagueBearers: ITarget = {
     invuln: 5,
     toHit: -2,
     toughness: 4,
-}
+};
 
 export default plagueBearers;   

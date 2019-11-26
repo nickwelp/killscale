@@ -1,5 +1,5 @@
-import { IUnit } from '../../interfaces';
 import { d6 } from '../../../controllers/util';
+import { IUnit } from '../../interfaces';
 
 
 export const RepulsorExecutioner: IUnit = {
@@ -175,4 +175,4 @@ export const RepulsorExecutioner: IUnit = {
             damage: () => 1,
         }
     ]
-}
+};

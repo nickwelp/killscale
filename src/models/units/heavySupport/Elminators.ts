@@ -1,5 +1,5 @@
-import { IUnit } from '../../interfaces';
 import { d3 } from '../../../controllers/util';
+import { IUnit } from '../../interfaces';
 
 
 export const Elminators: IUnit = {
@@ -114,4 +114,4 @@ export const Elminators: IUnit = {
             damage: () => 3,
         },
     ]
-}
+};
