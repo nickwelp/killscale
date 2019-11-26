@@ -1,21 +1,19 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
-import { theme } from './views/theme';
-import GlobalStyle from './views/theme/globalStyle';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
-import './App.css';
+import Dashboard from './controllers/Dashboard';
 
-import Application from './views/app';
+const Router = () => (
+  <BrowserRouter>
+    <Switch>
+      <Route exact path={'/dashboard'} component={Dashboard} />
+      <Route exact path={'/addShooters'} component={Dashboard} />
+      <Route exact path={'/addTargets'} component={Dashboard} />
+      {/* <Route path={'/roles/:id'} component={Editor} /> */}
+      <Redirect to={'/dashboard'} />
+    </Switch>
+  </BrowserRouter>
+);
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <GlobalStyle />
-      <ThemeProvider theme={theme}>
-        <Application />
-      </ThemeProvider>
-    </div>
-  );
-}
+export default Router;
 
-export default App;

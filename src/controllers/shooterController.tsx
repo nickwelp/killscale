@@ -2,7 +2,7 @@ import React, { useReducer, ChangeEvent, useState } from 'react';
 
 import { ContemptorMortis } from '../models/units/heavySupport/ContemptorMortis';
 import { Invictors } from '../models/units/elite/Invictors';
-import { Intercessor } from '../models/units/troops';
+import { Intercessor, Infiltrator } from '../models/units/troops';
 import { VernerableDreadnaughts } from '../models/units/elite/VernerableDreadnaughts';
 import { Dreadnaughts } from '../models/units/elite/Dreadnaughts';
 import { Suppressors } from '../models/units/fastAttack/Suppressors';
@@ -13,7 +13,7 @@ import { RepulsorExecutioner } from '../models/units/heavySupport/RepulsorExecut
 import { Repulsor } from '../models/units/transport/Repulsor';
 import { Devastators } from '../models/units/heavySupport/Devastators';
 
-const shooters = [Intercessor, Invictors, ContemptorMortis, Elminators, Suppressors, Tarantula, VernerableDreadnaughts, Dreadnaughts, RepulsorExecutioner, Repulsor, Devastators];
+const shooters = [Intercessor, Infiltrator, Invictors, ContemptorMortis, Elminators, Suppressors, Tarantula, VernerableDreadnaughts, Dreadnaughts, RepulsorExecutioner, Repulsor, Devastators];
 
 interface IDispatch {
     element: HTMLInputElement;

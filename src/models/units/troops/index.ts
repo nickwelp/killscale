@@ -1,3 +1,4 @@
-import { Intercessor } from "./Intercessors"
+import { Intercessor } from "./Intercessors";
+import { Infiltrator } from "./Infiltrators";
 
-export { Intercessor };
+export { Intercessor, Infiltrator };
