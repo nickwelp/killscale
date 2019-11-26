@@ -1,7 +1,11 @@
 import { IUnit, ITarget } from '../../models/interfaces';
 import { sortNumber } from '../util';
 
-const CalculateStandardDef = (set: number[], { name: shooterName }: IUnit, { name: targetName }: ITarget, iterations: number) => {
+const CalculateStandardDef = (
+    set: number[],
+    { name: shooterName }: IUnit,
+    { name: targetName }: ITarget,
+    iterations: number): IStandDevReport => {
     let sumOfSet = 0;
     set.forEach((int) => {
         sumOfSet += int;
@@ -43,3 +47,19 @@ const CalculateStandardDef = (set: number[], { name: shooterName }: IUnit, { nam
 };
 
 export default CalculateStandardDef;
+
+interface IPrunedResults {
+    median: number;
+    lowerMedian: number;
+    upperMedian: number;
+    best: number;
+    worst: number;
+    length: number;
+}
+export interface IStandDevReport {
+    name: string;
+    target: string;
+    mean: number;
+    standardDeviation: number;
+    pruned: IPrunedResults
+}

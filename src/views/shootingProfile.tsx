@@ -1,6 +1,6 @@
 import React, { useReducer, useState } from 'react';
 
-import { processSet } from '../controllers/processSet';
+import { processSet } from '../controllers/Shooting';
 import { IDoctrine, ITarget, IUnit, IRerollSet } from '../models/interfaces';
 
 interface IUISettings {

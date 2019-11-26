@@ -21,7 +21,7 @@ export const ShooterController = (dashboard: (a: IUnit[], b: number[]) => any) =
         const index = parseInt(e.currentTarget.value, 10);
         const status = e.currentTarget.checked === true;
         if (status) {
-            updateActiveList([index, ...activeList]);
+            updateActiveList([...new Set([index, ...activeList])]);
         } else {
             updateActiveList(activeList.filter((e) => e !== index));
         }
