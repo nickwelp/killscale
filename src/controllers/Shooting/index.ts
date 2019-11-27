@@ -1,8 +1,8 @@
 import { IDoctrine, IRerollSet, ITarget, IUnit, IWeaponProfile } from '../../models/interfaces';
 import calculateStandardDef, { IStandDevReport } from '../library/calculateStandardDev';
 
-import applyFailedSaves from './applyFailedSaves';
 import applyFNPtoMortalWounds from './applyFNPtoMortalWounds';
+import generateDamage from './generateDamage';
 import generateFailedSaves from './generateFailedSaves';
 import generateHits from './generateHits';
 import generateWounds from './generateWounds';
@@ -58,7 +58,7 @@ const processSetFunc = ({
                 const [hits, autowounds]: [number, number] = generateHits(target, weapons[k], modelCount, rerollProfile, shooter);
                 const [wounds, mortalWounds]: [number, number] = generateWounds(hits, target, weapons[k], autowounds, rerollProfile);
                 const failedSaves: number = generateFailedSaves(wounds, target, weapons[k], doctrine);
-                const [newDamage, rollOverWounds] = applyFailedSaves(failedSaves, woundCarryOver, target, weapons[k], sumWounds);
+                const [newDamage, rollOverWounds] = generateDamage(failedSaves, woundCarryOver, target, weapons[k], sumWounds, rerollProfile);
                 sumOfDamage += newDamage;
                 const mortalWoundsPastFNP = applyFNPtoMortalWounds(mortalWounds, target);
                 if (sumWounds) {

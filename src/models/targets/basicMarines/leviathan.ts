@@ -9,6 +9,7 @@ const leviathan: ITarget = {
     invuln: 4,
     toHit: 0,
     toughness: 8,
+    tags: ['vehicle']
 };
 
 export default leviathan;   

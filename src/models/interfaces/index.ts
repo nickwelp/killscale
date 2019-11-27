@@ -50,6 +50,8 @@ export interface IRerollSet {
     rerollWoundRollsOfOne: boolean;
     explodingBolter6s: boolean;
     crimsonFistsPlusToHit: boolean;
+    IFHeavyWeaponsSuperDoctrine?: boolean;
+
 }
 
 export interface IDoctrine {

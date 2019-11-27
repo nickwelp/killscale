@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ShooterController } from '../controllers/shooterController';
-import Dashboard from './dashboard';
+import Dashboard from './Dashboard';
 
 const App = () => {
     return (

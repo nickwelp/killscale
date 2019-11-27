@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from '../../views/theme';
 import GlobalStyle from '../../views/theme/globalStyle';
 
-import Application from '../../views/app';
+import Application from '../../views/App';
 
 const Dashboard: React.FC = () => {
     return (

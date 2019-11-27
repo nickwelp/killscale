@@ -1,16 +1,20 @@
-import { ITarget, IWeaponProfile } from '../../models/interfaces';
+import { IRerollSet, ITarget, IWeaponProfile } from '../../models/interfaces';
 import { d6 } from '../util';
 
-const applyFailedSaves = (
+const generateDamage = (
     failedSaves: number,
     woundCarryOver: number,
     target: ITarget,
     weapon: IWeaponProfile,
-    sumWounds: boolean): [number, number] => {
+    sumWounds: boolean,
+    rerollProfile: IRerollSet): [number, number] => {
     // this counts either wounds or dead models based on sumWounds boolean
     let sumOfDamageUnits: number = 0;
     for (let g = 0; g < failedSaves; g++) {
-        const dam = weapon.damage();
+        let dam = weapon.damage();
+        if (target.tags && target.tags.includes('vehicle') && rerollProfile.IFHeavyWeaponsSuperDoctrine && weapon.type === 'Heavy') {
+            dam += 1;
+        }
         let damCount = 0;
 
         for (let r = 0; r < dam; r++) {
@@ -39,4 +43,4 @@ const applyFailedSaves = (
     return [sumOfDamageUnits, woundCarryOver];
 };
 
-export default applyFailedSaves;
+export default generateDamage;
