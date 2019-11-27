@@ -49,25 +49,22 @@ const ShootingProfile = ({ shooter, targets, sumWounds, rerollProfile, doctrine,
 
     const [modelCount, updateModelCount] = useState(1);
 
-    const weaponProfiles = weapons.map((weapon, index) => {
-        if (uiSettings.hideUncheckedWeapons && uiSettings.hideUncheckedWeapons && !state.includes(index)) {
-            return (<></>);
-        }
-        return (
-            <li key={index}>{weapon.name} w/ {weapon.numberOfShotsLabel} shots <input type={'checkbox'} value={index} checked={state.includes(index)} onChange={(e: React.ChangeEvent<HTMLInputElement>) => dispatch({ element: e.currentTarget })} /> </li>
-        );
-    });
+    const weaponProfiles = weapons
+        .map((weapon, index) => {
+            return (
+                <li key={index}>{weapon.name} w/ {weapon.numberOfShotsLabel} shots <input type={'checkbox'} value={index} checked={state.includes(index)} onChange={(e: React.ChangeEvent<HTMLInputElement>) => dispatch({ element: e.currentTarget })} /> </li>
+            );
+        })
+        .filter((_, index) => state.includes(index) || !uiSettings.hideUncheckedWeapons);
     const submittedWeapons = weapons.filter((_, i) => state.includes(i));
     const dataSet = processSet({ shooter, weapons: submittedWeapons, targets, sumWounds, modelCount, rerollProfile, doctrine });
     const numbers = Array(100).fill('');
     const options = numbers.map((_, i) => {
         return (
-            <option key={i} selected={i === 1} value={i}>{i}</option>
+            <option key={i} value={i}>{i}</option>
         );
     });
-    if (hideProfile) return (
-        <></>
-    );
+    if (hideProfile) return null;
     const shootingProfiles = dataSet.map((data: any, i: number) =>
         (
             <div style={{ fontSize: '15px' }} key={i}>
@@ -81,9 +78,9 @@ const ShootingProfile = ({ shooter, targets, sumWounds, rerollProfile, doctrine,
         ));
 
     return (
-        <div key={shooter.name} style={{ maxWidth: '450px', textAlign: 'center', margin: '5px', boxShadow: '0px 0px 1px rgba(0,0,0,.1)', fontSize: '12px' }}>
+        <div key={shooter.name.replace(' ', '_')} style={{ maxWidth: '450px', textAlign: 'center', margin: '5px', boxShadow: '0px 0px 1px rgba(0,0,0,.1)', fontSize: '12px' }}>
             <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <select onChange={(e: React.ChangeEvent<HTMLSelectElement>) => updateModelCount(parseInt(e.currentTarget.value))}>
+                <select defaultValue={'1'} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => updateModelCount(parseInt(e.currentTarget.value))}>
                     {options}
                 </select>
                 <h4>{shooter.name}</h4>

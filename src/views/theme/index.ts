@@ -1,4 +1,4 @@
-import baseStyled from 'styled-components';
+// import baseStyled from 'styled-components';
 
 import { colors } from './colors';
 import { font } from './font';

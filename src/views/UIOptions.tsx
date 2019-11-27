@@ -3,6 +3,7 @@ import React from 'react';
 const UIOptions = ({ props }: any) => {
     const {
         targets,
+        setTargetFaction,
         dispatch,
         sumWounds, setState,
         rerollHits, setRerollHits,
@@ -20,19 +21,29 @@ const UIOptions = ({ props }: any) => {
         <div style={{ display: 'flex', flexDirection: 'row', margin: '5px' }}>
             <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
                 <div>
-                    <label>Count Total Wounds <input name={'deadModels'} checked={sumWounds} value="false" onClick={(e: React.MouseEvent<HTMLInputElement>) => setState(true)} type={'radio'} /></label> <small>useful against knights and big things</small>
+                    <label>Count Total Wounds <input name={'deadModels'} checked={sumWounds} value="false" onChange={() => setState(true)} type={'radio'} /></label> <small>useful against knights and big things</small>
                 </div>
                 <div>
-                    <label>Count Dead Models <input name={'deadModels'} checked={!sumWounds} value="true" onClick={(e: React.MouseEvent<HTMLInputElement>) => setState(false)} type={'radio'} /></label> <small>useful against many small things</small>
+                    <label>Count Dead Models <input name={'deadModels'} checked={!sumWounds} value="true" onChange={() => setState(false)} type={'radio'} /></label> <small>useful against many small things</small>
+                </div>
+                <div>
+                    <label>Select Target Faction</label><br />
+                    <select multiple={true} defaultValue={['marines']} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setTargetFaction({ element: e.currentTarget })}>
+                        <option value='marines'>Loyalist Marines</option>
+                        <option value='csm' >Chaos Marines</option>
+                        <option value='ig' >Imperial Guard</option>
+                        <option value='orks' >Orks</option>
+                        <option value='deamons' >Deamons</option>
+                    </select>
                 </div>
                 <div><br />
                     <label>
                         Select Target (hold ctrl/cmd to select multiple targets):
                     </label><br />
-                    <select multiple={true} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => dispatch({ element: e.currentTarget })}>
+                    <select multiple={true} defaultValue={['0']} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => dispatch({ element: e.currentTarget })}>
                         {targets.map((t: any, i: number) => {
                             return (
-                                <option key={i} selected={i === 0} value={i}>{t.name}</option>
+                                <option key={i} value={i}>{t.name}</option>
                             );
                         })}
                     </select>

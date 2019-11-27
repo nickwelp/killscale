@@ -1,22 +1,12 @@
 import React, { ChangeEvent, useReducer, useState } from 'react';
 
-import Leviathan from '../models/targets/basicMarines/leviathan';
-import RepulsorExecutioner from '../models/targets/basicMarines/repulsorExecutioner';
-import Rhino from '../models/targets/basicMarines/rhino';
-import Tacticals from '../models/targets/basicMarines/tacticals';
-import Cultists from '../models/targets/chaosMarines/Cultists';
-import Intercessors from '../models/targets/hooson/intercessors';
-import Guardsmen from '../models/targets/imperialGuard/Guardsmen';
-import IronHandsRepulsorExecutioner from '../models/targets/ironHands/ihRepulsorExecutioner';
-import Boyz from '../models/targets/orks/Boyz';
-import DeathshroudTerminators from '../models/targets/vessel/DeathshroudTerminators';
-import PlagueBearers from '../models/targets/vessel/plagueBearers';
-
 import Display from './Display';
 import HelpText from './HelpText';
 import UIOptions from './UIOptions';
 
-import { IUnit } from '../models/interfaces';
+import { IUnit, ITarget } from '../models/interfaces';
+
+import { targets } from './TargetFaction';
 
 interface IDispatch {
     element: HTMLSelectElement;
@@ -30,12 +20,22 @@ const reducer = (state: number[], { element }: IDispatch) => {
     return newList;
 };
 
+const selectTargetFactionsReducer = (state: string[], { element }: IDispatch) => {
+    const newList: string[] = [];
+    for (let t = 0; t < element.options.length; t++) {
+        if (element.options[t].selected) newList.push(element.options[t].value);
+    }
+    return newList;
+};
+
 const Dashboard = (shooters: IUnit[], activeList: number[]) => {
     // list of selected targets
     const [targetList, dispatch] = useReducer(reducer, [0]);
     // do we want to count total wounds like we're shooting a Knight?
     // or do we want to count dead models? sumWounds = false means we count 
     // dead models
+    const [targetFaction, setTargetFaction] = useReducer(selectTargetFactionsReducer, ['marines']);
+
     const [sumWounds, setState] = useState(false);
     const [rerollHits, setRerollHits] = useState(true);
 
@@ -54,8 +54,7 @@ const Dashboard = (shooters: IUnit[], activeList: number[]) => {
     const [showOptions, setShowOptions] = useState(false);
     const [showHelp, setShowHelp] = useState(false);
 
-
-    const targets = [PlagueBearers, DeathshroudTerminators, Intercessors, Tacticals, Guardsmen, Cultists, Boyz, Rhino, Leviathan, IronHandsRepulsorExecutioner, RepulsorExecutioner];
+    const availableTargets = (a: string[]): ITarget[] => targets(a);
 
     return (
         <div>
@@ -64,7 +63,8 @@ const Dashboard = (shooters: IUnit[], activeList: number[]) => {
             <div><label >Show Options <input checked={showOptions} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowOptions(!!e.currentTarget.checked)} /> </label> </div>
             {showOptions &&
                 <UIOptions props={{
-                    targets,
+                    targets: availableTargets(targetFaction),
+                    targetFaction, setTargetFaction,
                     dispatch,
                     sumWounds, setState,
                     rerollHits, setRerollHits,
@@ -81,7 +81,7 @@ const Dashboard = (shooters: IUnit[], activeList: number[]) => {
             <Display props={{
                 shooters,
                 activeList,
-                targets,
+                targets: availableTargets(targetFaction),
                 targetList,
                 sumWounds,
                 rerollHits,
