@@ -10,6 +10,8 @@ import IronHandsRepulsorExecutioner from '../models/targets/ironHands/ihRepulsor
 import Boyz from '../models/targets/orks/Boyz';
 import DeathshroudTerminators from '../models/targets/vessel/DeathshroudTerminators';
 import PlagueBearers from '../models/targets/vessel/plagueBearers';
+import genericKnight from '../models/targets/knights/genericKnight';
+import genricKnightRotate from '../models/targets/knights/genericKnightRotate';
 import { ITarget } from '../models/interfaces';
 
 export const targets = (targetFaction: string[]): ITarget[] => {
@@ -28,6 +30,9 @@ export const targets = (targetFaction: string[]): ITarget[] => {
     }
     if (targetFaction.includes('orks')) {
         selectedTargets.push(...[Boyz]);
+    }
+    if (targetFaction.includes('knight')) {
+        selectedTargets.push(...[genricKnightRotate, genericKnight])
     }
     return selectedTargets;
 };

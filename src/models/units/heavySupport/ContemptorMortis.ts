@@ -118,7 +118,7 @@ export const ContemptorMortis: IUnit = {
             numberOfShots: () => 2,
             AP: 2,
             toHit: 2,
-            strength: 4,
+            strength: 8,
             damage: () => d6(),
         }
     ]

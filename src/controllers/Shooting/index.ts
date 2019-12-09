@@ -7,7 +7,7 @@ import generateFailedSaves from './generateFailedSaves';
 import generateHits from './generateHits';
 import generateWounds from './generateWounds';
 
-const iterations = 2000;
+const iterations = 3000;
 const cache = {};
 
 interface IProps {
