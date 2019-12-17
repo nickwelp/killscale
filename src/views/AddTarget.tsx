@@ -50,8 +50,8 @@ const AddTarget = () => {
         const modelCount = parseInt((document.querySelector('input[name=modelCount]') ? document.querySelector('input[name=modelCount]').value : '1'), 10);
         // @ts-ignore
         const toHit = parseInt((document.querySelector('input[name=toHit]') ? document.querySelector('input[name=toHit]').value : '0'), 10);
-        // @ts-ignore
-        const points = parseInt((document.querySelector('input[name=points]') ? document.querySelector('input[name=points]').value : '100'), 10);
+        // // @ts-ignore
+        // const points = parseInt((document.querySelector('input[name=points]') ? document.querySelector('input[name=points]').value : '100'), 10);
         // @ts-ignore
         const tags = (document.querySelector('input[name=keywords]') ? document.querySelector('input[name=keywords]').value : '100').split(',').map(e => e.trim());
         const target: ITarget = {
@@ -63,7 +63,7 @@ const AddTarget = () => {
             woundsPerModel,
             modelCount,
             toHit,
-            points,
+            // points,
             tags,
         };
         addUserCreatedTarget(target);
@@ -72,7 +72,7 @@ const AddTarget = () => {
 
     return (
         <div style={{ position: 'fixed', zIndex: 9, top: '0', left: '0', right: 0, bottom: 0, background: '#f2f2f2' }}>
-            <div style={{ maxWidth: '500px', margin: '10% auto', boxShadow: '2px 2px 2px #999999', borderRadius: '3px' }}>
+            <div style={{ maxWidth: '500px', margin: '10% auto', boxShadow: '1px 1px 5px #999999', borderRadius: '3px', padding: '10px' }}>
                 <form style={{ display: 'flex', flexFlow: 'column nowrap' }}>
                     <label>Name of Unit <input type={'text'} name={'name'} id={'name'} /></label>
                     <label>FNP +++<select name={'FNP'}>
@@ -121,11 +121,11 @@ const AddTarget = () => {
                             <option value="-4">-4</option>
                         </select>
                     </label>
-                    <label>Points (approximate)
+                    {/* <label>Points (approximate)
                         <select name="points" >
                             {options(600, 100)}
                         </select>
-                    </label>
+                    </label> */}
                     <label>
                         Keywords (comma seperate caps don't matter) <br />
                         ie "Vehicle, Fly, rat" <br />

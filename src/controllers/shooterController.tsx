@@ -43,9 +43,10 @@ export const ShooterController = (dashboard: (a: IUnit[], b: number[]) => any) =
         <>
             <div>
                 <label>Select Offensive Units <input type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowOptions(!!e.currentTarget.checked)} /></label>
-                <ul style={{ fontSize: 'small' }}>
-                    {showOptions && options}
-                </ul>
+                {showOptions &&
+                    <ul style={{ listStyleType: 'none', fontSize: 'small', display: 'flex', flexFlow: 'column wrap', width: '90%', maxWidth: '1500px', borderRadius: '3px', boxShadow: '2px 2px 5px #999', margin: 'auto', columnCount: 2, columnGap: '20px', height: '130px', padding: '10px' }}>
+                        {options}
+                    </ul>}
             </div>
             <div>
                 {dashboard(shooters, activeList)}

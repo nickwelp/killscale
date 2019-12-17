@@ -8,11 +8,11 @@ const Router = () => (
   <UserContext>
     <BrowserRouter>
       <Switch>
-        <Route exact path={'/dashboard'} component={Dashboard} />
+        <Route exact path={'/'} component={Dashboard} />
         {/* <Route exact path={'/addShooters'} component={Dashboard} />
       <Route exact path={'/addTargets'} component={Dashboard} /> */}
         {/* <Route path={'/roles/:id'} component={Editor} /> */}
-        <Redirect to={'/dashboard'} />
+        <Redirect to={'/'} />
       </Switch>
     </BrowserRouter>
   </UserContext>

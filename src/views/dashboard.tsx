@@ -9,8 +9,7 @@ import { IUnit, ITarget } from '../models/interfaces';
 import { targets } from './TargetFaction';
 
 import { MyUserContext } from '../controllers/context/UserContext';
-
-import AddTarget from './AddTarget';
+import SelectTargets from './SelectTargets';
 
 interface IDispatch {
     element: HTMLSelectElement;
@@ -65,6 +64,7 @@ const Dashboard = (shooters: IUnit[], activeList: number[]) => {
 
     const availableTargets = (a: string[]): ITarget[] => [...userCreatedTargets, ...targets(a)];
 
+    const [chooseTargets, updateChooseTargets] = useState(false);
 
     return (
         <div>
@@ -73,9 +73,6 @@ const Dashboard = (shooters: IUnit[], activeList: number[]) => {
             <div><label >Show Options <input checked={showOptions} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowOptions(!!e.currentTarget.checked)} /> </label> </div>
             {showOptions &&
                 <UIOptions props={{
-                    targets: availableTargets(targetFaction),
-                    targetFaction, setTargetFaction,
-                    dispatch,
                     sumWounds, setState,
                     rerollHits, setRerollHits,
                     devastator, setDevastor,
@@ -89,7 +86,14 @@ const Dashboard = (shooters: IUnit[], activeList: number[]) => {
                     IFHeavyWeaponsSuperDoctrine, setIFHeavyWeaponsSuperDoctrine,
                     applyHeavyWeaponMinusOneToHit, setApplyHeavyWeaponMinusOneToHit
                 }} />}
-            <AddTarget />
+            <div><label >Choose Targets<input checked={chooseTargets} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => updateChooseTargets(!!e.currentTarget.checked)} /> </label> </div>
+            {chooseTargets &&
+                <SelectTargets
+                    props={{
+                        targets: availableTargets(targetFaction),
+                        targetFaction, setTargetFaction,
+                        dispatch
+                    }} />}
             <Display props={{
                 shooters,
                 activeList,

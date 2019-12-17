@@ -2,9 +2,6 @@ import React from 'react';
 
 const UIOptions = ({ props }: any) => {
     const {
-        targets,
-        setTargetFaction,
-        dispatch,
         sumWounds, setState,
         rerollHits, setRerollHits,
         devastator, setDevastor,
@@ -19,38 +16,16 @@ const UIOptions = ({ props }: any) => {
         applyHeavyWeaponMinusOneToHit, setApplyHeavyWeaponMinusOneToHit
     } = props;
     return (
-        <div style={{ display: 'flex', flexDirection: 'row', margin: '5px' }}>
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', margin: '10px auto 10px auto', padding: '10px', boxShadow: '2px 2px 5px #999', maxWidth: '1400px', width: '90%' }}>
             <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                <h3>Count Total Wounds or Count Dead Models</h3>
                 <div>
                     <label>Count Total Wounds <input name={'deadModels'} checked={sumWounds} value="false" onChange={() => setState(true)} type={'radio'} /></label> <small>useful against knights and big things</small>
                 </div>
                 <div>
                     <label>Count Dead Models <input name={'deadModels'} checked={!sumWounds} value="true" onChange={() => setState(false)} type={'radio'} /></label> <small>useful against many small things</small>
                 </div>
-                <div>
-                    <label>Select Target Faction</label><br />
-                    <select multiple={true} defaultValue={['marines']} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setTargetFaction({ element: e.currentTarget })}>
-                        <option value='marines'>Loyalist Marines</option>
-                        <option value='knight'>Knights</option>
-                        <option value='csm' >Chaos Marines</option>
-                        <option value='ig' >Imperial Guard</option>
-                        <option value='orks' >Orks</option>
-                        <option value='deamons' >Deamons</option>
-                    </select>
-                </div>
-                <div><br />
-                    <label>
-                        Select Target (hold ctrl/cmd to select multiple targets):
-                    </label><br />
-                    <select multiple={true} defaultValue={['0']} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => dispatch({ element: e.currentTarget })}>
-                        {targets.map((t: any, i: number) => {
-                            return (
-                                <option key={i} value={i}>{t.name}</option>
-                            );
-                        })}
-                    </select>
-                    (this is a multiselect, initiate!)
-                </div>
+
                 <div>
                     <label><small>Hide Unchecked Weapons </small><input type={'checkbox'} checked={hideUncheckedWeapons} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setHideUncheckedWeapons(!!e.currentTarget.checked)} name={'hideUncheckedWeapons'} /> </label>
                 </div>
@@ -74,7 +49,7 @@ const UIOptions = ({ props }: any) => {
                 </div>
             </div>
             <div style={{ margin: '3px', flexGrow: 1, fontSize: '12px', textAlign: 'right' }}>
-                <p><small>Doctrine</small></p>
+                <p><small>Doctrines</small></p>
                 {/* <div>
                     <label>Reroll Wounds <input type={'checkbox'} value='1' onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRerollWounds(!!e.currentTarget.checked)} /></label>
                 </div> */}

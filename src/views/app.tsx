@@ -5,7 +5,7 @@ import Dashboard from './Dashboard';
 
 const App = () => {
     return (
-        <div>
+        <div style={{ padding: '10px' }}>
             <h1 style={{ transform: 'scale(2,1) perspective(200px) rotateX(40deg)', textShadow: '1px 1px 3px rgba(0,0,0,.3)', textAlign: 'center', fontFamily: 'impact, sans-serif' }}>KILL SCALE</h1>
             {ShooterController(Dashboard)}
         </div>
