@@ -15,7 +15,8 @@ const UIOptions = ({ props }: any) => {
         rerollHitRollsOfOne, setRerollHitRollsOfOne,
         rerollWoundRollsOfOne, setRerollWoundRollsOfOne,
         hideUncheckedWeapons, setHideUncheckedWeapons,
-        IFHeavyWeaponsSuperDoctrine, setIFHeavyWeaponsSuperDoctrine
+        IFHeavyWeaponsSuperDoctrine, setIFHeavyWeaponsSuperDoctrine,
+        applyHeavyWeaponMinusOneToHit, setApplyHeavyWeaponMinusOneToHit
     } = props;
     return (
         <div style={{ display: 'flex', flexDirection: 'row', margin: '5px' }}>
@@ -67,6 +68,9 @@ const UIOptions = ({ props }: any) => {
                 </div>
                 <div>
                     <label>Reroll Hit Rolls of One<input type={'checkbox'} value="1" checked={rerollHitRollsOfOne} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRerollHitRollsOfOne(!!e.currentTarget.checked)} /></label>
+                </div>
+                <div>
+                    <label>Apply Heavy Weapons Minus One to Hit <input type={'checkbox'} value="1" checked={applyHeavyWeaponMinusOneToHit} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setApplyHeavyWeaponMinusOneToHit(!!e.currentTarget.checked)} /></label>
                 </div>
             </div>
             <div style={{ margin: '3px', flexGrow: 1, fontSize: '12px', textAlign: 'right' }}>

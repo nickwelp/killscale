@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useReducer, useState } from 'react';
+import React, { ChangeEvent, useReducer, useState, useContext } from 'react';
 
 import Display from './Display';
 import HelpText from './HelpText';
@@ -7,6 +7,10 @@ import UIOptions from './UIOptions';
 import { IUnit, ITarget } from '../models/interfaces';
 
 import { targets } from './TargetFaction';
+
+import { MyUserContext } from '../controllers/context/UserContext';
+
+import AddTarget from './AddTarget';
 
 interface IDispatch {
     element: HTMLSelectElement;
@@ -29,6 +33,10 @@ const selectTargetFactionsReducer = (state: string[], { element }: IDispatch) =>
 };
 
 const Dashboard = (shooters: IUnit[], activeList: number[]) => {
+
+    const { userCreatedTargets } = useContext(MyUserContext);
+
+
     // list of selected targets
     const [targetList, dispatch] = useReducer(reducer, [0]);
     // do we want to count total wounds like we're shooting a Knight?
@@ -44,6 +52,7 @@ const Dashboard = (shooters: IUnit[], activeList: number[]) => {
     const [assault, setAssault] = useState(true);
     const [explodingBolter6s, setExplodingBolter6s] = useState(true);
     const [crimsonFistsPlusToHit, setCrimsonFistsPlusToHit] = useState(true);
+    const [applyHeavyWeaponMinusOneToHit, setApplyHeavyWeaponMinusOneToHit] = useState(false);
 
     const [rerollHitRollsOfOne, setRerollHitRollsOfOne] = useState(true);
     // const [rerollWounds, setRerollWounds] = useState(false);
@@ -54,7 +63,8 @@ const Dashboard = (shooters: IUnit[], activeList: number[]) => {
     const [showOptions, setShowOptions] = useState(false);
     const [showHelp, setShowHelp] = useState(false);
 
-    const availableTargets = (a: string[]): ITarget[] => targets(a);
+    const availableTargets = (a: string[]): ITarget[] => [...userCreatedTargets, ...targets(a)];
+
 
     return (
         <div>
@@ -76,8 +86,10 @@ const Dashboard = (shooters: IUnit[], activeList: number[]) => {
                     rerollHitRollsOfOne, setRerollHitRollsOfOne,
                     rerollWoundRollsOfOne, setRerollWoundRollsOfOne,
                     hideUncheckedWeapons, setHideUncheckedWeapons,
-                    IFHeavyWeaponsSuperDoctrine, setIFHeavyWeaponsSuperDoctrine
+                    IFHeavyWeaponsSuperDoctrine, setIFHeavyWeaponsSuperDoctrine,
+                    applyHeavyWeaponMinusOneToHit, setApplyHeavyWeaponMinusOneToHit
                 }} />}
+            <AddTarget />
             <Display props={{
                 shooters,
                 activeList,
@@ -94,7 +106,8 @@ const Dashboard = (shooters: IUnit[], activeList: number[]) => {
                 rerollWounds,
                 rerollWoundRollsOfOne,
                 hideUncheckedWeapons,
-                IFHeavyWeaponsSuperDoctrine
+                IFHeavyWeaponsSuperDoctrine,
+                applyHeavyWeaponMinusOneToHit
             }} />
         </div >
     );

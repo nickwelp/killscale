@@ -20,7 +20,8 @@ const Display = ({ props }: any) => {
         hideUncheckedWeapons,
         shooters,
         activeList,
-        IFHeavyWeaponsSuperDoctrine
+        IFHeavyWeaponsSuperDoctrine,
+        applyHeavyWeaponMinusOneToHit
     } = props;
     const selectedTargets: ITarget[] = targets.filter((_: ITarget, i: number) => targetList.includes(i));
     const uiSettings = {
@@ -33,7 +34,8 @@ const Display = ({ props }: any) => {
         rerollWoundRollsOfOne,
         explodingBolter6s,
         crimsonFistsPlusToHit,
-        IFHeavyWeaponsSuperDoctrine
+        IFHeavyWeaponsSuperDoctrine,
+        applyHeavyWeaponMinusOneToHit
     };
     const doctrine = {
         devastator,

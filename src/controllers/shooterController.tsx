@@ -13,8 +13,9 @@ import { RepulsorExecutioner } from '../models/units/heavySupport/RepulsorExecut
 import { Repulsor } from '../models/units/transport/Repulsor';
 import { Infiltrator, Intercessor } from '../models/units/troops';
 import { ThunderfireCannon } from '../models/units/heavySupport/ThunderfireCannon';
+import { Whirlwind } from '../models/units/heavySupport/Whirlwind';
 
-const shooters = [Intercessor, Infiltrator, Invictors, ContemptorMortis, Elminators, Suppressors, Tarantula, VernerableDreadnaughts, Dreadnaughts, RepulsorExecutioner, Repulsor, Devastators, ThunderfireCannon];
+const shooters = [Intercessor, Infiltrator, Invictors, ContemptorMortis, Elminators, Suppressors, Tarantula, VernerableDreadnaughts, Dreadnaughts, RepulsorExecutioner, Repulsor, Devastators, ThunderfireCannon, Whirlwind];
 
 export const ShooterController = (dashboard: (a: IUnit[], b: number[]) => any) => {
     const [activeList, updateActiveList] = useState(shooters.map((_, i) => i));

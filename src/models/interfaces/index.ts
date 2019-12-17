@@ -51,6 +51,7 @@ export interface IRerollSet {
     explodingBolter6s: boolean;
     crimsonFistsPlusToHit: boolean;
     IFHeavyWeaponsSuperDoctrine?: boolean;
+    applyHeavyWeaponMinusOneToHit?: boolean;
 
 }
 

@@ -1,7 +1,7 @@
 import { ITarget } from '../../interfaces';
 
 const plagueBearers: ITarget = {
-    name: 'Plague Bearers',
+    name: 'Plague Bearers (-2 to hit)',
     save: 7,
     woundsPerModel: 1,
     modelCount: 30,
