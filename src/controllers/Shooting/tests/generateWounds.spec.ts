@@ -21,7 +21,6 @@ const weapon_stubber: IWeaponProfile = {
     type: 'Rapid (twice)',
     numberOfShots: () => 2,
     numberOfShotsLabel: '2 shots',
-    toHit: 3,
     tags: ['notBolter']
 };
 

@@ -8,6 +8,8 @@ export const ThunderfireCannon: IUnit = {
     points: 45,
     tags: ['vehicle'],
     modelCountPerUnit: 1,
+    toHit: 2,
+    balisticSkill: 3,
     weapons: [
         {
             name: 'Thunderfire Cannon',
@@ -17,7 +19,6 @@ export const ThunderfireCannon: IUnit = {
             uniqueIdentifier: 'tfc',
             numberOfShots: () => d3() + d3() + d3() + d3(),
             AP: 1,
-            toHit: 2,
             strength: 5,
             damage: () => 1
         },
@@ -29,7 +30,6 @@ export const ThunderfireCannon: IUnit = {
             uniqueIdentifier: 'tfc',
             numberOfShots: () => d3() + d3() + d3() + d3() + d3() + d3() + d3() + d3(),
             AP: 1,
-            toHit: 2,
             strength: 5,
             damage: () => 1
         }

@@ -8,6 +8,8 @@ export const Whirlwind: IUnit = {
     points: 80,
     tags: ['vehicle'],
     modelCountPerUnit: 1,
+    toHit: 3,
+    balisticSkill: 3,
     weapons: [
         {
             name: 'Vengeance Launcher',
@@ -17,7 +19,6 @@ export const Whirlwind: IUnit = {
             uniqueIdentifier: 'turrent',
             numberOfShots: () => d3() + d3(),
             AP: 1,
-            toHit: 3,
             strength: 7,
             damage: () => 2
         },
@@ -29,7 +30,6 @@ export const Whirlwind: IUnit = {
             uniqueIdentifier: 'turrent',
             numberOfShots: () => d3() + d3() + d3() + d3(),
             AP: 1,
-            toHit: 3,
             strength: 7,
             damage: () => 2
         },
@@ -41,7 +41,6 @@ export const Whirlwind: IUnit = {
             uniqueIdentifier: 'turrent',
             numberOfShots: () => d6() + d6(),
             AP: 0,
-            toHit: 3,
             strength: 6,
             damage: () => 1
         },
@@ -53,7 +52,6 @@ export const Whirlwind: IUnit = {
             uniqueIdentifier: 'turrent',
             numberOfShots: () => d6() + d6() + d6() + d6(),
             AP: 0,
-            toHit: 3,
             strength: 6,
             damage: () => 1
         },

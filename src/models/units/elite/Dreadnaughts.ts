@@ -7,6 +7,8 @@ export const Dreadnaughts: IUnit = {
     modelCountPerUnit: 1,
     tags: ['vehicle'],
     points: 130,
+    toHit: 3,
+    balisticSkill: 3,
     weapons: [
         {
             name: 'Twin Heavy Bolters',
@@ -15,7 +17,6 @@ export const Dreadnaughts: IUnit = {
             numberOfShotsLabel: '6',
             numberOfShots: () => 6,
             AP: 1,
-            toHit: 3,
             strength: 5,
             damage: () => 1,
         },
@@ -26,7 +27,6 @@ export const Dreadnaughts: IUnit = {
             numberOfShotsLabel: '4',
             numberOfShots: () => 4,
             AP: 1,
-            toHit: 3,
             strength: 7,
             damage: () => 2,
         }

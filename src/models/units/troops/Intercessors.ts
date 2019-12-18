@@ -5,7 +5,9 @@ export const Intercessor: IUnit = {
     description: 'Intercessors with Stalker Bolt Rifles',
     points: 17,
     tags: ['infantry'],
+    toHit: 3,
     modelCountPerUnit: 5,
+    balisticSkill: 3,
     weapons: [
         {
             name: 'Stalker Bolt Rifle',
@@ -15,7 +17,6 @@ export const Intercessor: IUnit = {
             tags: ['bolter', 'multiprofile', 'bolt rifle'],
             uniqueIdentifier: 'bolt rifle',
             AP: 2,
-            toHit: 3,
             strength: 4,
             damage: () => 2,
         },
@@ -27,7 +28,6 @@ export const Intercessor: IUnit = {
             numberOfShots: () => 1,
             numberOfShotsLabel: '1',
             AP: 1,
-            toHit: 3,
             strength: 4,
             damage: () => 1,
         },
@@ -39,7 +39,6 @@ export const Intercessor: IUnit = {
             numberOfShots: () => 2,
             numberOfShotsLabel: '2',
             AP: 1,
-            toHit: 3,
             strength: 4,
             damage: () => 1,
         },
@@ -51,7 +50,6 @@ export const Intercessor: IUnit = {
             uniqueIdentifier: 'bolt rifle',
             numberOfShotsLabel: '3',
             AP: 0,
-            toHit: 3,
             strength: 4,
             damage: () => 1,
         }

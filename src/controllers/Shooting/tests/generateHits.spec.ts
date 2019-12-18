@@ -21,7 +21,6 @@ const weapon_bolter: IWeaponProfile = {
     type: 'Rapid (twice)',
     numberOfShots: () => 2,
     numberOfShotsLabel: '2 shots',
-    toHit: 3,
     tags: ['bolter']
 };
 
@@ -33,7 +32,6 @@ const weapon_stubber: IWeaponProfile = {
     type: 'Rapid (twice)',
     numberOfShots: () => 2,
     numberOfShotsLabel: '2 shots',
-    toHit: 3,
     tags: ['notBolter']
 };
 
@@ -53,6 +51,8 @@ const shooter: IUnit = {
     modelCountPerUnit: 1,
     description: 'like a marine',
     points: 12,
+    toHit: 3,
+    balisticSkill: 3,
     tags: [],
     weapons: [],
 };
@@ -168,10 +168,10 @@ describe('generateHits function', () => {
         d6.mockImplementation(() => index++);
         expect((generateHits(
             { ...target1 },
-            { ...weapon_bolter, numberOfShots: () => 6, toHit: 2 },
+            { ...weapon_bolter, numberOfShots: () => 6 },
             1,
             { ...dullReRollProfile },
-            { ...shooter },
+            { ...shooter, toHit: 2 },
         ))).toStrictEqual([5, 0]);
     });
 });

@@ -8,6 +8,8 @@ export const Invictors: IUnit = {
     points: 136,
     tags: ['vehicle'],
     modelCountPerUnit: 1,
+    toHit: 3,
+    balisticSkill: 3,
     weapons: [
         {
             name: 'Twin Ironhail Autocannons',
@@ -16,7 +18,6 @@ export const Invictors: IUnit = {
             numberOfShotsLabel: '6',
             numberOfShots: () => 6,
             AP: 1,
-            toHit: 3,
             strength: 7,
             damage: () => 2,
         },
@@ -27,7 +28,6 @@ export const Invictors: IUnit = {
             numberOfShotsLabel: '3',
             numberOfShots: () => 3,
             AP: 1,
-            toHit: 3,
             strength: 5,
             damage: () => 1,
         },
@@ -38,7 +38,6 @@ export const Invictors: IUnit = {
             numberOfShotsLabel: '3',
             numberOfShots: () => 3,
             AP: 1,
-            toHit: 3,
             strength: 4,
             damage: () => 1,
         },
@@ -49,7 +48,6 @@ export const Invictors: IUnit = {
             numberOfShotsLabel: 'd6',
             numberOfShots: () => d6(),
             AP: 0,
-            toHit: 3,
             strength: 4,
             damage: () => 1,
         }

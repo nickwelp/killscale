@@ -6,6 +6,8 @@ export const Tarantula: IUnit = {
     points: 37,
     tags: ['vehicle'],
     modelCountPerUnit: 1,
+    toHit: 4,
+    balisticSkill: 3,
     weapons: [
         {
             name: 'Twin Heavy Bolters',
@@ -14,7 +16,6 @@ export const Tarantula: IUnit = {
             numberOfShotsLabel: '6',
             tags: [],
             AP: 1,
-            toHit: 4,
             strength: 5,
             damage: () => 1,
         }

@@ -27,7 +27,6 @@ const weapon_bolter: IWeaponProfile = {
     type: 'Rapid Fire',
     numberOfShots: () => 2,
     numberOfShotsLabel: '2 shots',
-    toHit: 3,
     tags: ['bolter']
 };
 

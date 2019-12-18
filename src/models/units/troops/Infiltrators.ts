@@ -6,6 +6,8 @@ export const Infiltrator: IUnit = {
     points: 21,
     tags: ['infantry'],
     modelCountPerUnit: 5,
+    toHit: 3,
+    balisticSkill: 3,
     weapons: [
         {
             name: 'Occulous Bolt Carbine',
@@ -15,7 +17,6 @@ export const Infiltrator: IUnit = {
             tags: ['bolter', 'multiprofile', 'bolt carbine', 'autowounds on 6s to hit'],
             uniqueIdentifier: 'bolt carbine',
             AP: 0,
-            toHit: 3,
             strength: 4,
             damage: () => 1,
         },
@@ -27,7 +28,6 @@ export const Infiltrator: IUnit = {
             tags: ['bolter', 'multiprofile', 'bolt carbine', 'autowounds on 6s to hit'],
             uniqueIdentifier: 'bolt carbine',
             AP: 0,
-            toHit: 3,
             strength: 4,
             damage: () => 1,
         }
