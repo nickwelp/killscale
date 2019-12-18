@@ -19,6 +19,9 @@ const generateWounds = (
         if ((dieResult + woundModifier) >= 6 && tags.includes('mortal wound on 6+s to wound')) {
             mortalWounds++;
         }
+        if (dieResult === 6 && tags.includes('mortal wound on 6s to wound')) {
+            mortalWounds++;
+        }
     }
     return [wounds, mortalWounds];
 };
