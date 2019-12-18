@@ -35,25 +35,25 @@ const AddTarget = () => {
 
     const saveTarget = () => {
         // @ts-ignore
-        const name = (document.querySelector('input[name=name]') ? document.querySelector('input[name=name]').value : '');
+        const name = (document.querySelector('[name=name]') ? document.querySelector('[name=name]').value : '');
         // @ts-ignore
-        const FNP = parseInt((document.querySelector('input[name=FNP]') ? document.querySelector('input[name=FNP]').value : '7'), 10);
+        const FNP = parseInt((document.querySelector('[name=FNP]') ? document.querySelector('[name=FNP]').value : '7'), 10);
         // @ts-ignore
-        const invuln = parseInt((document.querySelector('input[name=invuln]') ? document.querySelector('input[name=invuln]').value : '7'), 10);
+        const invuln = parseInt((document.querySelector('[name=invuln]') ? document.querySelector('[name=invuln]').value : '7'), 10);
         // @ts-ignore
-        const save = parseInt((document.querySelector('input[name=save]') ? document.querySelector('input[name=save]').value : '5'), 10);
+        const save = parseInt((document.querySelector('[name=save]') ? document.querySelector('[name=save]').value : '3'), 10);
         // @ts-ignore
-        const toughness = parseInt((document.querySelector('input[name=toughness]') ? document.querySelector('input[name=toughness]').value : '4'), 10);
+        const toughness = parseInt((document.querySelector('[name=toughness]') ? document.querySelector('[name=toughness]').value : '4'), 10);
         // @ts-ignore
-        const woundsPerModel = parseInt((document.querySelector('input[name=woundsPerModel]') ? document.querySelector('input[name=woundsPerModel]').value : '1'), 10);
+        const woundsPerModel = parseInt((document.querySelector('[name=woundsPerModel]') ? document.querySelector('[name=woundsPerModel]').value : '1'), 10);
         // @ts-ignore
-        const modelCount = parseInt((document.querySelector('input[name=modelCount]') ? document.querySelector('input[name=modelCount]').value : '1'), 10);
+        const modelCount = parseInt((document.querySelector('[name=modelCount]') ? document.querySelector('[name=modelCount]').value : '1'), 10);
         // @ts-ignore
-        const toHit = parseInt((document.querySelector('input[name=toHit]') ? document.querySelector('input[name=toHit]').value : '0'), 10);
+        const toHit = parseInt((document.querySelector('[name=toHit]') ? document.querySelector('[name=toHit]').value : '0'), 10);
         // // @ts-ignore
-        // const points = parseInt((document.querySelector('input[name=points]') ? document.querySelector('input[name=points]').value : '100'), 10);
+        // const points = parseInt((document.querySelector('[name=points]') ? document.querySelector('[name=points]').value : '100'), 10);
         // @ts-ignore
-        const tags = (document.querySelector('input[name=keywords]') ? document.querySelector('input[name=keywords]').value : '100').split(',').map(e => e.trim());
+        const tags = (document.querySelector('[name=keywords]') ? document.querySelector('[name=keywords]').value : '100').split(',').map(e => e.trim());
         const target: ITarget = {
             name,
             FNP,
