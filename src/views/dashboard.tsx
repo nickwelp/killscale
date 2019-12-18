@@ -4,12 +4,16 @@ import Display from './Display';
 import HelpText from './HelpText';
 import UIOptions from './UIOptions';
 
-import { IUnit, ITarget } from '../models/interfaces';
+import { ITarget } from '../models/interfaces';
 
 import { targets } from './TargetFaction';
 
 import { MyUserContext } from '../controllers/context/UserContext';
 import SelectTargets from './SelectTargets';
+import SelectAttackers from './SelectAttackers';
+
+import { attackers } from '../models/units';
+
 
 interface IDispatch {
     element: HTMLSelectElement;
@@ -31,7 +35,7 @@ const selectTargetFactionsReducer = (state: string[], { element }: IDispatch) =>
     return newList;
 };
 
-const Dashboard = (shooters: IUnit[], activeList: number[]) => {
+const Dashboard = () => {
 
     const { userCreatedTargets } = useContext(MyUserContext);
 
@@ -42,6 +46,8 @@ const Dashboard = (shooters: IUnit[], activeList: number[]) => {
     // or do we want to count dead models? sumWounds = false means we count 
     // dead models
     const [targetFaction, setTargetFaction] = useReducer(selectTargetFactionsReducer, ['marines']);
+
+
 
     const [sumWounds, setState] = useState(false);
     const [rerollHits, setRerollHits] = useState(true);
@@ -66,10 +72,38 @@ const Dashboard = (shooters: IUnit[], activeList: number[]) => {
 
     const [chooseTargets, updateChooseTargets] = useState(false);
 
+    /** manage attackers */
+    const [activeAttackersList, updateActiveAttackersList] = useState(attackers.map((_, i) => i));
+    const setActiveAttackersList = (e: ChangeEvent<HTMLInputElement>) => {
+        const index = parseInt(e.currentTarget.value, 10);
+        const status = e.currentTarget.checked === true;
+        if (status) {
+            updateActiveAttackersList([...new Set([index, ...activeAttackersList])]);
+        } else {
+            updateActiveAttackersList(activeAttackersList.filter((e: number) => e !== index));
+        }
+    };
+    const [showSelectAttackers, setShowSelectAttackers] = useState(false);
+    /** end manage attackers */
+
     return (
         <div>
             <div><label >Show Help <input checked={showHelp} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowHelp(!!e.currentTarget.checked)} /> </label> </div>
             {showHelp && <HelpText />}
+
+            <label>Select Attacking Units <input type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowSelectAttackers(!!e.currentTarget.checked)} /></label>
+            {showSelectAttackers &&
+                <SelectAttackers activeAttackersList={activeAttackersList} setActiveAttackersList={setActiveAttackersList} />}
+
+            <div><label >Select Targets<input checked={chooseTargets} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => updateChooseTargets(!!e.currentTarget.checked)} /> </label> </div>
+            {chooseTargets &&
+                <SelectTargets
+                    props={{
+                        targets: availableTargets(targetFaction),
+                        targetFaction, setTargetFaction,
+                        dispatch
+                    }} />}
+
             <div><label >Show Options <input checked={showOptions} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowOptions(!!e.currentTarget.checked)} /> </label> </div>
             {showOptions &&
                 <UIOptions props={{
@@ -86,17 +120,9 @@ const Dashboard = (shooters: IUnit[], activeList: number[]) => {
                     IFHeavyWeaponsSuperDoctrine, setIFHeavyWeaponsSuperDoctrine,
                     applyHeavyWeaponMinusOneToHit, setApplyHeavyWeaponMinusOneToHit
                 }} />}
-            <div><label >Choose Targets<input checked={chooseTargets} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => updateChooseTargets(!!e.currentTarget.checked)} /> </label> </div>
-            {chooseTargets &&
-                <SelectTargets
-                    props={{
-                        targets: availableTargets(targetFaction),
-                        targetFaction, setTargetFaction,
-                        dispatch
-                    }} />}
             <Display props={{
-                shooters,
-                activeList,
+                attackers,
+                activeAttackersList,
                 targets: availableTargets(targetFaction),
                 targetList,
                 sumWounds,

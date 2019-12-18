@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, ChangeEvent } from 'react';
 
 import { IRerollSet, ITarget, IUnit } from '../models/interfaces';
 import ShootingProfile from './ShootingProfile';
 
 const Display = ({ props }: any) => {
+    const [showDebugger, updateShowDebugger] = useState(false);
     const {
         targets,
         targetList,
@@ -18,8 +19,8 @@ const Display = ({ props }: any) => {
         rerollWounds,
         rerollWoundRollsOfOne,
         hideUncheckedWeapons,
-        shooters,
-        activeList,
+        attackers,
+        activeAttackersList,
         IFHeavyWeaponsSuperDoctrine,
         applyHeavyWeaponMinusOneToHit
     } = props;
@@ -42,7 +43,7 @@ const Display = ({ props }: any) => {
         tactical,
         assault
     };
-    const profiles = shooters.map((shooter: IUnit, i: number) => {
+    const profiles = attackers.map((shooter: IUnit, i: number) => {
         return ShootingProfile({
             shooter,
             targets: selectedTargets,
@@ -50,13 +51,35 @@ const Display = ({ props }: any) => {
             rerollProfile,
             doctrine,
             uiSettings,
-            hideProfile: !activeList.includes(i)
+            hideProfile: !activeAttackersList.includes(i)
         });
     });
+
+    const debuggerPannel = () => selectedTargets.map(({ name, FNP, invuln, save, toughness, woundsPerModel, toHit, modelCount, points, tags }: ITarget, index: number) => {
+        return (<div key={index} style={{ padding: '10px', margin: '5px', maxWidth: '200px', borderLeft: '1px solid #AAA' }}>
+            <h5>{name}</h5>
+            {'FNP: ' + FNP} <br />
+            {'invuln: ' + invuln} <br />
+            {'save: ' + save}  <br />
+            {'toughness: ' + toughness} <br />
+            {'woundsPerModel: ' + woundsPerModel} <br />
+            {'modelCount: ' + modelCount} <br />
+            {'toHit: ' + toHit} <br />
+            {'points: ' + points}<br />
+            {tags ? 'tags: ' + tags.join(', ') : ''}
+        </div>);
+    });
+
+
     return (
-        <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
-            {profiles}
-        </div>
+        <>
+            <div style={{ display: 'none' }}><label >Show Debugger Inforamtion<input checked={showDebugger} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => updateShowDebugger(!!e.currentTarget.checked)} /> </label> </div>
+            {showDebugger &&
+                <div style={{ display: 'flex', flexFlow: 'row wrap' }}>{debuggerPannel()}</div>}
+            <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+                {profiles}
+            </div>
+        </>
     );
 };
 
