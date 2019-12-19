@@ -18,15 +18,39 @@ const emptyTargetArray: ITarget[] = [];
 const emptyAttackerArray: IUnit[] = [];
 const emptyWeaponProfiles: IWeaponProfile[] = [];
 
+const loadCache = (): any => {
+    const targetCache = JSON.parse(localStorage.getItem('userCreatedTargets') || '[]');
+    const attackerCache = JSON.parse(localStorage.getItem('userCreatedAttackers') || '[]');
+    const weaponCache = JSON.parse(localStorage.getItem('userCreatedWeaponProfiles') || '[]');
+    return { targetCache, attackerCache, weaponCache };
+};
+
 const UserContext = ({ children }: IProps) => {
-    const [userCreatedTargets, updateUserCreatedTargets] = useState(emptyTargetArray);
-    const addUserCreatedTarget = (a: ITarget) => updateUserCreatedTargets([...userCreatedTargets, a]);
+    const { targetCache, attackerCache, weaponCache } = loadCache();
 
-    const [userCreatedAttackers, updateUserAttackers] = useState(emptyAttackerArray);
-    const addUserCreatedAttacker = (a: IUnit) => updateUserAttackers([...userCreatedAttackers, a]);
+    const initTargets = (targetCache.length > 0 ? targetCache : false) || emptyTargetArray;
+    const [userCreatedTargets, updateUserCreatedTargets] = useState(initTargets);
+    const addUserCreatedTarget = (a: ITarget) => {
+        localStorage.removeItem('userCreatedTargets');
+        localStorage.setItem('userCreatedTargets', JSON.stringify([...userCreatedTargets, a]));
+        updateUserCreatedTargets([...userCreatedTargets, a])
+    };
 
-    const [userCreatedWeaponProfiles, updateUserCreatedWeaponProfiles] = useState(emptyWeaponProfiles);
-    const addUserCreatedWeaponProfiles = (a: IWeaponProfile) => updateUserCreatedWeaponProfiles([...userCreatedWeaponProfiles, a]);
+    const initAttackers = attackerCache || emptyAttackerArray;
+    const [userCreatedAttackers, updateUserAttackers] = useState(initAttackers);
+    const addUserCreatedAttacker = (a: IUnit) => {
+        localStorage.removeItem('userCreatedAttackers');
+        localStorage.setItem('userCreatedAttackers', JSON.stringify([...userCreatedAttackers, a]));
+        updateUserAttackers([...userCreatedAttackers, a])
+    };
+
+    const initWeapons = weaponCache || emptyWeaponProfiles;
+    const [userCreatedWeaponProfiles, updateUserCreatedWeaponProfiles] = useState(initWeapons);
+    const addUserCreatedWeaponProfiles = (a: IWeaponProfile) => {
+        localStorage.removeItem('userCreatedWeaponProfiles');
+        localStorage.setItem('userCreatedWeaponProfiles', JSON.stringify([...userCreatedWeaponProfiles, a]));
+        updateUserCreatedWeaponProfiles([...userCreatedWeaponProfiles, a]);
+    }
 
     return (
         <MyUserContext.Provider value={{
@@ -44,4 +68,3 @@ const UserContext = ({ children }: IProps) => {
 
 export default UserContext;
 
-// export const MyUserConsumer = MyUserContext.Consumer;
