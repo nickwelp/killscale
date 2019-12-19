@@ -8,7 +8,7 @@ const generateHits = (
     modelCount: number,
     { crimsonFistsPlusToHit, applyHeavyWeaponMinusOneToHit, rerollHits, rerollHitRollsOfOne, explodingBolter6s }: IRerollSet,
     shooter: IUnit): [number, number] => {
-    const toHit = type === "Melee" ? shooter.balisticSkill : shooter.toHit;
+    const toHit = type === 'Melee' ? shooter.balisticSkill : shooter.toHit;
     let hits = 0;
     let autowounds = 0;
     for (let g = 0; g < sumShotsPerModel(numberOfShots, modelCount); g++) {

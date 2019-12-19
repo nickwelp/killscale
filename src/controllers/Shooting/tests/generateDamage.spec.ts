@@ -1,7 +1,7 @@
 import generateDamage from '../generateDamage';
 
+import { IRerollSet, ITarget, IWeaponProfile } from '../../../models/interfaces';
 import { d6 } from '../../util';
-import { ITarget, IWeaponProfile, IRerollSet } from '../../../models/interfaces';
 
 
 const target1: ITarget = {

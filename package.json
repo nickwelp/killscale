@@ -21,10 +21,13 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "tslint -p ./"
+    "pushToS3": "aws s3 sync ./build s3://www.killscale.com",
+    "clearCloudFrontCache": "aws cloudfront create-invalidation --distribution-id E6L2AMWW5VY7W --paths '/*'",
+    "lint": "tslint -p ./",
+    "deploy": "yarn test && yarn build && yarn pushToS3 && yarn clearCloudFrontCache"
   },
   "eslintConfig": {
     "extends": "react-app"

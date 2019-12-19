@@ -1,13 +1,13 @@
 import React, { useContext, useState } from 'react';
 
 import { MyUserContext } from '../controllers/context/UserContext';
-import { ITarget } from '../models/interfaces';
+import { IWeaponProfile } from '../models/interfaces';
 
 const AddTarget = () => {
-    const [viewAddTarget, updateViewAddTarget] = useState(false);
-    const toggleViewAddTarget = () => updateViewAddTarget(!viewAddTarget);
+    const [viewAddWeaponProfile, updateViewAddWeaponProfile] = useState(false);
+    const toggleViewAddWeaponProfile = () => updateViewAddWeaponProfile(!viewAddWeaponProfile);
 
-    const { addUserCreatedTarget } = useContext(MyUserContext);
+    const { addUserCreatedWeaponProfiles } = useContext(MyUserContext);
 
     const onKeyPress = (event: React.KeyboardEvent<HTMLButtonElement>) => {
         const code = event.charCode || event.keyCode;
@@ -20,20 +20,20 @@ const AddTarget = () => {
             return (<option key={i} value={i} selected={i === d ? true : false}>{i}</option>);
         });
     };
-    if (!viewAddTarget) {
+    if (!viewAddWeaponProfile) {
         return (
             <button
-                onClick={toggleViewAddTarget}
+                onClick={toggleViewAddWeaponProfile}
                 onKeyPress={onKeyPress}
             >
-                Add Your Own Target
+                Add Your Own Weapon Profile
             </button>
         );
     }
 
 
 
-    const saveTarget = () => {
+    const saveWeaponProfile = () => {
         // @ts-ignore
         const name = (document.querySelector('[name=name]') ? document.querySelector('[name=name]').value : '');
         // @ts-ignore
@@ -54,20 +54,20 @@ const AddTarget = () => {
         // const points = parseInt((document.querySelector('[name=points]') ? document.querySelector('[name=points]').value : '100'), 10);
         // @ts-ignore
         const tags = (document.querySelector('[name=keywords]') ? document.querySelector('[name=keywords]').value : '100').split(',').map(e => e.trim());
-        const target: ITarget = {
-            name,
-            FNP,
-            invuln,
-            save,
-            toughness,
-            woundsPerModel,
-            modelCount,
-            toHit,
-            // points,
-            tags,
-        };
-        addUserCreatedTarget(target);
-        toggleViewAddTarget();
+        // const weapon: IWeaponProfile = {
+        //     name,
+        //     FNP,
+        //     invuln,
+        //     save,
+        //     toughness,
+        //     woundsPerModel,
+        //     modelCount,
+        //     toHit,
+        //     // points,
+        //     tags,
+        // };
+        // addUserCreatedWeaponProfiles(weapon);
+        toggleViewAddWeaponProfile();
     };
 
     return (
@@ -75,14 +75,68 @@ const AddTarget = () => {
             <div style={{ maxWidth: '500px', margin: '10% auto', boxShadow: '1px 1px 5px #999999', borderRadius: '3px', padding: '10px' }}>
                 <form style={{ display: 'flex', flexFlow: 'column nowrap' }}>
                     <label>Name of Unit <input type={'text'} name={'name'} id={'name'} /></label>
-                    <label>FNP +++<select name={'FNP'}>
-                        <option value="7">None</option>
-                        <option value="6">6+++</option>
-                        <option value="5">5+++</option>
-                        <option value="4">4+++</option>
-                        <option value="3">3+++</option>
-                        <option value="2">2+++</option>
+                    <label>Weapon Type
+                        <select name="type">
+                            <option value="Rapid Fire">Rapid Fire</option>
+                            <option value="Assault">Assault</option>
+                            <option value="Heavy">Heavy</option>
+                            <option value="Melee">Melee</option>
+                        </select>
+                    </label>
+                    <label>Number of Shots <small>If Rapid Fire, add 2 profiles, one with 1 number of shots, and another with 2 (or 2 and 4, etc)</small>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="d3()">d3</option>
+                        <option value="d6()">d6</option>
+                    </label>
+
+                    <label>AP<select name={'AP'}>
+                        <option value="0">0</option>
+                        <option value="1">-1</option>
+                        <option value="2">-2</option>
+                        <option value="3">-3</option>
+                        <option value="4">-4</option>
+                        <option value="5">-5</option>
                     </select></label>
+
+                    <label>
+                        Strength
+                        <select name="strength">
+                            {options(16, 4)}
+                        </select>
+                    </label>
+
+                    <label>
+                        Damage:
+                        <select name="damage">
+                            {options(10, 1)}
+                            <option value="d6()">d6</option>
+                            <option value="d3()">d3</option>
+                        </select>
+                    </label>
+
+                    {/*
+    //     toHit: number;
+    //     rerollHits?: boolean;
+    //     rerollHitRollsOfOne?: boolean;
+    //     rerollWounds?: boolean;
+    //     rerollWoundRollsOfOne?: boolean;
+    //     plusToHit?: number;
+    //     plusToWound?: number;
+    //     tags: string[];
+    //     uniqueIdentifier?: string; */}
+
+
                     <label>Invuln ++<select name={'invuln'}>
                         <option value="7">None</option>
                         <option value="6">6++</option>
@@ -136,14 +190,14 @@ const AddTarget = () => {
 
                 <div>
                     <button
-                        onClick={toggleViewAddTarget}
+                        onClick={toggleViewAddWeaponProfile}
                         onKeyPress={onKeyPress}
                     >
                         Cancel
                     </button>
                     &nbsp;&nbsp;&nbsp;
                     <button
-                        onClick={saveTarget}
+                        onClick={saveWeaponProfile}
                         onKeyPress={onKeyPress}
                     >
                         Save Target

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useReducer, useState, useContext } from 'react';
+import React, { ChangeEvent, useContext, useReducer, useState } from 'react';
 
 import Display from './Display';
 import HelpText from './HelpText';
@@ -9,8 +9,8 @@ import { ITarget } from '../models/interfaces';
 import { targets } from './TargetFaction';
 
 import { MyUserContext } from '../controllers/context/UserContext';
-import SelectTargets from './SelectTargets';
 import SelectAttackers from './SelectAttackers';
+import SelectTargets from './SelectTargets';
 
 import { attackers } from '../models/units';
 

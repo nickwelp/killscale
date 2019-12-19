@@ -15,12 +15,12 @@ const SelectTargets = ({ props }: any) => {
                 <div>
                     <label>Select Target Faction</label><br />
                     <select multiple={true} defaultValue={['marines']} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setTargetFaction({ element: e.currentTarget })}>
-                        <option value='marines'>Loyalist Marines</option>
-                        <option value='knight'>Knights</option>
-                        <option value='csm' >Chaos Marines</option>
-                        <option value='ig' >Imperial Guard</option>
-                        <option value='orks' >Orks</option>
-                        <option value='deamons' >Deamons</option>
+                        <option value="marines">Loyalist Marines</option>
+                        <option value="knight">Knights</option>
+                        <option value="csm" >Chaos Marines</option>
+                        <option value="ig" >Imperial Guard</option>
+                        <option value="orks" >Orks</option>
+                        <option value="deamons" >Deamons</option>
                     </select>
                 </div>
                 <div>

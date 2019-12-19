@@ -1,4 +1,4 @@
-import { d6, d3 } from '../util';
+import { d3, d6 } from '../util';
 
 describe('d6', () => {
     it('expect a healthy distribution of 1,2,3,4,5 and 6 when rolling d6 a sufficient number of times, and no other numbers', () => {

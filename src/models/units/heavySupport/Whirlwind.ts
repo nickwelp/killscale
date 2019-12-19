@@ -1,4 +1,4 @@
-import { d6, d3 } from '../../../controllers/util';
+import { d3, d6 } from '../../../controllers/util';
 import { IUnit } from '../../interfaces';
 
 

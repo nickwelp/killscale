@@ -1,6 +1,6 @@
 import { IDoctrine, ITarget, IWeaponProfile } from '../../../models/interfaces';
-import generateFailedSaves from '../generateFailedSaves';
 import { d6 } from '../../util';
+import generateFailedSaves from '../generateFailedSaves';
 
 const target1: ITarget = {
     name: 'target 1',

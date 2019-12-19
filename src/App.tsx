@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
-import Dashboard from './controllers/Dashboard';
 import UserContext from './controllers/context/UserContext';
+import Dashboard from './controllers/Dashboard';
 
 const Router = () => (
   <UserContext>

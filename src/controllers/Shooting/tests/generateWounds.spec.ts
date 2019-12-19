@@ -1,6 +1,6 @@
-import generateWounds from '../generateWounds';
-import { ITarget, IWeaponProfile, IRerollSet } from '../../../models/interfaces';
+import { IRerollSet, ITarget, IWeaponProfile } from '../../../models/interfaces';
 import { d6 } from '../../util';
+import generateWounds from '../generateWounds';
 
 const target1: ITarget = {
     name: 'target 1',
