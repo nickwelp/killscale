@@ -7,7 +7,7 @@ export const Dreadnaughts: IUnit = {
     modelCountPerUnit: 1,
     tags: ['vehicle'],
     points: 130,
-    toHit: 3,
+    weaponSkill: 3,
     balisticSkill: 3,
     weapons: [
         {

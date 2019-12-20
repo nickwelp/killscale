@@ -8,7 +8,7 @@ export const Repulsor: IUnit = {
     points: 302,
     tags: ['vehicle', 'hover', 'fly'],
     modelCountPerUnit: 1,
-    toHit: 3,
+    weaponSkill: 3,
     balisticSkill: 3,
     weapons: [
         {

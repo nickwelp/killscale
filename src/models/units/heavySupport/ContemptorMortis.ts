@@ -8,8 +8,8 @@ export const ContemptorMortis: IUnit = {
     points: 160,
     tags: ['vehicle'],
     modelCountPerUnit: 1,
-    toHit: 2,
-    balisticSkill: 3,
+    weaponSkill: 2,
+    balisticSkill: 2,
     weapons: [
         {
             name: 'Two Twin Heavy Bolters',

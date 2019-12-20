@@ -8,7 +8,7 @@ export const Whirlwind: IUnit = {
     points: 80,
     tags: ['vehicle'],
     modelCountPerUnit: 1,
-    toHit: 3,
+    weaponSkill: 3,
     balisticSkill: 3,
     weapons: [
         {

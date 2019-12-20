@@ -31,7 +31,7 @@ const reducer = (state: number[], { element }: IDispatch) => {
 
 const ShootingProfile = ({ shooter, targets, sumWounds, rerollProfile, doctrine, uiSettings, hideProfile }: IProps) => {
 
-    const { weapons } = shooter;
+    const { weapons = [] } = shooter;
 
     const weaponsUsed: number[] = [];
     const identifier: string[] = [];

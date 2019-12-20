@@ -8,7 +8,7 @@ export const Invictors: IUnit = {
     points: 136,
     tags: ['vehicle'],
     modelCountPerUnit: 1,
-    toHit: 3,
+    weaponSkill: 3,
     balisticSkill: 3,
     weapons: [
         {

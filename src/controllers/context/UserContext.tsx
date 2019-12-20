@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { ITarget, IUnit, IWeaponProfile } from '../../models/interfaces';
+import { decodeRollsForSavingState } from '../util';
 // @ts-ignore
 export const MyUserContext = React.createContext();
 
@@ -22,7 +23,20 @@ const loadCache = (): any => {
     const targetCache = JSON.parse(localStorage.getItem('userCreatedTargets') || '[]');
     const attackerCache = JSON.parse(localStorage.getItem('userCreatedAttackers') || '[]');
     const weaponCache = JSON.parse(localStorage.getItem('userCreatedWeaponProfiles') || '[]');
+    weaponCache.forEach((weapon: IWeaponProfile) => {
+        weapon.numberOfShots = decodeRollsForSavingState(weapon.numberOfShotsLabel);
+        weapon.damage = decodeRollsForSavingState(weapon.damageKey + '');
+    });
+    attackerCache.forEach((unit: IUnit) => {
+        weaponCache.forEach((w: IWeaponProfile, i: number) => {
+            if (unit.weaponIndexes && unit.weaponIndexes.includes(i)) {
+                if (!unit.weapons) unit.weapons = [];
+                unit.weapons.push(w);
+            }
+        });
+    });
     return { targetCache, attackerCache, weaponCache };
+
 };
 
 const UserContext = ({ children }: IProps) => {
@@ -40,7 +54,11 @@ const UserContext = ({ children }: IProps) => {
     const [userCreatedAttackers, updateUserAttackers] = useState(initAttackers);
     const addUserCreatedAttacker = (a: IUnit) => {
         localStorage.removeItem('userCreatedAttackers');
-        localStorage.setItem('userCreatedAttackers', JSON.stringify([...userCreatedAttackers, a]));
+        const storageAttackers = [...userCreatedAttackers, a].map(e => {
+            e.weapons.length = 0;
+            return e;
+        });
+        localStorage.setItem('userCreatedAttackers', JSON.stringify([...storageAttackers]));
         updateUserAttackers([...userCreatedAttackers, a])
     };
 

@@ -7,7 +7,7 @@ export const Devastators: IUnit = {
     description: '',
     points: 150,
     tags: ['infantry'],
-    toHit: 3,
+    weaponSkill: 3,
     modelCountPerUnit: 5,
     balisticSkill: 3,
     weapons: [

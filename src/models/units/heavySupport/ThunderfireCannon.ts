@@ -8,8 +8,8 @@ export const ThunderfireCannon: IUnit = {
     points: 45,
     tags: ['vehicle'],
     modelCountPerUnit: 1,
-    toHit: 2,
-    balisticSkill: 3,
+    weaponSkill: 4,
+    balisticSkill: 2,
     weapons: [
         {
             name: 'Thunderfire Cannon',

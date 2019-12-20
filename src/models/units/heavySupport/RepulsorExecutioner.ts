@@ -6,7 +6,7 @@ export const RepulsorExecutioner: IUnit = {
     name: 'Repulsor Executioner',
     description: '',
     points: 336,
-    toHit: 3,
+    weaponSkill: 3,
     tags: ['vehicle', 'hover', 'fly'],
     modelCountPerUnit: 1,
     balisticSkill: 3,

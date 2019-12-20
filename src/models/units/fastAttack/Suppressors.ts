@@ -7,7 +7,7 @@ export const Suppressors: IUnit = {
     tags: ['infantry'],
     modelCountPerUnit: 3,
     balisticSkill: 3,
-    toHit: 3,
+    weaponSkill: 3,
     weapons: [
         {
             name: 'Autocannon',

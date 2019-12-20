@@ -7,7 +7,7 @@ export const Elminators: IUnit = {
     description: '',
     points: 74,
     tags: ['infantry'],
-    toHit: 3,
+    weaponSkill: 3,
     modelCountPerUnit: 3,
     balisticSkill: 3,
     weapons: [

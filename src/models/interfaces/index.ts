@@ -6,6 +6,7 @@ export interface IWeaponProfile {
     AP: number;
     strength: number;
     damage: () => number;
+    damageKey?: string;
     rerollHits?: boolean;
     rerollHitRollsOfOne?: boolean;
     rerollWounds?: boolean;
@@ -18,7 +19,6 @@ export interface IWeaponProfile {
 
 export interface IUnit {
     name: string;
-    toHit: number; // bs
     description: string;
     points: number;
     modelCountPerUnit: number;
@@ -26,8 +26,10 @@ export interface IUnit {
     FNP?: number; // 7 is none
     invuln?: number; // 7 is none
     save?: number;
-    weapons: IWeaponProfile[];
+    weapons?: IWeaponProfile[];
+    weaponIndexes?: number[]; //for local storage retrieving
     tags: string[];
+    weaponSkill: number;
     balisticSkill: number;
 }
 

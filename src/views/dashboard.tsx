@@ -14,6 +14,10 @@ import SelectTargets from './SelectTargets';
 
 import { attackers } from '../models/units';
 
+const loadCache = () => {
+    const DashCache = JSON.parse(localStorage.getItem('dashboardUISettings') || '{}');
+    return { DashCache };
+}
 
 interface IDispatch {
     element: HTMLSelectElement;
@@ -37,7 +41,9 @@ const selectTargetFactionsReducer = (state: string[], { element }: IDispatch) =>
 
 const Dashboard = () => {
 
-    const { userCreatedTargets } = useContext(MyUserContext);
+    const { DashCache } = loadCache();
+
+    const { userCreatedTargets, userCreatedAttackers } = useContext(MyUserContext);
 
 
     // list of selected targets
@@ -49,22 +55,84 @@ const Dashboard = () => {
 
 
 
-    const [sumWounds, setState] = useState(false);
-    const [rerollHits, setRerollHits] = useState(true);
+    // const [sumWounds, setState] = useState(false);
+    const [sumWounds, setSumWounds] = useState(DashCache.sumWounds !== undefined ? DashCache.sumWounds : false);
+    const setState = (a: boolean) => {
+        setSumWounds(a);
+        localStorage.removeItem('dashboardUISettings');
+        localStorage.setItem('dashboardUISettings', JSON.stringify({ ...dashObject(), sumWounds: a }));
+    }
+    const [rerollHits, updateRerollHits] = useState(DashCache.rerollHits !== undefined ? DashCache.rerollHits : true);
+    const setRerollHits = (a: boolean) => {
+        updateRerollHits(a);
+        localStorage.removeItem('dashboardUISettings');
+        localStorage.setItem('dashboardUISettings', JSON.stringify({ ...dashObject(), rerollHits: a }));
+    }
+    const [devastator, updateDevastor] = useState(DashCache.devastator !== undefined ? DashCache.devastator : true);
+    const setDevastor = (a: boolean) => {
+        updateDevastor(a);
+        localStorage.removeItem('dashboardUISettings');
+        localStorage.setItem('dashboardUISettings', JSON.stringify({ ...dashObject(), devastator: a }));
+    }
+    const [tactical, updateTactical] = useState(DashCache.tactical !== undefined ? DashCache.tactical : true);
+    const setTactical = (a: boolean) => {
+        updateTactical(a);
+        localStorage.removeItem('dashboardUISettings');
+        localStorage.setItem('dashboardUISettings', JSON.stringify({ ...dashObject(), tactical: a }));
+    }
+    const [assault, updateAssault] = useState(DashCache.assault !== undefined ? DashCache.assault : true);
+    const setAssault = (a: boolean) => {
+        updateAssault(a);
+        localStorage.removeItem('dashboardUISettings');
+        localStorage.setItem('dashboardUISettings', JSON.stringify({ ...dashObject(), assault: a }));
+    }
+    const [explodingBolter6s, updateExplodingBolter6s] = useState(DashCache.explodingBolter6s !== undefined ? DashCache.explodingBolter6s : true);
+    const setExplodingBolter6s = (a: boolean) => {
+        updateExplodingBolter6s(a);
+        localStorage.removeItem('dashboardUISettings');
+        localStorage.setItem('dashboardUISettings', JSON.stringify({ ...dashObject(), explodingBolter6s: a }));
+    }
+    const [crimsonFistsPlusToHit, updateCrimsonFistsPlusToHit] = useState(DashCache.crimsonFistsPlusToHit !== undefined ? DashCache.crimsonFistsPlusToHit : true);
+    const setCrimsonFistsPlusToHit = (a: boolean) => {
+        updateCrimsonFistsPlusToHit(a);
+        localStorage.removeItem('dashboardUISettings');
+        localStorage.setItem('dashboardUISettings', JSON.stringify({ ...dashObject(), crimsonFistsPlusToHit: a }));
+    }
+    const [applyHeavyWeaponMinusOneToHit, updateApplyHeavyWeaponMinusOneToHit] = useState(DashCache.applyHeavyWeaponMinusOneToHit !== undefined ? DashCache.applyHeavyWeaponMinusOneToHit : false);
+    const setApplyHeavyWeaponMinusOneToHit = (a: boolean) => {
+        updateApplyHeavyWeaponMinusOneToHit(a);
+        localStorage.removeItem('dashboardUISettings');
+        localStorage.setItem('dashboardUISettings', JSON.stringify({ ...dashObject(), applyHeavyWeaponMinusOneToHit: a }));
+    }
 
-    const [devastator, setDevastor] = useState(true);
-    const [tactical, setTactical] = useState(true);
-    const [assault, setAssault] = useState(true);
-    const [explodingBolter6s, setExplodingBolter6s] = useState(true);
-    const [crimsonFistsPlusToHit, setCrimsonFistsPlusToHit] = useState(true);
-    const [applyHeavyWeaponMinusOneToHit, setApplyHeavyWeaponMinusOneToHit] = useState(false);
-
-    const [rerollHitRollsOfOne, setRerollHitRollsOfOne] = useState(true);
+    const [rerollHitRollsOfOne, updateRerollHitRollsOfOne] = useState(DashCache.rerollHitRollsOfOne !== undefined ? DashCache.rerollHitRollsOfOne : true);
+    const setRerollHitRollsOfOne = (a: boolean) => {
+        updateRerollHitRollsOfOne(a);
+        localStorage.removeItem('dashboardUISettings');
+        localStorage.setItem('dashboardUISettings', JSON.stringify({ ...dashObject(), rerollHitRollsOfOne: a }));
+    }
     // const [rerollWounds, setRerollWounds] = useState(false);
     const rerollWounds = false;
-    const [rerollWoundRollsOfOne, setRerollWoundRollsOfOne] = useState(true);
-    const [hideUncheckedWeapons, setHideUncheckedWeapons] = useState(false);
-    const [IFHeavyWeaponsSuperDoctrine, setIFHeavyWeaponsSuperDoctrine] = useState(true);
+    const [rerollWoundRollsOfOne, updateRerollWoundRollsOfOne] = useState(DashCache.rerollWoundRollsOfOne !== undefined ? DashCache.rerollWoundRollsOfOne : true);
+    const setRerollWoundRollsOfOne = (a: boolean) => {
+        updateRerollWoundRollsOfOne(a);
+        localStorage.removeItem('dashboardUISettings');
+        localStorage.setItem('dashboardUISettings', JSON.stringify({ ...dashObject(), rerollWoundRollsOfOne: a }));
+    }
+    const [hideUncheckedWeapons, updateHideUncheckedWeapons] = useState(DashCache.hideUncheckedWeapons !== undefined ? DashCache.hideUncheckedWeapons : false);
+    const setHideUncheckedWeapons = (a: boolean) => {
+        updateHideUncheckedWeapons(a);
+        localStorage.removeItem('dashboardUISettings');
+        localStorage.setItem('dashboardUISettings', JSON.stringify({ ...dashObject(), hideUncheckedWeapons: a }));
+    }
+    const [IFHeavyWeaponsSuperDoctrine, updateIFHeavyWeaponsSuperDoctrine] = useState(DashCache.IFHeavyWeaponsSuperDoctrine !== undefined ? DashCache.IFHeavyWeaponsSuperDoctrine : true);
+    const setIFHeavyWeaponsSuperDoctrine = (a: boolean) => {
+        updateIFHeavyWeaponsSuperDoctrine(a);
+        localStorage.removeItem('dashboardUISettings');
+        localStorage.setItem('dashboardUISettings', JSON.stringify({ ...dashObject(), IFHeavyWeaponsSuperDoctrine: a }));
+    }
+
+    // modal controls
     const [showOptions, setShowOptions] = useState(false);
     const [showHelp, setShowHelp] = useState(false);
 
@@ -72,8 +140,9 @@ const Dashboard = () => {
 
     const [chooseTargets, updateChooseTargets] = useState(false);
 
+    const mergedAttackers = [...attackers, ...userCreatedAttackers];
     /** manage attackers */
-    const [activeAttackersList, updateActiveAttackersList] = useState(attackers.map((_, i) => i));
+    const [activeAttackersList, updateActiveAttackersList] = useState(mergedAttackers.map((_, i) => i));
     const setActiveAttackersList = (e: ChangeEvent<HTMLInputElement>) => {
         const index = parseInt(e.currentTarget.value, 10);
         const status = e.currentTarget.checked === true;
@@ -86,6 +155,22 @@ const Dashboard = () => {
     const [showSelectAttackers, setShowSelectAttackers] = useState(false);
     /** end manage attackers */
 
+    const dashObject = () => {
+        return {
+            sumWounds,
+            rerollHits,
+            devastator,
+            tactical,
+            assault,
+            explodingBolter6s,
+            crimsonFistsPlusToHit,
+            rerollHitRollsOfOne,
+            rerollWoundRollsOfOne,
+            hideUncheckedWeapons,
+            IFHeavyWeaponsSuperDoctrine,
+            applyHeavyWeaponMinusOneToHit,
+        };
+    }
     return (
         <div>
             <div><label >Show Help <input checked={showHelp} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowHelp(!!e.currentTarget.checked)} /> </label> </div>

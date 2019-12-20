@@ -6,7 +6,7 @@ export const Infiltrator: IUnit = {
     points: 21,
     tags: ['infantry'],
     modelCountPerUnit: 5,
-    toHit: 3,
+    weaponSkill: 3,
     balisticSkill: 3,
     weapons: [
         {

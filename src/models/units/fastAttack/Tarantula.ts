@@ -6,8 +6,8 @@ export const Tarantula: IUnit = {
     points: 37,
     tags: ['vehicle'],
     modelCountPerUnit: 1,
-    toHit: 4,
-    balisticSkill: 3,
+    weaponSkill: 4,
+    balisticSkill: 4,
     weapons: [
         {
             name: 'Twin Heavy Bolters',

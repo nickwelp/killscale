@@ -2,8 +2,9 @@ import React, { useContext, useState } from 'react';
 
 import { MyUserContext } from '../controllers/context/UserContext';
 import { IWeaponProfile } from '../models/interfaces';
+import { decodeRollsForSavingState } from '../controllers/util';
 
-const AddTarget = () => {
+const AddWeapon = () => {
     const [viewAddWeaponProfile, updateViewAddWeaponProfile] = useState(false);
     const toggleViewAddWeaponProfile = () => updateViewAddWeaponProfile(!viewAddWeaponProfile);
 
@@ -37,36 +38,50 @@ const AddTarget = () => {
         // @ts-ignore
         const name = (document.querySelector('[name=name]') ? document.querySelector('[name=name]').value : '');
         // @ts-ignore
-        const FNP = parseInt((document.querySelector('[name=FNP]') ? document.querySelector('[name=FNP]').value : '7'), 10);
+        const type = (document.querySelector('[name=type]') ? document.querySelector('[name=type]').value : '');
         // @ts-ignore
-        const invuln = parseInt((document.querySelector('[name=invuln]') ? document.querySelector('[name=invuln]').value : '7'), 10);
+        const numberOfShotsLabel = (document.querySelector('[name=numberOfShots]') ? document.querySelector('[name=numberOfShots]').value : '1');
         // @ts-ignore
-        const save = parseInt((document.querySelector('[name=save]') ? document.querySelector('[name=save]').value : '3'), 10);
+        const AP = parseInt((document.querySelector('[name=AP]') ? document.querySelector('[name=AP]').value : '1'), 10);
         // @ts-ignore
-        const toughness = parseInt((document.querySelector('[name=toughness]') ? document.querySelector('[name=toughness]').value : '4'), 10);
+        const strength = parseInt((document.querySelector('[name=strength]') ? document.querySelector('[name=strength]').value : '1'), 10);
         // @ts-ignore
-        const woundsPerModel = parseInt((document.querySelector('[name=woundsPerModel]') ? document.querySelector('[name=woundsPerModel]').value : '1'), 10);
+        const damageKey = (document.querySelector('[name=damage]') ? document.querySelector('[name=damage]').value : '1');
         // @ts-ignore
-        const modelCount = parseInt((document.querySelector('[name=modelCount]') ? document.querySelector('[name=modelCount]').value : '1'), 10);
+        const rerollHits = (document.querySelector('[name=rerollHits]') ? "true" === document.querySelector('[name=rerollHits]').value : false);
         // @ts-ignore
-        const toHit = parseInt((document.querySelector('[name=toHit]') ? document.querySelector('[name=toHit]').value : '0'), 10);
-        // // @ts-ignore
-        // const points = parseInt((document.querySelector('[name=points]') ? document.querySelector('[name=points]').value : '100'), 10);
+        const rerollHitRollsOfOne = (document.querySelector('[name=rerollHitRollsOfOne]') ? "true" === document.querySelector('[name=rerollHitRollsOfOne]').value : false);
+        // @ts-ignore
+        const rerollWounds = (document.querySelector('[name=rerollWounds]') ? "true" === document.querySelector('[name=rerollWounds]').value : false);
+        // @ts-ignore
+        const rerollWoundRollsOfOne = (document.querySelector('[name=rerollWoundRollsOfOne]') ? "true" === document.querySelector('[name=rerollWoundRollsOfOne]').value : false);
+        // @ts-ignore
+        const plusToHit = parseInt((document.querySelector('[name=plusToHit]') ? document.querySelector('[name=plusToHit]').value : '0'), 10);
+        // @ts-ignore
+        const plusToWound = parseInt((document.querySelector('[name=plusToWound]') ? document.querySelector('[name=plusToWound]').value : '0'), 10);
         // @ts-ignore
         const tags = (document.querySelector('[name=keywords]') ? document.querySelector('[name=keywords]').value : '100').split(',').map(e => e.trim());
-        // const weapon: IWeaponProfile = {
-        //     name,
-        //     FNP,
-        //     invuln,
-        //     save,
-        //     toughness,
-        //     woundsPerModel,
-        //     modelCount,
-        //     toHit,
-        //     // points,
-        //     tags,
-        // };
-        // addUserCreatedWeaponProfiles(weapon);
+        const numberOfShots = decodeRollsForSavingState(numberOfShotsLabel);
+        const damage = decodeRollsForSavingState(damageKey);
+
+        const weapon: IWeaponProfile = {
+            name,
+            type,
+            AP,
+            damage,
+            damageKey,
+            numberOfShots,
+            numberOfShotsLabel,
+            strength,
+            tags,
+            plusToHit,
+            plusToWound,
+            rerollHitRollsOfOne,
+            rerollHits,
+            rerollWoundRollsOfOne,
+            rerollWounds
+        }
+        addUserCreatedWeaponProfiles(weapon);
         toggleViewAddWeaponProfile();
     };
 
@@ -84,20 +99,22 @@ const AddTarget = () => {
                         </select>
                     </label>
                     <label>Number of Shots <small>If Rapid Fire, add 2 profiles, one with 1 number of shots, and another with 2 (or 2 and 4, etc)</small>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="d3()">d3</option>
-                        <option value="d6()">d6</option>
+                        <select name="numberOfShots">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="d3">d3</option>
+                            <option value="d6">d6</option>
+                        </select>
                     </label>
 
                     <label>AP<select name={'AP'}>
@@ -120,69 +137,60 @@ const AddTarget = () => {
                         Damage:
                         <select name="damage">
                             {options(10, 1)}
-                            <option value="d6()">d6</option>
-                            <option value="d3()">d3</option>
+                            <option value="d6">d6</option>
+                            <option value="d3">d3</option>
                         </select>
                     </label>
 
-                    {/*
-    //     toHit: number;
-    //     rerollHits?: boolean;
-    //     rerollHitRollsOfOne?: boolean;
-    //     rerollWounds?: boolean;
-    //     rerollWoundRollsOfOne?: boolean;
-    //     plusToHit?: number;
-    //     plusToWound?: number;
-    //     tags: string[];
-    //     uniqueIdentifier?: string; */}
 
-
-                    <label>Invuln ++<select name={'invuln'}>
-                        <option value="7">None</option>
-                        <option value="6">6++</option>
-                        <option value="5">5++</option>
-                        <option value="4">4++</option>
-                        <option value="3">3++</option>
-                        <option value="2">2++</option>
-                    </select></label>
-                    <label>Armor Save +<select name={'save'}>
-                        <option value="7">7+ (ie none)</option>
-                        <option value="6">6+</option>
-                        <option value="5">5+</option>
-                        <option value="4">4+</option>
-                        <option value="3">3+</option>
-                        <option value="2">2+</option>
-                    </select></label>
-                    <label>Toughness<select name={'toughness'}>
-                        {options(10, 4)}
-                    </select></label>
-                    <label>Wounds Per model
-                        <select name="woundsPerModel" >
-                            {options(40, 1)}
+                    <label>
+                        Does Weapon Reroll Hits? <select name="rerollHits">
+                            <option value="false">No</option>
+                            <option value="true">Yes</option>
                         </select>
                     </label>
-                    <label>Model Count
-                        <select name="modelCount" >
-                            {options(40, 1)}
+
+
+                    <label>
+                        Does Weapon Reroll Hits of One? <select name="rerollHitRollsOfOne">
+                            <option value="false">No</option>
+                            <option value="true">Yes</option>
                         </select>
                     </label>
-                    <label>To Hit (ie Plague Bearers being -2 to hit, usually 0)
-                        <select name="toHit">
-                            <option value="0">0</option>
+
+                    <label>
+                        Does Weapon Reroll Wounds <select name="rerollWounds">
+                            <option value="false">No</option>
+                            <option value="true">Yes</option>
+                        </select>
+                    </label>
+                    <label>
+                        Does Weapon Reroll Wounds rolls of One? <select name="rerollWoundRollsOfOne">
+                            <option value="false">No</option>
+                            <option value="true">Yes</option>
+                        </select>
+                    </label>
+                    <label>
+                        Modifier to Hit <select name="plusToHit">
                             <option value="-1">-1</option>
-                            <option value="-2">-2</option>
-                            <option value="-3">-3</option>
-                            <option value="-4">-4</option>
+                            <option value="0" selected={true}>0</option>
+                            <option value="1">+1</option>
+                            <option value="2">+2</option>
                         </select>
                     </label>
-                    {/* <label>Points (approximate)
-                        <select name="points" >
-                            {options(600, 100)}
+
+
+                    <label>
+                        Modifier to Wound <select name="plusToHit">
+                            <option value="-1">-1</option>
+                            <option value="0" selected={true}>0</option>
+                            <option value="1">+1</option>
+                            <option value="2">+2</option>
                         </select>
-                    </label> */}
+                    </label>
                     <label>
                         Keywords (comma seperate caps don't matter) <br />
-                        ie "Vehicle, Fly, rat" <br />
+                        ie "Vehicle, Fly, rat, bolter" <br />
                         <input name={'keywords'} type="text" />
                     </label>
                 </form>
@@ -210,4 +218,4 @@ const AddTarget = () => {
     );
 };
 
-export default AddTarget;
+export default AddWeapon;

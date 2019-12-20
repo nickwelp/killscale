@@ -51,7 +51,7 @@ const shooter: IUnit = {
     modelCountPerUnit: 1,
     description: 'like a marine',
     points: 12,
-    toHit: 3,
+    weaponSkill: 3,
     balisticSkill: 3,
     tags: [],
     weapons: [],
@@ -171,7 +171,7 @@ describe('generateHits function', () => {
             { ...weapon_bolter, numberOfShots: () => 6 },
             1,
             { ...dullReRollProfile },
-            { ...shooter, toHit: 2 },
+            { ...shooter, balisticSkill: 2 },
         ))).toStrictEqual([5, 0]);
     });
 });

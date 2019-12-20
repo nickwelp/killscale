@@ -5,7 +5,7 @@ export const Intercessor: IUnit = {
     description: 'Intercessors with Stalker Bolt Rifles',
     points: 17,
     tags: ['infantry'],
-    toHit: 3,
+    weaponSkill: 3,
     modelCountPerUnit: 5,
     balisticSkill: 3,
     weapons: [
