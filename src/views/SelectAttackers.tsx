@@ -40,8 +40,10 @@ const SelectAttackers = ({ activeAttackersList, setActiveAttackersList }: IProps
                 <p>
                     {listOfUserCreatedWeapons(userCreatedWeaponProfiles)}
                 </p>
-                <AddWeapon />
-                <AddAttacker />
+                <div style={{ textAlign: 'center' }}>
+                    <AddWeapon />
+                    <AddAttacker />
+                </div>
             </div>
 
         </>

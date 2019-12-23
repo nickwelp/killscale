@@ -8,7 +8,19 @@ const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
-
+  }
+  body label {
+    font-size: 12px;
+    padding: 3px;
+  }
+  body label input, body label select {
+    margin-left: 5px;
+  }
+  button {
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+    margin: 5px;
   }
 `;
 
