@@ -3,6 +3,9 @@ import React, { useReducer, useState } from 'react';
 import { processSet } from '../controllers/Shooting';
 import { IDoctrine, IRerollSet, ITarget, IUnit } from '../models/interfaces';
 
+import cx from 'classnames';
+import bootstrap from '../views/theme/bootstrap.module.css';
+
 interface IUISettings {
     [key: string]: boolean;
 }
@@ -78,17 +81,21 @@ const ShootingProfile = ({ shooter, targets, sumWounds, rerollProfile, doctrine,
         ));
 
     return (
-        <div key={shooter.name.replace(' ', '_')} style={{ maxWidth: '450px', textAlign: 'center', margin: '5px', boxShadow: '0px 0px 1px rgba(0,0,0,.1)', fontSize: '12px' }}>
-            <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <select defaultValue={'1'} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => updateModelCount(parseInt(e.currentTarget.value))}>
-                    {options}
-                </select>
-                <h4>{shooter.name}</h4>
-            </div>
+        <div key={shooter.name.replace(' ', '_')} style={{}} className={cx([bootstrap['col-12'], bootstrap['col-md-6'], bootstrap['col-xl-4']])}>
+            <div style={{ boxShadow: '-2px 2px 3px rgba(0,0,0,.3)', borderRadius: '5px', width: '95%', margin: 'auto', padding: '5px', fontSize: '12px', marginBottom: '5px', borderRight: '1px solid rgba(0,0,0,.2)', borderTop: '1px solid rgba(0,0,0,.2)' }}>
+                <div className={bootstrap['row']}>
+                    <div className={bootstrap['col-1']}></div>
+                    <select className={bootstrap['col-1']} defaultValue={'1'} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => updateModelCount(parseInt(e.currentTarget.value))}>
+                        {options}
+                    </select>
+                    <div className={bootstrap['col-1']}></div>
+                    <h4 className={bootstrap['col-8']} style={{ fontSize: '16px' }}>{shooter.name}</h4>
+                </div>
 
-            <div style={{ margin: '0 20px 0 0' }}>
-                <ul style={{ listStyleType: 'none', textAlign: 'right' }}>{weaponProfiles}</ul>
-                {shootingProfiles}
+                <div style={{ margin: '0 20px 0 0', textAlign: 'center' }}>
+                    <ul style={{ listStyleType: 'none', textAlign: 'right' }}>{weaponProfiles}</ul>
+                    {shootingProfiles}
+                </div>
             </div>
         </div>
     );

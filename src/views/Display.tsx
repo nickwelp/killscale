@@ -3,6 +3,9 @@ import { MyUserContext } from '../controllers/context/UserContext';
 import { IRerollSet, ITarget, IUnit, IWeaponProfile } from '../models/interfaces';
 import ShootingProfile from './ShootingProfile';
 
+// import cx from 'classnames';
+import bootstrap from '../views/theme/bootstrap.module.css';
+
 const Display = ({ props }: any) => {
     const { userCreatedWeaponProfiles, userCreatedAttackers } = useContext(MyUserContext);
     const [showDebugger, updateShowDebugger] = useState(false);
@@ -111,7 +114,7 @@ const Display = ({ props }: any) => {
                     <div style={{ display: 'flex', flexFlow: 'row wrap', margin: '10px' }}>{debuggerWeaponPannel()}</div>
                     <div style={{ display: 'flex', flexFlow: 'row wrap', margin: '10px' }}>{debuggerAttackerPanel()}</div>
                 </>}
-            <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+            <div className={bootstrap['row']}>
                 {profiles}
             </div>
         </>
