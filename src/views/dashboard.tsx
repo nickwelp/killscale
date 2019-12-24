@@ -11,7 +11,8 @@ import { targets } from './TargetFaction';
 import { MyUserContext } from '../controllers/context/UserContext';
 import SelectAttackers from './SelectAttackers';
 import SelectTargets from './SelectTargets';
-
+import SaveData from './SaveData';
+import LoadData from './LoadData';
 import { attackers } from '../models/units';
 
 const loadCache = () => {
@@ -43,8 +44,8 @@ const Dashboard = () => {
 
     const { DashCache } = loadCache();
 
-    const { userCreatedTargets, userCreatedAttackers } = useContext(MyUserContext);
-
+    const { userCreatedTargets } = useContext(MyUserContext);
+    // userCreatedAttackers
 
     // list of selected targets
     const [targetList, dispatch] = useReducer(reducer, [0]);
@@ -136,13 +137,17 @@ const Dashboard = () => {
     const [showOptions, setShowOptions] = useState(false);
     const [showHelp, setShowHelp] = useState(false);
 
+    const [showSaveData, setShowSaveData] = useState(false);
+    const [showLoadData, setShowLoadData] = useState(false);
+
     const availableTargets = (a: string[]): ITarget[] => [...userCreatedTargets, ...targets(a)];
 
     const [chooseTargets, updateChooseTargets] = useState(false);
 
-    const mergedAttackers = [...attackers, ...userCreatedAttackers];
+    // const mergedAttackers = [...attackers, ...userCreatedAttackers];
+
     /** manage attackers */
-    const [activeAttackersList, updateActiveAttackersList] = useState(mergedAttackers.map((_, i) => i));
+    const [activeAttackersList, updateActiveAttackersList] = useState([NaN]);// useState(mergedAttackers.map((_, i) => i));
     const setActiveAttackersList = (e: ChangeEvent<HTMLInputElement>) => {
         const index = parseInt(e.currentTarget.value, 10);
         const status = e.currentTarget.checked === true;
@@ -173,14 +178,18 @@ const Dashboard = () => {
     }
     return (
         <div>
-            <div><label >Show Help <input checked={showHelp} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowHelp(!!e.currentTarget.checked)} /> </label> </div>
-            {showHelp && <HelpText />}
+            <div style={{ textAlign: 'center', marginBottom: '10px' }}>
 
-            <label>Select Attacking Units <input type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowSelectAttackers(!!e.currentTarget.checked)} /></label>
+                <label style={{ marginRight: '15px' }} >Show Options <input checked={showOptions} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowOptions(!!e.currentTarget.checked)} /> </label>
+                <label style={{ marginRight: '15px' }}>Select Targets<input checked={chooseTargets} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => updateChooseTargets(!!e.currentTarget.checked)} /> </label>
+                <label style={{ marginRight: '15px' }}>Select Attacking Units <input type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowSelectAttackers(!!e.currentTarget.checked)} /></label>
+                <label style={{ marginRight: '15px' }}>Show Help <input checked={showHelp} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowHelp(!!e.currentTarget.checked)} /> </label>
+                <label style={{ marginRight: '15px' }}>Save Data<input checked={showSaveData} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowSaveData(!!e.currentTarget.checked)} /> </label>
+                <label style={{ marginRight: '15px' }}>Load Data<input checked={showLoadData} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowLoadData(!!e.currentTarget.checked)} /> </label>
+            </div>
+            {showHelp && <HelpText />}
             {showSelectAttackers &&
                 <SelectAttackers activeAttackersList={activeAttackersList} setActiveAttackersList={setActiveAttackersList} />}
-
-            <div><label >Select Targets<input checked={chooseTargets} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => updateChooseTargets(!!e.currentTarget.checked)} /> </label> </div>
             {chooseTargets &&
                 <SelectTargets
                     props={{
@@ -188,8 +197,6 @@ const Dashboard = () => {
                         targetFaction, setTargetFaction,
                         dispatch
                     }} />}
-
-            <div><label >Show Options <input checked={showOptions} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowOptions(!!e.currentTarget.checked)} /> </label> </div>
             {showOptions &&
                 <UIOptions props={{
                     sumWounds, setState,
@@ -205,6 +212,8 @@ const Dashboard = () => {
                     IFHeavyWeaponsSuperDoctrine, setIFHeavyWeaponsSuperDoctrine,
                     applyHeavyWeaponMinusOneToHit, setApplyHeavyWeaponMinusOneToHit
                 }} />}
+            {showSaveData && <SaveData />}
+            {showLoadData && <LoadData />}
             <Display props={{
                 attackers,
                 activeAttackersList,

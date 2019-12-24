@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
   body label {
     font-size: 12px;
     padding: 3px;
+    cursor: pointer;
   }
   body label input, body label select {
     margin-left: 5px;

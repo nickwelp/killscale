@@ -111,7 +111,7 @@ const Display = ({ props }: any) => {
                     <div style={{ display: 'flex', flexFlow: 'row wrap', margin: '10px' }}>{debuggerWeaponPannel()}</div>
                     <div style={{ display: 'flex', flexFlow: 'row wrap', margin: '10px' }}>{debuggerAttackerPanel()}</div>
                 </>}
-            <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }} >
                 {profiles}
             </div>
         </>

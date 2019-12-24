@@ -208,7 +208,7 @@ const AddWeapon = () => {
                         onClick={saveWeaponProfile}
                         onKeyPress={onKeyPress}
                     >
-                        Save Target
+                        Save Weapon
                     </button>
                 </div>
             </div>

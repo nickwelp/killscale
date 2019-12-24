@@ -40,7 +40,7 @@ const AddAttacker = () => {
 
 
 
-    const saveWeaponProfile = () => {
+    const saveAttackerProfile = () => {
         // @ts-ignore
         const name = (document.querySelector('[name=name]') ? document.querySelector('[name=name]').value : '');
         // @ts-ignore
@@ -146,10 +146,10 @@ const AddAttacker = () => {
                     </button>
                     &nbsp;&nbsp;&nbsp;
                     <button
-                        onClick={saveWeaponProfile}
+                        onClick={saveAttackerProfile}
                         onKeyPress={onKeyPress}
                     >
-                        Save Target
+                        Save Attacker
                     </button>
                 </div>
             </div>

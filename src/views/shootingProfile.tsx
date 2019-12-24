@@ -80,7 +80,7 @@ const ShootingProfile = ({ shooter, targets, sumWounds, rerollProfile, doctrine,
     return (
         <div key={shooter.name.replace(' ', '_')} style={{ maxWidth: '450px', textAlign: 'center', margin: '5px', boxShadow: '0px 0px 1px rgba(0,0,0,.1)', fontSize: '12px' }}>
             <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <select defaultValue={'1'} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => updateModelCount(parseInt(e.currentTarget.value))}>
+                <select defaultValue={'1'} style={{ margin: '5px' }} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => updateModelCount(parseInt(e.currentTarget.value))}>
                     {options}
                 </select>
                 <h4>{shooter.name}</h4>
