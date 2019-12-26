@@ -3,8 +3,9 @@ import React from 'react';
 
 const HelpText = () => (
     <div style={{ fontFamily: 'serif', margin: '5px 20px 5px 20px', fontSize: '14px', borderRadius: '5px', padding: '20px', background: '#ccccccc', boxShadow: '1px 1px 3px rgba(0,0,0,.5)' }}>
-        <p>Well-come to <strong>Kill Scale</strong>! Anticipating Success&trade;. Kill Scale simulates game processes many thousand times to generate predictions of outcomes.</p>
-        <p>In Kill Scale, you select your offensive units, your target units, and the weapons load out for your Offensive Unit. You also select the number of models or number of units shooting (depends on the unit).</p>
+        <p>Welcome to <strong>KillScale</strong>! Anticipating Success&trade;. KillScale simulates game processes many thousand times to generate predictions of outcomes.</p>
+        <p>I got started on it when I observed that that people treat something like D6 shots as 2.5 rather than the actual average of 3.5, because people learn to plan around dice betraying them. My reasoning was that 3 Damage was considered more valuable than D6 damage regarding Las-Fusils VS Lascannons. Another person then chimed in that the anticipatable result was 1 standard deviation away from the average. So that got me thinking "What is standard deviation, how can I become accustomed to it, and use it to make better decisions?" </p>
+        <p>In KillScale, you select your offensive units, your target units, and the weapons load out for your Offensive Unit. You also select the number of models or number of units shooting (depends on the unit).</p>
         <p>We then simulate that shooting phase between 2000 and 10000 times. I started at 10,000 but have found my accuracy is not diminished at 2000. We then find the standard deviation  of the outcomes, and trim outcomes more than 2  standDevs removed from the mean.</p>
         <p>With the remainder of the result set, which is 95% of all results, we surface the worst score,
             the median of results below the mean, the median, the mean of results above the mean, and the best result.</p>

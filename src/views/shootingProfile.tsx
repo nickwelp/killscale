@@ -1,6 +1,6 @@
 import React, { useReducer, useState } from 'react';
 
-import { processSet } from '../controllers/Shooting';
+import CreateSet from '../controllers/Shooting';
 import { IDoctrine, IRerollSet, ITarget, IUnit } from '../models/interfaces';
 
 interface IUISettings {
@@ -15,6 +15,7 @@ interface IProps {
     doctrine: IDoctrine;
     uiSettings: IUISettings;
     hideProfile: boolean;
+    iterations: number;
 }
 
 interface IDispatch {
@@ -29,7 +30,15 @@ const reducer = (state: number[], { element }: IDispatch) => {
     return newState;
 };
 
-const ShootingProfile = ({ shooter, targets, sumWounds, rerollProfile, doctrine, uiSettings, hideProfile }: IProps) => {
+const ShootingProfile = ({
+    shooter,
+    targets,
+    sumWounds,
+    rerollProfile,
+    doctrine,
+    uiSettings,
+    hideProfile,
+    iterations = 3000 }: IProps) => {
 
     const { weapons = [] } = shooter;
 
@@ -57,7 +66,16 @@ const ShootingProfile = ({ shooter, targets, sumWounds, rerollProfile, doctrine,
         })
         .filter((_, index) => state.includes(index) || !uiSettings.hideUncheckedWeapons);
     const submittedWeapons = weapons.filter((_, i) => state.includes(i));
-    const dataSet = processSet({ shooter, weapons: submittedWeapons, targets, sumWounds, modelCount, rerollProfile, doctrine });
+    const dataSet = CreateSet({
+        shooter,
+        weapons: submittedWeapons,
+        targets,
+        sumWounds,
+        modelCount,
+        rerollProfile,
+        doctrine,
+        iterations
+    });
     const numbers = Array(100).fill('');
     const options = numbers.map((_, i) => {
         return (

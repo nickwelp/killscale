@@ -14,6 +14,7 @@ import SelectTargets from './SelectTargets';
 import SaveData from './SaveData';
 import LoadData from './LoadData';
 import { attackers } from '../models/units';
+import Diagnostics from './Diagnostics';
 
 const loadCache = () => {
     const DashCache = JSON.parse(localStorage.getItem('dashboardUISettings') || '{}');
@@ -47,6 +48,9 @@ const Dashboard = () => {
     const { userCreatedTargets } = useContext(MyUserContext);
     // userCreatedAttackers
 
+
+    const [showDiagnostics, updateDiagnostics] = useState(false);
+
     // list of selected targets
     const [targetList, dispatch] = useReducer(reducer, [0]);
     // do we want to count total wounds like we're shooting a Knight?
@@ -54,7 +58,7 @@ const Dashboard = () => {
     // dead models
     const [targetFaction, setTargetFaction] = useReducer(selectTargetFactionsReducer, ['marines']);
 
-
+    const [iterations, setIterations] = useState(3000);
 
     // const [sumWounds, setState] = useState(false);
     const [sumWounds, setSumWounds] = useState(DashCache.sumWounds !== undefined ? DashCache.sumWounds : false);
@@ -186,6 +190,7 @@ const Dashboard = () => {
                 <label style={{ marginRight: '15px' }}>Show Help <input checked={showHelp} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowHelp(!!e.currentTarget.checked)} /> </label>
                 <label style={{ marginRight: '15px' }}>Save Data<input checked={showSaveData} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowSaveData(!!e.currentTarget.checked)} /> </label>
                 <label style={{ marginRight: '15px' }}>Load Data<input checked={showLoadData} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowLoadData(!!e.currentTarget.checked)} /> </label>
+                <label style={{ marginRight: '15px' }}>Diagnostics<input checked={showDiagnostics} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => updateDiagnostics(!!e.currentTarget.checked)} /> </label>
             </div>
             {showHelp && <HelpText />}
             {showSelectAttackers &&
@@ -210,10 +215,12 @@ const Dashboard = () => {
                     rerollWoundRollsOfOne, setRerollWoundRollsOfOne,
                     hideUncheckedWeapons, setHideUncheckedWeapons,
                     IFHeavyWeaponsSuperDoctrine, setIFHeavyWeaponsSuperDoctrine,
-                    applyHeavyWeaponMinusOneToHit, setApplyHeavyWeaponMinusOneToHit
+                    applyHeavyWeaponMinusOneToHit, setApplyHeavyWeaponMinusOneToHit,
+                    iterations, setIterations
                 }} />}
             {showSaveData && <SaveData />}
             {showLoadData && <LoadData />}
+            {showDiagnostics && <Diagnostics />}
             <Display props={{
                 attackers,
                 activeAttackersList,
@@ -231,7 +238,8 @@ const Dashboard = () => {
                 rerollWoundRollsOfOne,
                 hideUncheckedWeapons,
                 IFHeavyWeaponsSuperDoctrine,
-                applyHeavyWeaponMinusOneToHit
+                applyHeavyWeaponMinusOneToHit,
+                iterations
             }} />
         </div >
     );

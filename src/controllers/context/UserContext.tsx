@@ -47,7 +47,7 @@ const UserContext = ({ children }: IProps) => {
     const addUserCreatedTarget = (a: ITarget) => {
         localStorage.removeItem('userCreatedTargets');
         localStorage.setItem('userCreatedTargets', JSON.stringify([...userCreatedTargets, a]));
-        updateUserCreatedTargets([...userCreatedTargets, a])
+        updateUserCreatedTargets([...userCreatedTargets, a]);
     };
 
     const initAttackers = attackerCache || emptyAttackerArray;

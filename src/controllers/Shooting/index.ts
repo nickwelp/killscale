@@ -7,7 +7,6 @@ import generateFailedSaves from './generateFailedSaves';
 import generateHits from './generateHits';
 import generateWounds from './generateWounds';
 
-const iterations = 3000;
 const cache = {};
 
 interface IProps {
@@ -18,25 +17,26 @@ interface IProps {
     modelCount: number;
     rerollProfile: IRerollSet;
     doctrine: IDoctrine;
+    iterations: number;
 }
-
-export const processSet = ({
+const CreateSet = ({
     shooter,
     weapons,
     targets,
     sumWounds,
     modelCount,
     rerollProfile,
-    doctrine
+    doctrine,
+    iterations
 }: IProps) => {
-    const hash = JSON.stringify({ shooter, weapons, targets, sumWounds, modelCount, rerollProfile, doctrine });
+    const hash = JSON.stringify({ shooter, weapons, targets, sumWounds, modelCount, rerollProfile, doctrine, iterations });
     // @ts-ignore
     if (cache[hash]) {
         // @ts-ignore
         return cache[hash];
     }
     // @ts-ignore
-    else cache[hash] = processSetFunc({ shooter, weapons, targets, sumWounds, modelCount, rerollProfile, doctrine });
+    else cache[hash] = processSetFunc({ shooter, weapons, targets, sumWounds, modelCount, rerollProfile, doctrine, iterations });
     // @ts-ignore
     return cache[hash];
 };
@@ -48,7 +48,8 @@ const processSetFunc = ({
     sumWounds,
     modelCount,
     rerollProfile,
-    doctrine }: IProps): IStandDevReport[] => {
+    doctrine,
+    iterations }: IProps): IStandDevReport[] => {
     return targets.map(target => {
         const set: number[] = [];
         for (let y = 0; y < iterations; y++) {
@@ -74,4 +75,6 @@ const processSetFunc = ({
         return calculateStandardDef(set, shooter, target, iterations);
     });
 };
+
+export default CreateSet;
 

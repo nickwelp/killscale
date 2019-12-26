@@ -3,7 +3,32 @@ import { MyUserContext } from '../controllers/context/UserContext';
 import { IRerollSet, ITarget, IUnit, IWeaponProfile } from '../models/interfaces';
 import ShootingProfile from './ShootingProfile';
 
-const Display = ({ props }: any) => {
+interface IVars {
+    targets: any;
+    targetList: any;
+    sumWounds: any;
+    rerollHits: any;
+    devastator: any;
+    tactical: any;
+    assault: any;
+    explodingBolter6s: any;
+    crimsonFistsPlusToHit: any;
+    rerollHitRollsOfOne: any;
+    rerollWounds: any;
+    rerollWoundRollsOfOne: any;
+    hideUncheckedWeapons: any;
+    attackers: any;
+    activeAttackersList: any;
+    IFHeavyWeaponsSuperDoctrine: any;
+    applyHeavyWeaponMinusOneToHit: any;
+    iterations: number;
+}
+interface IProps {
+    props: IVars;
+
+}
+
+const Display = ({ props }: IProps) => {
     const { userCreatedWeaponProfiles, userCreatedAttackers } = useContext(MyUserContext);
     const [showDebugger, updateShowDebugger] = useState(false);
     const {
@@ -23,7 +48,8 @@ const Display = ({ props }: any) => {
         attackers,
         activeAttackersList,
         IFHeavyWeaponsSuperDoctrine,
-        applyHeavyWeaponMinusOneToHit
+        applyHeavyWeaponMinusOneToHit,
+        iterations
     } = props;
     const selectedTargets: ITarget[] = targets.filter((_: ITarget, i: number) => targetList.includes(i));
     const uiSettings = {
@@ -52,7 +78,8 @@ const Display = ({ props }: any) => {
             rerollProfile,
             doctrine,
             uiSettings,
-            hideProfile: !activeAttackersList.includes(i)
+            hideProfile: !activeAttackersList.includes(i),
+            iterations
         });
     });
 
@@ -60,6 +87,7 @@ const Display = ({ props }: any) => {
         return (<div key={i} style={{ padding: '10px', margin: '5px', maxWidth: '200px', borderLeft: '1px solid #AAA' }}>
             <h5>{name}</h5>
             <small>
+                <br /> iter: {iterations}
                 <br />balistic skill: {balisticSkill}+
                 <br />weapon skill: {weaponSkill}+
             </small>

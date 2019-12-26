@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 
 const UIOptions = ({ props }: any) => {
     const {
@@ -13,11 +13,41 @@ const UIOptions = ({ props }: any) => {
         rerollWoundRollsOfOne, setRerollWoundRollsOfOne,
         hideUncheckedWeapons, setHideUncheckedWeapons,
         IFHeavyWeaponsSuperDoctrine, setIFHeavyWeaponsSuperDoctrine,
-        applyHeavyWeaponMinusOneToHit, setApplyHeavyWeaponMinusOneToHit
+        applyHeavyWeaponMinusOneToHit, setApplyHeavyWeaponMinusOneToHit,
+        iterations, setIterations
     } = props;
+
     return (
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', margin: '10px auto 10px auto', padding: '10px', boxShadow: '2px 2px 5px #999', maxWidth: '1400px', width: '90%' }}>
             <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                <div style={{ maxWidth: '33%' }}>
+                    <label>Simulation Count (larger correlates with smoother predictions) <br /><small>default is 3000, more stressed computer systems will want smaller simulation counts</small><br />
+                        <select id={'simulationCount'} name={'simulationCount'} defaultValue={iterations.toString()}
+                            onChange={(e: ChangeEvent<HTMLSelectElement>) => {
+                                const i = parseInt(e.currentTarget.value, 10);
+                                setIterations(i);
+                            }}
+                        >
+                            <option value={'1'}>1</option>
+                            <option value={'4'}>4</option>
+                            <option value={'10'}>10</option>
+                            <option value={'2000'}>2000</option>
+                            <option value={'3000'}>3000</option>
+                            <option value={'4000'}>4000</option>
+                            <option value={'5000'}>5000</option>
+                            <option value={'6000'}>6000</option>
+                            <option value={'7000'}>7000</option>
+                            <option value={'8000'}>8000</option>
+                            <option value={'9000'}>9000</option>
+                            <option value={'10000'}>10000</option>
+                            <option value={'12000'}>12000</option>
+                            <option value={'25000'}>25000</option>
+                            <option value={'50000'}>50000</option>
+                            <option value={'100000'}>100000</option>
+                        </select> <br />
+                        <small>WARNING: larger selections like 100,000 can potentially lock your Web Browser up for a short time while all the simulations run. It will end. Eventually.</small>
+                    </label>
+                </div>
                 <h3>Count Total Wounds or Count Dead Models</h3>
                 <div>
                     <label>Count Total Wounds <input name={'deadModels'} checked={sumWounds} value="false" onChange={() => setState(true)} type={'radio'} /></label> <small>useful against knights and big things</small>
