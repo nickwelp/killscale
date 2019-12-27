@@ -7,7 +7,8 @@ const generateDamage = (
     { tags, FNP, woundsPerModel }: ITarget,
     { damage, type }: IWeaponProfile,
     sumWounds: boolean,
-    { IFHeavyWeaponsSuperDoctrine }: IRerollSet): [number, number] => {
+    { IFHeavyWeaponsSuperDoctrine }: IRerollSet
+): [number, number] => {
     // this counts either wounds or dead models based on sumWounds boolean
     let sumOfDamageUnits: number = 0;
     for (let g = 0; g < failedSaves; g++) {

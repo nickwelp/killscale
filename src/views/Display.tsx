@@ -87,7 +87,6 @@ const Display = ({ props }: IProps) => {
         return (<div key={i} style={{ padding: '10px', margin: '5px', maxWidth: '200px', borderLeft: '1px solid #AAA' }}>
             <h5>{name}</h5>
             <small>
-                <br /> iter: {iterations}
                 <br />balistic skill: {balisticSkill}+
                 <br />weapon skill: {weaponSkill}+
             </small>
@@ -132,7 +131,7 @@ const Display = ({ props }: IProps) => {
 
     return (
         <>
-            <div style={{ display: 'none' }}><label >Show Debugger Inforamtion<input checked={showDebugger} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => updateShowDebugger(!!e.currentTarget.checked)} /> </label> </div>
+            <div><label >Show Debugger Inforamtion<input checked={showDebugger} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => updateShowDebugger(!!e.currentTarget.checked)} /> </label> </div>
             {showDebugger &&
                 <>
                     <div style={{ display: 'flex', flexFlow: 'row wrap' }}>{debuggerPannel()}</div>

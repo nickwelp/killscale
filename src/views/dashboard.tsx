@@ -45,9 +45,7 @@ const Dashboard = () => {
 
     const { DashCache } = loadCache();
 
-    const { userCreatedTargets } = useContext(MyUserContext);
-    // userCreatedAttackers
-
+    const { userCreatedTargets, userCreatedAttackers } = useContext(MyUserContext);
 
     const [showDiagnostics, updateDiagnostics] = useState(false);
 
@@ -148,17 +146,20 @@ const Dashboard = () => {
 
     const [chooseTargets, updateChooseTargets] = useState(false);
 
-    // const mergedAttackers = [...attackers, ...userCreatedAttackers];
+    const mergedAttackers = [...attackers, ...userCreatedAttackers];
 
     /** manage attackers */
-    const [activeAttackersList, updateActiveAttackersList] = useState([NaN]);// useState(mergedAttackers.map((_, i) => i));
+    const cachedSelections = JSON.parse(localStorage.getItem('activeAttackers') || '[]');
+    const [activeAttackersList, updateActiveAttackersList] = useState(cachedSelections.length !== 0 ? cachedSelections : mergedAttackers.map((_, i) => i));
     const setActiveAttackersList = (e: ChangeEvent<HTMLInputElement>) => {
         const index = parseInt(e.currentTarget.value, 10);
         const status = e.currentTarget.checked === true;
         if (status) {
             updateActiveAttackersList([...new Set([index, ...activeAttackersList])]);
+            localStorage.setItem('activeAttackers', JSON.stringify([...new Set([index, ...activeAttackersList])]));
         } else {
             updateActiveAttackersList(activeAttackersList.filter((e: number) => e !== index));
+            localStorage.setItem('activeAttackers', JSON.stringify(activeAttackersList.filter((e: number) => e !== index)));
         }
     };
     const [showSelectAttackers, setShowSelectAttackers] = useState(false);

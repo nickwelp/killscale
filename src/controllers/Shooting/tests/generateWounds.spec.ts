@@ -51,7 +51,7 @@ describe('generateWounds function', () => {
             weapon_stubber,
             0,
             dullReRollProfile
-        ))).toStrictEqual([10, 0]);
+        ))).toStrictEqual([10, 0, 10, 10]);
     });
     it('expect on 10 hits, rolling all 4s to wound, Str9 VS T4, 10 wounds', () => {
         // @ts-ignore
@@ -62,7 +62,7 @@ describe('generateWounds function', () => {
             { ...weapon_stubber, strength: 9 },
             0,
             dullReRollProfile
-        ))).toStrictEqual([10, 0]);
+        ))).toStrictEqual([10, 0, 0, 0]);
     });
     it('expect on 10 hits, rolling all 1s to wound, Str9 VS T4, 0 wounds', () => {
         // @ts-ignore
@@ -73,7 +73,7 @@ describe('generateWounds function', () => {
             { ...weapon_stubber, strength: 9 },
             0,
             dullReRollProfile
-        ))).toStrictEqual([0, 0]);
+        ))).toStrictEqual([0, 0, 0, 0]);
     });
     it('expect on 6 hits, rolling all 1..6 to wound, Str4 VS T4, 3 wounds', () => {
         let index = 1;
@@ -85,7 +85,7 @@ describe('generateWounds function', () => {
             { ...weapon_stubber, strength: 4 },
             0,
             dullReRollProfile
-        ))).toStrictEqual([3, 0]);
+        ))).toStrictEqual([3, 0, 1, 1]);
     });
     it('expect on 6 hits, rolling all 1..6 to wound, Str4 VS T5, 2 wounds', () => {
         let index = 1;
@@ -97,7 +97,7 @@ describe('generateWounds function', () => {
             { ...weapon_stubber, strength: 4 },
             0,
             dullReRollProfile
-        ))).toStrictEqual([2, 0]);
+        ))).toStrictEqual([2, 0, 1, 1]);
     });
     it('expect on 6 hits, rolling all 1..6 to wound, Str5 VS T4, 4 wounds', () => {
         let index = 1;
@@ -109,7 +109,7 @@ describe('generateWounds function', () => {
             { ...weapon_stubber, strength: 5 },
             0,
             dullReRollProfile
-        ))).toStrictEqual([4, 0]);
+        ))).toStrictEqual([4, 0, 1, 1]);
     });
     it('expect on 6 hits, rolling all 1..6 to wound, mortal wounds on 6s, Str4 VS T4, 3 wounds, 1 mortal wound', () => {
         let index = 1;
@@ -118,10 +118,10 @@ describe('generateWounds function', () => {
         expect((generateWounds(
             6,
             { ...target1, toughness: 4 },
-            { ...weapon_stubber, strength: 4, tags: ['mortal wound on 6s to wound'] },
+            { ...weapon_stubber, strength: 4, tags: ['mortal wound on unmodified 6s to wound'] },
             0,
             dullReRollProfile
-        ))).toStrictEqual([3, 1]);
+        ))).toStrictEqual([3, 1, 1, 1]);
     });
     it('expect on 6 hits, rolling all 1..6 to wound, +1 to wound, mortal wounds on 6+s, Str4 VS T4, 4 wounds, 2 mortal wound', () => {
         let index = 1;
@@ -133,6 +133,6 @@ describe('generateWounds function', () => {
             { ...weapon_stubber, strength: 4, tags: ['mortal wound on 6+s to wound'], plusToWound: 1 },
             0,
             { ...dullReRollProfile }
-        ))).toStrictEqual([4, 2]);
+        ))).toStrictEqual([4, 2, 1, 2]);
     });
 });

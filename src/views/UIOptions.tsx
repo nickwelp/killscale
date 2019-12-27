@@ -20,17 +20,18 @@ const UIOptions = ({ props }: any) => {
     return (
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', margin: '10px auto 10px auto', padding: '10px', boxShadow: '2px 2px 5px #999', maxWidth: '1400px', width: '90%' }}>
             <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                <div style={{ maxWidth: '33%' }}>
-                    <label>Simulation Count (larger correlates with smoother predictions) <br /><small>default is 3000, more stressed computer systems will want smaller simulation counts</small><br />
+                <div>
+                    <label>Simulation Count (larger correlates with smoother predictions) <br />
                         <select id={'simulationCount'} name={'simulationCount'} defaultValue={iterations.toString()}
                             onChange={(e: ChangeEvent<HTMLSelectElement>) => {
                                 const i = parseInt(e.currentTarget.value, 10);
                                 setIterations(i);
                             }}
                         >
-                            <option value={'1'}>1</option>
-                            <option value={'4'}>4</option>
                             <option value={'10'}>10</option>
+                            <option value={'100'}>100</option>
+                            <option value={'500'}>500</option>
+                            <option value={'1000'}>1000</option>
                             <option value={'2000'}>2000</option>
                             <option value={'3000'}>3000</option>
                             <option value={'4000'}>4000</option>
@@ -44,8 +45,7 @@ const UIOptions = ({ props }: any) => {
                             <option value={'25000'}>25000</option>
                             <option value={'50000'}>50000</option>
                             <option value={'100000'}>100000</option>
-                        </select> <br />
-                        <small>WARNING: larger selections like 100,000 can potentially lock your Web Browser up for a short time while all the simulations run. It will end. Eventually.</small>
+                        </select>
                     </label>
                 </div>
                 <h3>Count Total Wounds or Count Dead Models</h3>

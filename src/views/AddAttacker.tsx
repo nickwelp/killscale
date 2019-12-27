@@ -61,6 +61,10 @@ const AddAttacker = () => {
         const weapons = userCreatedWeaponProfiles.filter((e: IWeaponProfile, i: number) => weaponIndexes.includes(i));
         // @ts-ignore
         const tags = (document.querySelector('[name=keywords]') ? document.querySelector('[name=keywords]').value : '100').split(',').map(e => e.trim());
+        const moreTags = document.querySelector('[name=tags]');
+        // @ts-ignore
+        const moreTagsValues = Array.from(moreTags.querySelectorAll("option:checked"), e => e.value);
+        tags.push(...moreTagsValues);
         const attacker: IUnit = {
             name,
             balisticSkill,
@@ -78,8 +82,9 @@ const AddAttacker = () => {
     };
 
     return (
-        <div style={{ position: 'fixed', zIndex: 9, top: '0', left: '0', right: 0, bottom: 0, background: '#f2f2f2' }}>
+        <div >
             <div style={{ maxWidth: '500px', margin: '10% auto', boxShadow: '1px 1px 5px #999999', borderRadius: '3px', padding: '10px', textAlign: 'right' }}>
+                <p><strong>Add Attacker Profile</strong></p>
                 <form style={{ display: 'flex', flexFlow: 'column nowrap' }}>
                     <label>Name of Unit <input type={'text'} name={'name'} id={'name'} /></label>
                     <label>Balistic Skill
@@ -130,8 +135,15 @@ const AddAttacker = () => {
                     </label>
 
                     <label>
-                        Keywords (comma seperate caps don't matter) <br />
-                        ie "Vehicle, Fly, rat, bolter" <br />
+                        Keywords  <br />
+                        <select name={'tags'} multiple={true}>
+                            <option value={'fly'}>fly</option>
+                            <option value={'hover'}>hover</option>
+                            <option value={'infantry'}>infantry</option>
+                            <option value={'vehicle'}>vehicle</option>
+                        </select><br />
+                        Add Your Own: (comma seperate) <br />
+                        ie "Vehicle, Fly, rat" <br />
                         <input name={'keywords'} type="text" />
                     </label>
                 </form>

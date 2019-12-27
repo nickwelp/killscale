@@ -61,6 +61,10 @@ const AddWeapon = () => {
         const plusToWound = parseInt((document.querySelector('[name=plusToWound]') ? document.querySelector('[name=plusToWound]').value : '0'), 10);
         // @ts-ignore
         const tags = (document.querySelector('[name=keywords]') ? document.querySelector('[name=keywords]').value : '100').split(',').map(e => e.trim());
+        const moreTags = document.querySelector('[name=tags]');
+        // @ts-ignore
+        const moreTagsValues = Array.from(moreTags.querySelectorAll("option:checked"), e => e.value);
+        tags.push(...moreTagsValues);
         const numberOfShots = decodeRollsForSavingState(numberOfShotsLabel);
         const damage = decodeRollsForSavingState(damageKey);
 
@@ -86,8 +90,9 @@ const AddWeapon = () => {
     };
 
     return (
-        <div style={{ position: 'fixed', zIndex: 9, top: '0', left: '0', right: 0, bottom: 0, background: '#f2f2f2' }}>
+        <div >
             <div style={{ maxWidth: '500px', margin: '10% auto', boxShadow: '1px 1px 5px #999999', borderRadius: '3px', padding: '10px', textAlign: 'right' }}>
+                <p><strong>Add Weapon Profile</strong></p>
                 <form style={{ display: 'flex', flexFlow: 'column nowrap' }}>
                     <label>Name of Unit <input type={'text'} name={'name'} id={'name'} /></label>
                     <label>Weapon Type
@@ -189,7 +194,18 @@ const AddWeapon = () => {
                         </select>
                     </label>
                     <label>
-                        Keywords (comma seperate caps don't matter) <br />
+                        Keywords or Special Rules
+                        <br />
+                        <select name={'tags'} multiple={true}>
+                            <option value={'bolter'}>bolter</option>
+                            <option value={'autowounds on 6s to hit'}>autowounds on 6s to hit</option>
+                            <option value={'mortal wound on 6+s to wound'}>mortal wound on 6+s to wound</option>
+                            <option value={'mortal wound on unmodified 6s to wound'}>mortal wound on unmodified 6s to wound</option>
+                            <option value={'+1 to hit vs fliers, -1 to hit vs all others'}>+1 to hit vs fliers, -1 to hit vs all others</option>
+                            <option value={'wound rolls 6+s resolved at AP-3'}>wound rolls 6+s resolved at AP-3</option>
+                            <option value={'wound rolls 6+s resolved at AP-4'}>wound rolls 6+s resolved at AP-4</option>
+                        </select>
+                        <br />Add Your Own: (comma seperate caps don't matter) <br />
                         ie "Vehicle, Fly, rat, bolter" <br />
                         <input name={'keywords'} type="text" />
                     </label>
