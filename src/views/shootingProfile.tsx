@@ -3,6 +3,9 @@ import React, { useReducer, useState } from 'react';
 import CreateSet from '../controllers/Shooting';
 import { IDoctrine, IRerollSet, ITarget, IUnit } from '../models/interfaces';
 
+import cx from 'classnames';
+import bootstrap from '../views/theme/bootstrap.module.css';
+
 interface IUISettings {
     [key: string]: boolean;
 }
@@ -104,11 +107,12 @@ const ShootingProfile = ({
                 <h4>{shooter.name}</h4>
             </div>
 
-            <div style={{ margin: '0 20px 0 0' }}>
+            <div style={{ margin: '0 20px 0 0', textAlign: 'center' }}>
                 <ul style={{ listStyleType: 'none', textAlign: 'right' }}>{weaponProfiles}</ul>
                 {shootingProfiles}
             </div>
         </div>
+
     );
 
 };
