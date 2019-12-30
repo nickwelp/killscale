@@ -16,6 +16,9 @@ import LoadData from './LoadData';
 import { attackers } from '../models/units';
 import Diagnostics from './Diagnostics';
 
+import cx from 'classnames';
+import bootstrap from './theme/bootstrap.module.css';
+
 const loadCache = () => {
     const DashCache = JSON.parse(localStorage.getItem('dashboardUISettings') || '{}');
     return { DashCache };
@@ -182,10 +185,9 @@ const Dashboard = () => {
         };
     }
     return (
-        <div>
-            <div style={{ textAlign: 'center', marginBottom: '10px' }}>
-
-                <label style={{ marginRight: '15px' }} >Show Options <input checked={showOptions} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowOptions(!!e.currentTarget.checked)} /> </label>
+        <div >
+            <div style={{ marginBottom: '10px' }} className={bootstrap['row']}>
+                <label style={{ marginRight: '15px', marginLeft: '15px' }} >Show Options <input checked={showOptions} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowOptions(!!e.currentTarget.checked)} /> </label>
                 <label style={{ marginRight: '15px' }}>Select Targets<input checked={chooseTargets} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => updateChooseTargets(!!e.currentTarget.checked)} /> </label>
                 <label style={{ marginRight: '15px' }}>Select Attacking Units <input type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowSelectAttackers(!!e.currentTarget.checked)} /></label>
                 <label style={{ marginRight: '15px' }}>Show Help <input checked={showHelp} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowHelp(!!e.currentTarget.checked)} /> </label>

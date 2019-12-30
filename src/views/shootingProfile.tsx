@@ -104,7 +104,7 @@ const ShootingProfile = ({
                 <select defaultValue={'1'} style={{ margin: '5px' }} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => updateModelCount(parseInt(e.currentTarget.value))}>
                     {options}
                 </select>
-                <h4>{shooter.name}</h4>
+                <h5>{shooter.name}</h5>
             </div>
 
             <div style={{ margin: '0 20px 0 0', textAlign: 'center' }}>

@@ -1,15 +1,18 @@
 import React from 'react';
 
 import Dashboard from './Dashboard';
+// import cx from 'classnames';
+import bootstrap from './theme/bootstrap.module.css';
 
 const App = () => {
     return (
-        <div style={{ padding: '10px' }}>
+        <div className={bootstrap['container']}>
             <h1 style={{
-                transform: 'scale(2,1) perspective(200px) rotateX(40deg)',
+                // transform: 'scale(2,1) perspective(200px) rotateX(40deg)',
                 textShadow: '1px 1px 3px rgba(0,0,0,.3)',
-                textAlign: 'center',
-                fontFamily: 'impact, sans-serif'
+                textAlign: 'left',
+                fontFamily: 'impact, sans-serif',
+                overflow: 'hidden'
             }}>KILLSCALE 40k</h1>
             <Dashboard />
         </div>
