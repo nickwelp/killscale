@@ -15,6 +15,7 @@ export interface IWeaponProfile {
     plusToWound?: number;
     tags: string[];
     uniqueIdentifier?: string;
+    shotsFiredMultiplier?: number;
 }
 
 export interface IUnit {

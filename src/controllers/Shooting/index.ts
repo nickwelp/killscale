@@ -18,6 +18,7 @@ interface IProps {
     rerollProfile: IRerollSet;
     doctrine: IDoctrine;
     iterations: number;
+    shotsFired: number[];
 }
 const CreateSet = ({
     shooter,
@@ -27,16 +28,17 @@ const CreateSet = ({
     modelCount,
     rerollProfile,
     doctrine,
-    iterations
+    iterations,
+    shotsFired
 }: IProps) => {
-    const hash = JSON.stringify({ shooter, weapons, targets, sumWounds, modelCount, rerollProfile, doctrine, iterations });
+    const hash = JSON.stringify({ shooter, weapons, targets, sumWounds, modelCount, rerollProfile, doctrine, iterations, shotsFired });
     // @ts-ignore
     if (cache[hash]) {
         // @ts-ignore
         return cache[hash];
     }
     // @ts-ignore
-    else cache[hash] = processSetFunc({ shooter, weapons, targets, sumWounds, modelCount, rerollProfile, doctrine, iterations });
+    else cache[hash] = processSetFunc({ shooter, weapons, targets, sumWounds, modelCount, rerollProfile, doctrine, iterations, shotsFired });
     // @ts-ignore
     return cache[hash];
 };
@@ -49,24 +51,29 @@ const processSetFunc = ({
     modelCount,
     rerollProfile,
     doctrine,
-    iterations }: IProps): IStandDevReport[] => {
+    iterations,
+    shotsFired }: IProps): IStandDevReport[] => {
     return targets.map(target => {
         const set: number[] = [];
         for (let y = 0; y < iterations; y++) {
             let sumOfDamage = 0;
             const woundCarryOver = 0;
+
             for (let k = 0; k < weapons.length; k++) {
-                const [hits, autowounds]: [number, number] = generateHits(target, weapons[k], modelCount, rerollProfile, shooter);
-                const [wounds, mortalWounds, total6s, total6ups] = generateWounds(hits, target, weapons[k], autowounds, rerollProfile);
-                const failedSaves: number = generateFailedSaves(wounds, target, weapons[k], doctrine, total6s, total6ups);
-                const [newDamage, rollOverWounds] = generateDamage(failedSaves, woundCarryOver, target, weapons[k], sumWounds, rerollProfile);
-                sumOfDamage += newDamage;
-                const mortalWoundsPastFNP = applyFNPtoMortalWounds(mortalWounds, target);
-                if (sumWounds) {
-                    sumOfDamage += mortalWoundsPastFNP;
-                } else {
-                    // if don't sum the wounds then tally dead models, slain by produced mortal wounds and left over damage
-                    sumOfDamage += Math.round((mortalWoundsPastFNP + rollOverWounds) / target.woundsPerModel);
+                //@ts-ignore
+                for (let h = 0; h < shotsFired[k]; h++) {
+                    const [hits, autowounds]: [number, number] = generateHits(target, weapons[k], modelCount, rerollProfile, shooter);
+                    const [wounds, mortalWounds, total6s, total6ups] = generateWounds(hits, target, weapons[k], autowounds, rerollProfile);
+                    const failedSaves: number = generateFailedSaves(wounds, target, weapons[k], doctrine, total6s, total6ups);
+                    const [newDamage, rollOverWounds] = generateDamage(failedSaves, woundCarryOver, target, weapons[k], sumWounds, rerollProfile);
+                    sumOfDamage += newDamage;
+                    const mortalWoundsPastFNP = applyFNPtoMortalWounds(mortalWounds, target);
+                    if (sumWounds) {
+                        sumOfDamage += mortalWoundsPastFNP;
+                    } else {
+                        // if don't sum the wounds then tally dead models, slain by produced mortal wounds and left over damage
+                        sumOfDamage += Math.round((mortalWoundsPastFNP + rollOverWounds) / target.woundsPerModel);
+                    }
                 }
             }
             set.push(sumOfDamage);
