@@ -92,5 +92,5 @@ const Diagnostics = () => {
         <button onClick={() => testD6SmallNumber()}>Test a SMALL number of Rolls</button>
     </div>);
 
-}
+};
 export default Diagnostics;

@@ -14,4 +14,4 @@ export const decodeRollsForSavingState = (a: string) => {
         default:
             return () => parseInt(a, 10);
     }
-}
+};

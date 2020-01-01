@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState, useContext } from 'react';
+import React, { ChangeEvent, useContext, useState } from 'react';
 import { MyUserContext } from '../controllers/context/UserContext';
 import { IRerollSet, ITarget, IUnit, IWeaponProfile } from '../models/interfaces';
 import ShootingProfile from './ShootingProfile';

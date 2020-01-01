@@ -1,10 +1,7 @@
-import React, { useReducer, useState, SyntheticEvent } from 'react';
+import React, { SyntheticEvent, useReducer, useState } from 'react';
 
 import CreateSet from '../controllers/Shooting';
-import { IDoctrine, IRerollSet, ITarget, IUnit, IWeaponProfile } from '../models/interfaces';
-
-import cx from 'classnames';
-import bootstrap from '../views/theme/bootstrap.module.css';
+import { IDoctrine, IRerollSet, ITarget, IUnit } from '../models/interfaces';
 
 interface IUISettings {
     [key: string]: boolean;
@@ -39,7 +36,7 @@ const options = (count: number = 100) => {
             <option key={i} value={i}>{i}</option>
         );
     });
-}
+};
 
 const ShootingProfile = ({
     shooter,
@@ -75,41 +72,44 @@ const ShootingProfile = ({
 
     const [modelCount, updateModelCount] = useState(1);
 
-    weapons.map((weapon, index) => {
+    weapons.forEach((weapon, index) => {
         weapon.shotsFiredMultiplier = state.includes(index) ? 1 : 0;
-    })
+    });
     const weaponProfiles = weapons
         .map((weapon, index) => {
 
             return (
-                <li key={index} className={bootstrap['row']}>
-                    <label className={cx([bootstrap['col-3'], bootstrap['p-0']])} aria-label={'Count of the number of weapons of the following'}>
-                        <select
-                            style={{ zIndex: 9, position: 'relative' }}
-                            name={'shotsFiredMultiplier-' + index}
-                            id={'shotsFiredMultiplier-' + index}
-                            onChange={(e: SyntheticEvent<HTMLSelectElement>) => {
-                                const { id, value } = e.currentTarget;
-                                const index = parseInt(id.split('-')[1], 10);
-                                const newShotsFired = [...shotsFired];
-                                newShotsFired[index] = parseInt(value, 10);
-                                // @ts-ignore
-                                updateShotsFired([...newShotsFired]);
-
-
-                            }}
-                            defaultValue={weapon.shotsFiredMultiplier + ''}>
-                            {options(400)}
-                        </select>
-                    </label>
-
-                    <label className={cx([bootstrap['col-10']], bootstrap['p-0'], bootstrap['row'])}><span className={bootstrap['col-6']}>{weapon.name}</span><span className={bootstrap['col-4']}>w/ {weapon.numberOfShotsLabel} shots</span>
-                        < input
+                <li key={index} style={{ display: 'table-row', flexFlow: 'row nowrap', textAlign: 'left' }} >
+                    <select
+                        aria-label={'Count of the number of weapons of the following'}
+                        style={{ display: 'table-cell', zIndex: 9, position: 'relative', fontSize: '10px' }}
+                        name={'shotsFiredMultiplier-' + index}
+                        id={'shotsFiredMultiplier-' + index}
+                        onChange={(e: SyntheticEvent<HTMLSelectElement>) => {
+                            const { id, value } = e.currentTarget;
+                            const index = parseInt(id.split('-')[1], 10);
+                            const newShotsFired = [...shotsFired];
+                            newShotsFired[index] = parseInt(value, 10);
+                            // @ts-ignore
+                            updateShotsFired([...newShotsFired]);
+                        }}
+                        defaultValue={weapon.shotsFiredMultiplier + ''}>
+                        {options(400)}
+                    </select>
+                    <span style={{ display: 'table-cell', }}>
+                        <input
                             type={'checkbox'}
                             value={index}
+                            name={'weapon_' + shooter.name.replace(' ', '-') + '_' + index}
                             checked={state.includes(index)}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => dispatch({ element: e.currentTarget })}
+                            style={{ margin: '5px' }}
                         />
+                    </span>
+                    <label style={{ display: 'table-cell', }}
+                        htmlFor={'weapon_' + shooter.name.replace(' ', '-') + '_' + index}
+                    >
+                        {weapon.name} ({weapon.numberOfShotsLabel} shots)
                     </label>
                 </li>
             );
@@ -137,23 +137,23 @@ const ShootingProfile = ({
                 <small>{data.target}</small><br />
                 <small>{data.pruned.worst}</small> - {data.pruned.lowerMedian} - <strong>{data.pruned.median}</strong> - {data.pruned.upperMedian} - <small>{data.pruned.best}</small><br />
                 <div style={{ display: 'flex', flexDirection: 'row' }}>
-                    <small style={{ margin: '3px', flexGrow: 1 }}>{(Math.round((shooter.points * modelCount / data.mean) * 100) / 100)}<br /> <span style={{ fontSize: '9px' }}>ppm</span></small><br />
-                    <small style={{ margin: '3px', flexGrow: 1 }}>{(Math.round(100 * data.standardDeviation) / 100)} <br /><span style={{ fontSize: '9px' }}>v</span></small>
+                    <small style={{ margin: '3px', flexGrow: 1 }}>{(Math.round((shooter.points * modelCount / data.mean) * 100) / 100)}<br /> <span style={{ fontSize: '9px' }}>pts per mean</span></small><br />
+                    <small style={{ margin: '3px', flexGrow: 1 }}>{(Math.round(100 * data.standardDeviation) / 100)} <br /><span style={{ fontSize: '9px' }}>Standard Deviation</span></small>
+                    <small style={{ margin: '3px', flexGrow: 1 }}>{data.mode.join(', ')}<br /><span style={{ fontSize: '9px' }}>mode</span></small>
                 </div>
             </div>
         ));
 
     return (
-        <div key={shooter.name.replace(' ', '_')} style={{ maxWidth: '450px', textAlign: 'center', margin: '5px', boxShadow: '0px 0px 1px rgba(0,0,0,.1)', fontSize: '12px' }}>
-            <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <h5>{shooter.name}</h5>
-                <select defaultValue={'1'} style={{ margin: '5px' }} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => updateModelCount(parseInt(e.currentTarget.value))}>
+        <div key={shooter.name.replace(' ', '_')} style={{ width: '400px', maxWidth: '100%', margin: '5px', boxShadow: '0px 0px 1px rgba(0,0,0,.1)', fontSize: '12px' }}>
+            <div style={{ display: 'table-row' }}>
+                <select defaultValue={'1'} style={{ margin: '5px', display: 'table-cell' }} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => updateModelCount(parseInt(e.currentTarget.value))}>
                     {options()}
                 </select>
+                <h5 style={{ display: 'table-cell' }}>{shooter.name}</h5>
             </div>
-
             <div style={{ margin: '0 20px 0 0', textAlign: 'center' }}>
-                <ul style={{ listStyleType: 'none', textAlign: 'right' }}>{weaponProfiles}</ul>
+                <ul style={{ listStyleType: 'none', textAlign: 'right', padding: 0, marginLeft: '10px' }}>{weaponProfiles}</ul>
                 {shootingProfiles}
             </div>
         </div>

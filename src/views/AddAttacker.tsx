@@ -23,9 +23,9 @@ const AddAttacker = () => {
 
     const weaponOptions = (userCreatedWeaponProfiles: IWeaponProfile[]) => {
         return userCreatedWeaponProfiles.map((weapon, i) => {
-            return (<option key={i} value={i}>{weapon.name}</option>)
+            return (<option key={i} value={i}>{weapon.name}</option>);
         });
-    }
+    };
 
     if (!viewAddAttackerProfile) {
         return (
@@ -57,13 +57,13 @@ const AddAttacker = () => {
         const woundsPerModel = parseInt((document.querySelector('[name=woundsPerModel]') ? document.querySelector('[name=woundsPerModel]').value : ''), 10);
         const weaponsElement = document.querySelector('[name=weapons]');
         // @ts-ignore
-        const weaponIndexes = Array.from(weaponsElement.querySelectorAll("option:checked"), e => +e.value);
+        const weaponIndexes = Array.from(weaponsElement.querySelectorAll('option:checked'), e => +e.value);
         const weapons = userCreatedWeaponProfiles.filter((e: IWeaponProfile, i: number) => weaponIndexes.includes(i));
         // @ts-ignore
         const tags = (document.querySelector('[name=keywords]') ? document.querySelector('[name=keywords]').value : '100').split(',').map(e => e.trim());
         const moreTags = document.querySelector('[name=tags]');
         // @ts-ignore
-        const moreTagsValues = Array.from(moreTags.querySelectorAll("option:checked"), e => e.value);
+        const moreTagsValues = Array.from(moreTags.querySelectorAll('option:checked'), e => e.value);
         tags.push(...moreTagsValues);
         const attacker: IUnit = {
             name,
@@ -76,7 +76,7 @@ const AddAttacker = () => {
             weapons,
             woundsPerModel,
             weaponIndexes
-        }
+        };
         addUserCreatedAttacker(attacker);
         toggleViewAddAttackerProfile();
     };

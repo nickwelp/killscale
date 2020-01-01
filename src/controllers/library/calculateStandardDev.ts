@@ -7,11 +7,32 @@ const CalculateStandardDef = (
     { name: targetName }: ITarget,
     iterations: number): IStandDevReport => {
     let sumOfSet = 0;
+    const modeKey = {};
     set.forEach((int) => {
         sumOfSet += int;
+        // @ts-ignore
+        if (modeKey[int.toString()]) {
+            // @ts-ignore
+            modeKey[int.toString()]++;
+        }
+        else {
+            // @ts-ignore
+            modeKey[int.toString()] = 1;
+        }
     });
+    let largestNumber = 0;
+
+    Object.keys(modeKey).forEach((key) => {
+        // @ts-ignore
+        if (modeKey[key] > largestNumber) largestNumber = modeKey[key];
+    });
+    // @ts-ignore
+    const largestModeKeys = Object.keys(modeKey).filter(key => modeKey[key] === largestNumber);
+
     set.sort(sortNumber);
     const setMean = sumOfSet / iterations;
+
+
 
     let sumOfDifference = 0;
     const lowerMedian: number[] = [];
@@ -29,11 +50,13 @@ const CalculateStandardDef = (
     const prunedUpperMedian = upperMedian.filter((e) => e < (setMean + (2 * setStandardDeviation)));
     const prunedSet: number[] = [...prunedLowerMedian].concat(prunedUpperMedian).sort(sortNumber);
 
+
     return {
         name: shooterName,
         target: targetName,
         mean: (Math.round(setMean * 10) / 10),
         standardDeviation: (Math.round(setStandardDeviation * 10) / 10),
+        mode: largestModeKeys,
         pruned: {
             median: prunedSet[Math.round(set.length / 2)],
             lowerMedian: (prunedLowerMedian[Math.round(prunedLowerMedian.length / 2)]),
@@ -61,5 +84,6 @@ export interface IStandDevReport {
     target: string;
     mean: number;
     standardDeviation: number;
+    mode: string[];
     pruned: IPrunedResults;
 }

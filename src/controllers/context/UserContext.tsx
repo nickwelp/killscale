@@ -59,7 +59,7 @@ const UserContext = ({ children }: IProps) => {
             return e;
         });
         localStorage.setItem('userCreatedAttackers', JSON.stringify([...storageAttackers]));
-        updateUserAttackers([...userCreatedAttackers, a])
+        updateUserAttackers([...userCreatedAttackers, a]);
     };
 
     const initWeapons = weaponCache || emptyWeaponProfiles;
@@ -68,7 +68,7 @@ const UserContext = ({ children }: IProps) => {
         localStorage.removeItem('userCreatedWeaponProfiles');
         localStorage.setItem('userCreatedWeaponProfiles', JSON.stringify([...userCreatedWeaponProfiles, a]));
         updateUserCreatedWeaponProfiles([...userCreatedWeaponProfiles, a]);
-    }
+    };
 
     return (
         <MyUserContext.Provider value={{

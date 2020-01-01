@@ -28,7 +28,7 @@ export interface IUnit {
     invuln?: number; // 7 is none
     save?: number;
     weapons?: IWeaponProfile[];
-    weaponIndexes?: number[]; //for local storage retrieving
+    weaponIndexes?: number[]; // for local storage retrieving
     tags: string[];
     weaponSkill: number;
     balisticSkill: number;

@@ -1,11 +1,11 @@
-import React, { useContext, useState, ChangeEvent } from 'react';
+import React, { ChangeEvent, useContext, useState } from 'react';
 
 import { attackers } from '../models/units';
-import AddWeapon from './AddWeapon';
 import AddAttacker from './AddAttacker';
+import AddWeapon from './AddWeapon';
 
 import { MyUserContext } from '../controllers/context/UserContext';
-import { IWeaponProfile, IUnit } from '../models/interfaces';
+import { IUnit, IWeaponProfile } from '../models/interfaces';
 interface IProps {
     activeAttackersList: number[];
     setActiveAttackersList: any;
@@ -13,13 +13,13 @@ interface IProps {
 
 const SelectAttackers = ({ activeAttackersList, setActiveAttackersList }: IProps) => {
     const [showDefaultAttackers, updateShowDefaultAttackers] = useState(false);
-    const { userCreatedAttackers, userCreatedWeaponProfiles, } = useContext(MyUserContext)
+    const { userCreatedAttackers, userCreatedWeaponProfiles, } = useContext(MyUserContext);
 
     const listOfUserCreatedWeapons = (userCreatedWeaponProfiles: IWeaponProfile[]) => {
         return userCreatedWeaponProfiles.map(({ name }: IWeaponProfile, i: number) => {
             return (<span key={i}>{name}, </span>);
         });
-    }
+    };
     const defaultAttackersLength = attackers.length;
     const options = (attackers: IUnit[]) => attackers.map((shooter, i) => {
         let style = {};

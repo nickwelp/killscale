@@ -2,7 +2,6 @@ import React, { ChangeEvent } from 'react';
 
 const UIOptions = ({ props }: any) => {
     const {
-        sumWounds, setState,
         rerollHits, setRerollHits,
         devastator, setDevastor,
         tactical, setTactical,
@@ -11,7 +10,6 @@ const UIOptions = ({ props }: any) => {
         crimsonFistsPlusToHit, setCrimsonFistsPlusToHit,
         rerollHitRollsOfOne, setRerollHitRollsOfOne,
         rerollWoundRollsOfOne, setRerollWoundRollsOfOne,
-        hideUncheckedWeapons, setHideUncheckedWeapons,
         IFHeavyWeaponsSuperDoctrine, setIFHeavyWeaponsSuperDoctrine,
         applyHeavyWeaponMinusOneToHit, setApplyHeavyWeaponMinusOneToHit,
         iterations, setIterations
@@ -48,17 +46,7 @@ const UIOptions = ({ props }: any) => {
                         </select>
                     </label>
                 </div>
-                <h3>Count Total Wounds or Count Dead Models</h3>
-                <div>
-                    <label>Count Total Wounds <input name={'deadModels'} checked={sumWounds} value="false" onChange={() => setState(true)} type={'radio'} /></label> <small>useful against knights and big things</small>
-                </div>
-                <div>
-                    <label>Count Dead Models <input name={'deadModels'} checked={!sumWounds} value="true" onChange={() => setState(false)} type={'radio'} /></label> <small>useful against many small things</small>
-                </div>
 
-                <div>
-                    <label><small>Hide Unchecked Weapons </small><input type={'checkbox'} checked={hideUncheckedWeapons} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setHideUncheckedWeapons(!!e.currentTarget.checked)} name={'hideUncheckedWeapons'} /> </label>
-                </div>
             </div>
             <div style={{ margin: '3px', flexGrow: 1, fontSize: '12px', textAlign: 'right' }}>
                 <p><small>Full Reroll Best Partial Rerolls</small></p>

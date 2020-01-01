@@ -60,7 +60,7 @@ const processSetFunc = ({
             const woundCarryOver = 0;
 
             for (let k = 0; k < weapons.length; k++) {
-                //@ts-ignore
+                // @ts-ignore
                 for (let h = 0; h < shotsFired[k]; h++) {
                     const [hits, autowounds]: [number, number] = generateHits(target, weapons[k], modelCount, rerollProfile, shooter);
                     const [wounds, mortalWounds, total6s, total6ups] = generateWounds(hits, target, weapons[k], autowounds, rerollProfile);

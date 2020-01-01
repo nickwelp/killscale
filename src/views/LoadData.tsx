@@ -56,7 +56,7 @@ const LoadData = () => {
                         if (typeof t === 'object') {
                             localStorage.removeItem('userCreatedAttackers');
                             localStorage.setItem('userCreatedAttackers', a);
-                            alert('Attackers Updated')
+                            alert('Attackers Updated');
                         }
                     } catch (e) {
                         alert('Thats not valid JSON u bum');
@@ -65,7 +65,7 @@ const LoadData = () => {
             >PROCESS ATTACKER DATA</button>
             <br />
             <br /><br />
-            <button onClick={() => { window.location.reload() }}>
+            <button onClick={() => { window.location.reload(); }}>
                 Reload App With Updated Data
     </button>
         </div>

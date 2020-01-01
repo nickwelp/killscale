@@ -9,20 +9,19 @@ import { ITarget } from '../models/interfaces';
 import { targets } from './TargetFaction';
 
 import { MyUserContext } from '../controllers/context/UserContext';
-import SelectAttackers from './SelectAttackers';
-import SelectTargets from './SelectTargets';
-import SaveData from './SaveData';
-import LoadData from './LoadData';
 import { attackers } from '../models/units';
 import Diagnostics from './Diagnostics';
+import LoadData from './LoadData';
+import SaveData from './SaveData';
+import SelectAttackers from './SelectAttackers';
+import SelectTargets from './SelectTargets';
 
-import cx from 'classnames';
 import bootstrap from './theme/bootstrap.module.css';
 
 const loadCache = () => {
     const DashCache = JSON.parse(localStorage.getItem('dashboardUISettings') || '{}');
     return { DashCache };
-}
+};
 
 interface IDispatch {
     element: HTMLSelectElement;
@@ -67,56 +66,56 @@ const Dashboard = () => {
         setSumWounds(a);
         localStorage.removeItem('dashboardUISettings');
         localStorage.setItem('dashboardUISettings', JSON.stringify({ ...dashObject(), sumWounds: a }));
-    }
+    };
     const [rerollHits, updateRerollHits] = useState(DashCache.rerollHits !== undefined ? DashCache.rerollHits : true);
     const setRerollHits = (a: boolean) => {
         updateRerollHits(a);
         localStorage.removeItem('dashboardUISettings');
         localStorage.setItem('dashboardUISettings', JSON.stringify({ ...dashObject(), rerollHits: a }));
-    }
+    };
     const [devastator, updateDevastor] = useState(DashCache.devastator !== undefined ? DashCache.devastator : true);
     const setDevastor = (a: boolean) => {
         updateDevastor(a);
         localStorage.removeItem('dashboardUISettings');
         localStorage.setItem('dashboardUISettings', JSON.stringify({ ...dashObject(), devastator: a }));
-    }
+    };
     const [tactical, updateTactical] = useState(DashCache.tactical !== undefined ? DashCache.tactical : true);
     const setTactical = (a: boolean) => {
         updateTactical(a);
         localStorage.removeItem('dashboardUISettings');
         localStorage.setItem('dashboardUISettings', JSON.stringify({ ...dashObject(), tactical: a }));
-    }
+    };
     const [assault, updateAssault] = useState(DashCache.assault !== undefined ? DashCache.assault : true);
     const setAssault = (a: boolean) => {
         updateAssault(a);
         localStorage.removeItem('dashboardUISettings');
         localStorage.setItem('dashboardUISettings', JSON.stringify({ ...dashObject(), assault: a }));
-    }
+    };
     const [explodingBolter6s, updateExplodingBolter6s] = useState(DashCache.explodingBolter6s !== undefined ? DashCache.explodingBolter6s : true);
     const setExplodingBolter6s = (a: boolean) => {
         updateExplodingBolter6s(a);
         localStorage.removeItem('dashboardUISettings');
         localStorage.setItem('dashboardUISettings', JSON.stringify({ ...dashObject(), explodingBolter6s: a }));
-    }
+    };
     const [crimsonFistsPlusToHit, updateCrimsonFistsPlusToHit] = useState(DashCache.crimsonFistsPlusToHit !== undefined ? DashCache.crimsonFistsPlusToHit : true);
     const setCrimsonFistsPlusToHit = (a: boolean) => {
         updateCrimsonFistsPlusToHit(a);
         localStorage.removeItem('dashboardUISettings');
         localStorage.setItem('dashboardUISettings', JSON.stringify({ ...dashObject(), crimsonFistsPlusToHit: a }));
-    }
+    };
     const [applyHeavyWeaponMinusOneToHit, updateApplyHeavyWeaponMinusOneToHit] = useState(DashCache.applyHeavyWeaponMinusOneToHit !== undefined ? DashCache.applyHeavyWeaponMinusOneToHit : false);
     const setApplyHeavyWeaponMinusOneToHit = (a: boolean) => {
         updateApplyHeavyWeaponMinusOneToHit(a);
         localStorage.removeItem('dashboardUISettings');
         localStorage.setItem('dashboardUISettings', JSON.stringify({ ...dashObject(), applyHeavyWeaponMinusOneToHit: a }));
-    }
+    };
 
     const [rerollHitRollsOfOne, updateRerollHitRollsOfOne] = useState(DashCache.rerollHitRollsOfOne !== undefined ? DashCache.rerollHitRollsOfOne : true);
     const setRerollHitRollsOfOne = (a: boolean) => {
         updateRerollHitRollsOfOne(a);
         localStorage.removeItem('dashboardUISettings');
         localStorage.setItem('dashboardUISettings', JSON.stringify({ ...dashObject(), rerollHitRollsOfOne: a }));
-    }
+    };
     // const [rerollWounds, setRerollWounds] = useState(false);
     const rerollWounds = false;
     const [rerollWoundRollsOfOne, updateRerollWoundRollsOfOne] = useState(DashCache.rerollWoundRollsOfOne !== undefined ? DashCache.rerollWoundRollsOfOne : true);
@@ -124,19 +123,19 @@ const Dashboard = () => {
         updateRerollWoundRollsOfOne(a);
         localStorage.removeItem('dashboardUISettings');
         localStorage.setItem('dashboardUISettings', JSON.stringify({ ...dashObject(), rerollWoundRollsOfOne: a }));
-    }
+    };
     const [hideUncheckedWeapons, updateHideUncheckedWeapons] = useState(DashCache.hideUncheckedWeapons !== undefined ? DashCache.hideUncheckedWeapons : false);
     const setHideUncheckedWeapons = (a: boolean) => {
         updateHideUncheckedWeapons(a);
         localStorage.removeItem('dashboardUISettings');
         localStorage.setItem('dashboardUISettings', JSON.stringify({ ...dashObject(), hideUncheckedWeapons: a }));
-    }
+    };
     const [IFHeavyWeaponsSuperDoctrine, updateIFHeavyWeaponsSuperDoctrine] = useState(DashCache.IFHeavyWeaponsSuperDoctrine !== undefined ? DashCache.IFHeavyWeaponsSuperDoctrine : true);
     const setIFHeavyWeaponsSuperDoctrine = (a: boolean) => {
         updateIFHeavyWeaponsSuperDoctrine(a);
         localStorage.removeItem('dashboardUISettings');
         localStorage.setItem('dashboardUISettings', JSON.stringify({ ...dashObject(), IFHeavyWeaponsSuperDoctrine: a }));
-    }
+    };
 
     // modal controls
     const [showOptions, setShowOptions] = useState(false);
@@ -183,7 +182,7 @@ const Dashboard = () => {
             IFHeavyWeaponsSuperDoctrine,
             applyHeavyWeaponMinusOneToHit,
         };
-    }
+    };
     return (
         <div >
             <div style={{ marginBottom: '10px' }} className={bootstrap['row']}>
@@ -194,6 +193,13 @@ const Dashboard = () => {
                 <label style={{ marginRight: '15px' }}>Save Data<input checked={showSaveData} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowSaveData(!!e.currentTarget.checked)} /> </label>
                 <label style={{ marginRight: '15px' }}>Load Data<input checked={showLoadData} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowLoadData(!!e.currentTarget.checked)} /> </label>
                 <label style={{ marginRight: '15px' }}>Diagnostics<input checked={showDiagnostics} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => updateDiagnostics(!!e.currentTarget.checked)} /> </label>
+            </div>
+            <div style={{ marginBottom: '10px', background: '#F0F0F0', padding: '3px' }} className={bootstrap['row']}>
+                <label style={{ marginRight: '15px', marginLeft: '15px' }}>Hide Unchecked Weapons <input type={'checkbox'} checked={hideUncheckedWeapons} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setHideUncheckedWeapons(!!e.currentTarget.checked)} name={'hideUncheckedWeapons'} /> </label>
+                <div style={{ background: '#FFFFFF' }}><label>Count Total Wounds <input name={'deadModels'} checked={sumWounds} value="false" onChange={() => setState(true)} type={'radio'} /></label>
+                    <label>Count Dead Models <input name={'deadModels'} checked={!sumWounds} value="true" onChange={() => setState(false)} type={'radio'} /></label>
+                </div>
+                <p style={{ fontSize: '9px', margin: '7px' }}>Count Dead Models is good VS Hordes, while Count Wounds is better VS big things like Knights</p>
             </div>
             {showHelp && <HelpText />}
             {showSelectAttackers &&

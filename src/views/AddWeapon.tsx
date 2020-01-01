@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 
 import { MyUserContext } from '../controllers/context/UserContext';
-import { IWeaponProfile } from '../models/interfaces';
 import { decodeRollsForSavingState } from '../controllers/util';
+import { IWeaponProfile } from '../models/interfaces';
 
 const AddWeapon = () => {
     const [viewAddWeaponProfile, updateViewAddWeaponProfile] = useState(false);
@@ -48,13 +48,13 @@ const AddWeapon = () => {
         // @ts-ignore
         const damageKey = (document.querySelector('[name=damage]') ? document.querySelector('[name=damage]').value : '1');
         // @ts-ignore
-        const rerollHits = (document.querySelector('[name=rerollHits]') ? "true" === document.querySelector('[name=rerollHits]').value : false);
+        const rerollHits = (document.querySelector('[name=rerollHits]') ? 'true' === document.querySelector('[name=rerollHits]').value : false);
         // @ts-ignore
-        const rerollHitRollsOfOne = (document.querySelector('[name=rerollHitRollsOfOne]') ? "true" === document.querySelector('[name=rerollHitRollsOfOne]').value : false);
+        const rerollHitRollsOfOne = (document.querySelector('[name=rerollHitRollsOfOne]') ? 'true' === document.querySelector('[name=rerollHitRollsOfOne]').value : false);
         // @ts-ignore
-        const rerollWounds = (document.querySelector('[name=rerollWounds]') ? "true" === document.querySelector('[name=rerollWounds]').value : false);
+        const rerollWounds = (document.querySelector('[name=rerollWounds]') ? 'true' === document.querySelector('[name=rerollWounds]').value : false);
         // @ts-ignore
-        const rerollWoundRollsOfOne = (document.querySelector('[name=rerollWoundRollsOfOne]') ? "true" === document.querySelector('[name=rerollWoundRollsOfOne]').value : false);
+        const rerollWoundRollsOfOne = (document.querySelector('[name=rerollWoundRollsOfOne]') ? 'true' === document.querySelector('[name=rerollWoundRollsOfOne]').value : false);
         // @ts-ignore
         const plusToHit = parseInt((document.querySelector('[name=plusToHit]') ? document.querySelector('[name=plusToHit]').value : '0'), 10);
         // @ts-ignore
@@ -63,7 +63,7 @@ const AddWeapon = () => {
         const tags = (document.querySelector('[name=keywords]') ? document.querySelector('[name=keywords]').value : '100').split(',').map(e => e.trim());
         const moreTags = document.querySelector('[name=tags]');
         // @ts-ignore
-        const moreTagsValues = Array.from(moreTags.querySelectorAll("option:checked"), e => e.value);
+        const moreTagsValues = Array.from(moreTags.querySelectorAll('option:checked'), e => e.value);
         tags.push(...moreTagsValues);
         const numberOfShots = decodeRollsForSavingState(numberOfShotsLabel);
         const damage = decodeRollsForSavingState(damageKey);
@@ -84,7 +84,7 @@ const AddWeapon = () => {
             rerollHits,
             rerollWoundRollsOfOne,
             rerollWounds
-        }
+        };
         addUserCreatedWeaponProfiles(weapon);
         toggleViewAddWeaponProfile();
     };
