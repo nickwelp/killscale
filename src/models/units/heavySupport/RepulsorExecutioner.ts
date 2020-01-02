@@ -64,29 +64,6 @@ export const RepulsorExecutioner: IUnit = {
             damage: () => 2
         },
         {
-            name: 'Macro Plasma Incinerator (standard) (fired twice)',
-            type: 'Heavy',
-            numberOfShotsLabel: 'd6 x2',
-            tags: ['turrent', 'multiprofile'],
-            uniqueIdentifier: 'turrent',
-            numberOfShots: () => d6() + d6(),
-            AP: 4,
-            strength: 8,
-            damage: () => 1
-        },
-        {
-            name: 'Macro Plasma Incinerator (overcharged) (fired twice)',
-            type: 'Heavy',
-            numberOfShotsLabel: 'd6 x2',
-            tags: ['turrent', 'multiprofile'],
-            uniqueIdentifier: 'turrent',
-            numberOfShots: () => d6() + d6(),
-            AP: 4,
-            strength: 9,
-            damage: () => 2
-        },
-
-        {
             name: 'Frag Storm Grenade Launcher x2',
             type: 'Assault',
             numberOfShotsLabel: 'd6 x2',
@@ -137,17 +114,6 @@ export const RepulsorExecutioner: IUnit = {
             tags: ['bolter', 'multiprofile'],
             uniqueIdentifier: 'rfmode',
             numberOfShots: () => 4,
-            AP: 0,
-            strength: 4,
-            damage: () => 1,
-        },
-        {
-            name: 'Stormbolters x2 (rapid firing)',
-            type: 'Rapid Fire',
-            numberOfShotsLabel: '8',
-            tags: ['bolter', 'multiprofile'],
-            uniqueIdentifier: 'rfmode',
-            numberOfShots: () => 8,
             AP: 0,
             strength: 4,
             damage: () => 1,
