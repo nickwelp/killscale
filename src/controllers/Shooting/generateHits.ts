@@ -22,8 +22,8 @@ const generateHits = (
                 hitModifers += 1;
             }
         }
-        if (applyHeavyWeaponMinusOneToHit) {
-
+        if (applyHeavyWeaponMinusOneToHit && type === 'Heavy') {
+            hitModifers--;
         }
         if (rerollHits && (dieResult === 1 || dieResult < (toHit - hitModifers))) {
             dieResult = d6();
