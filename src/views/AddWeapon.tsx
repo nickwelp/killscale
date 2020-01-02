@@ -103,7 +103,7 @@ const AddWeapon = () => {
                             <option value="Melee">Melee</option>
                         </select>
                     </label>
-                    <label>Number of Shots <small>If Rapid Fire, add 2 profiles, one with 1 number of shots, and another with 2 (or 2 and 4, etc)</small>
+                    <label>Number of Shots
                         <select name="numberOfShots">
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -121,6 +121,7 @@ const AddWeapon = () => {
                             <option value="d6">d6</option>
                         </select>
                     </label>
+                    <small>For Rapid Fire doubling, just adjust the number next to the weapon when it is in the shooting profile to represent the number of shots</small>
 
                     <label>AP<select name={'AP'}>
                         <option value="0">0</option>

@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import Histogram from './Histogram';
 
 
@@ -15,7 +15,7 @@ const KillScale = ({ data, i, shooter, modelCount }: any) => {
                 <small style={{ margin: '3px', flexGrow: 1 }}>{(Math.round(100 * data.standardDeviation) / 100)} <br /><span style={{ fontSize: '9px' }}>Standard Deviation</span></small>
                 <small style={{ margin: '3px', flexGrow: 1 }}>{data.mode.join(', ')}<br /><span style={{ fontSize: '9px' }}>mode</span></small>
             </div>
-            <label style={{ marginRight: '15px', marginLeft: '15px' }} >Show Histogram <input checked={showHistogram} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => updateShowHistogram(!!e.currentTarget.checked)} /> </label>
+            <label style={{ marginRight: '15px', marginLeft: '15px', display: 'block', textAlign: 'left' }} >Show Histogram <input checked={showHistogram} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => updateShowHistogram(!!e.currentTarget.checked)} /> </label>
             {showHistogram && <Histogram set={data.set} />}
         </div>);
 };

@@ -32,17 +32,6 @@ export const Intercessor: IUnit = {
             damage: () => 1,
         },
         {
-            name: 'Bolt Rifle',
-            type: 'Rapid Fire',
-            tags: ['bolter', 'multiprofile', 'bolt rifle'],
-            uniqueIdentifier: 'bolt rifle',
-            numberOfShots: () => 2,
-            numberOfShotsLabel: '2',
-            AP: 1,
-            strength: 4,
-            damage: () => 1,
-        },
-        {
             name: 'Auto Bolt Rifle',
             type: 'Assault',
             numberOfShots: () => 3,

@@ -197,9 +197,10 @@ const Dashboard = () => {
             <div style={{ marginBottom: '10px', background: '#F0F0F0', padding: '3px' }} className={bootstrap['row']}>
                 <label style={{ marginRight: '15px', marginLeft: '15px' }}>Hide Unchecked Weapons <input type={'checkbox'} checked={hideUncheckedWeapons} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setHideUncheckedWeapons(!!e.currentTarget.checked)} name={'hideUncheckedWeapons'} /> </label>
                 <div style={{ background: '#FFFFFF' }}><label>Count Total Wounds <input name={'deadModels'} checked={sumWounds} value="false" onChange={() => setState(true)} type={'radio'} /></label>
-                    <label>Count Dead Models <input name={'deadModels'} checked={!sumWounds} value="true" onChange={() => setState(false)} type={'radio'} /></label>
+                    <label>Count Dead Models <input name={'deadModels'} checked={!sumWounds} value="true" onChange={() => setState(false)} type={'radio'} /></label><br />
+                    {/* <p style={{ fontSize: '9px', margin: '7px' }}>Count Dead Models is good VS Hordes, while Count Wounds is better VS big things like Knights</p> */}
                 </div>
-                <p style={{ fontSize: '9px', margin: '7px' }}>Count Dead Models is good VS Hordes, while Count Wounds is better VS big things like Knights</p>
+
             </div>
             {showHelp && <HelpText />}
             {showSelectAttackers &&

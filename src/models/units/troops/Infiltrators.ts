@@ -19,17 +19,6 @@ export const Infiltrator: IUnit = {
             AP: 0,
             strength: 4,
             damage: () => 1,
-        },
-        {
-            name: 'Occulous Bolt Carbine',
-            type: 'Rapid Fire',
-            numberOfShots: () => 2,
-            numberOfShotsLabel: '2',
-            tags: ['bolter', 'multiprofile', 'bolt carbine', 'autowounds on 6s to hit'],
-            uniqueIdentifier: 'bolt carbine',
-            AP: 0,
-            strength: 4,
-            damage: () => 1,
         }
     ]
 };

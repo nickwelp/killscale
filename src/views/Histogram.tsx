@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+  Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis,
 } from 'recharts';
 
 
@@ -8,7 +8,8 @@ const Histogram = ({ set }: any) => {
   const data = Object.keys(set).map((key) => {
     return {
       name: key,
-      count: set[key]
+      count: set[key],
+      inStandDev: set[key]
     };
   });
   return (

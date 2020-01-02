@@ -93,6 +93,17 @@ export const ContemptorMortis: IUnit = {
             },
         },
         {
+            name: 'Cyclone Missile - Krak',
+            type: 'Heavy',
+            tags: ['multiprofile', 'cyclone missile'],
+            uniqueIdentifier: 'cyclone missile',
+            numberOfShotsLabel: '2',
+            numberOfShots: () => 2,
+            AP: 2,
+            strength: 8,
+            damage: () => d6(),
+        },
+        {
             name: 'Cyclone Missile - Frag',
             type: 'Heavy',
             tags: ['multiprofile', 'cyclone missile'],
@@ -103,16 +114,5 @@ export const ContemptorMortis: IUnit = {
             strength: 4,
             damage: () => 1,
         },
-        {
-            name: 'Cyclone Missile - Krak',
-            type: 'Heavy',
-            tags: ['multiprofile', 'cyclone missile'],
-            uniqueIdentifier: 'cyclone missile',
-            numberOfShotsLabel: '2',
-            numberOfShots: () => 2,
-            AP: 2,
-            strength: 8,
-            damage: () => d6(),
-        }
     ]
 };

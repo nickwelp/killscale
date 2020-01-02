@@ -78,12 +78,12 @@ export const Repulsor: IUnit = {
             damage: () => 1
         },
         {
-            name: 'Storm Bolter (rapid firing) x2',
+            name: 'Storm Bolter x2',
             type: 'Rapid Fire',
-            numberOfShotsLabel: '4 x2',
+            numberOfShotsLabel: '2',
             tags: ['bolter', 'multiprofile'],
             uniqueIdentifier: 'turrent6',
-            numberOfShots: () => 8,
+            numberOfShots: () => 4,
             AP: 1,
             strength: 4,
             damage: () => 1

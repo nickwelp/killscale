@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useReducer, useState, ChangeEvent } from 'react';
+import React, { ChangeEvent, SyntheticEvent, useReducer, useState } from 'react';
 
 import CreateSet from '../controllers/Shooting';
 import { IDoctrine, IRerollSet, ITarget, IUnit } from '../models/interfaces';
