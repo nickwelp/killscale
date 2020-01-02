@@ -1,4 +1,4 @@
-import React, { ChangeEvent, SyntheticEvent, useReducer, useState } from 'react';
+import React, { SyntheticEvent, useReducer, useState, ChangeEvent } from 'react';
 
 import CreateSet from '../controllers/Shooting';
 import { IDoctrine, IRerollSet, ITarget, IUnit } from '../models/interfaces';
@@ -130,9 +130,7 @@ const ShootingProfile = ({
     if (hideProfile) return null;
     const shootingProfiles = dataSet.map((data: any, i: number) => {
         return <KillScale key={i} data={data} i={i} shooter={shooter} modelCount={modelCount} />;
-    }
-
-    );
+    });
 
     return (
         <div key={shooter.name.replace(' ', '_')} style={{ width: '400px', maxWidth: '100%', margin: '5px', boxShadow: '0px 0px 1px rgba(0,0,0,.1)', fontSize: '12px' }}>

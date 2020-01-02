@@ -16,7 +16,7 @@ const KillScale = ({ data, i, shooter, modelCount }: any) => {
                 <small style={{ margin: '3px', flexGrow: 1 }}>{data.mode.join(', ')}<br /><span style={{ fontSize: '9px' }}>mode</span></small>
             </div>
             <label style={{ marginRight: '15px', marginLeft: '15px', display: 'block', textAlign: 'left' }} >Show Histogram <input checked={showHistogram} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => updateShowHistogram(!!e.currentTarget.checked)} /> </label>
-            {showHistogram && <Histogram set={data.set} />}
+            {showHistogram && <Histogram set={data.set} setLength={data.raw.length} />}
         </div>);
 };
 export default KillScale;
