@@ -56,7 +56,7 @@ export const Devastators: IUnit = {
             damage: () => 1,
         },
         {
-            name: '4 Grav Cannons (set to d3 wounds)',
+            name: 'Grav Cannons (set to d3 wounds)',
             type: 'Heavy',
             numberOfShotsLabel: '4',
             tags: ['multiprofile'],
@@ -94,7 +94,7 @@ export const Devastators: IUnit = {
             damage: () => 1,
         },
         {
-            name: '4 Plasma Cannons',
+            name: 'Plasma Cannons (overcharged)',
             type: 'Heavy',
             numberOfShotsLabel: 'd3',
             tags: ['multiprofile'],
@@ -154,7 +154,7 @@ export const Devastators: IUnit = {
             plusToHit: 1,
         },
         {
-            name: '4 Grav Cannons (set to d3 wounds) +1 to hit',
+            name: 'Grav Cannons (set to d3 wounds) +1 to hit',
             type: 'Heavy',
             numberOfShotsLabel: '4',
             tags: ['multiprofile'],

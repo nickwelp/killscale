@@ -57,7 +57,8 @@ const processSetFunc = ({
         const set: number[] = [];
         for (let y = 0; y < iterations; y++) {
             let sumOfDamage = 0;
-            const woundCarryOver = 0;
+            let woundCarryOver = 0;
+            let mortalWoundSum = 0;
 
             for (let k = 0; k < weapons.length; k++) {
                 // @ts-ignore
@@ -71,14 +72,20 @@ const processSetFunc = ({
                     if (sumWounds) {
                         sumOfDamage += mortalWoundsPastFNP;
                     } else {
-                        // if don't sum the wounds then tally dead models, slain by produced mortal wounds and left over damage
-                        sumOfDamage += Math.round((mortalWoundsPastFNP + rollOverWounds) / target.woundsPerModel);
+                        mortalWoundSum += mortalWoundsPastFNP;
+                        woundCarryOver += rollOverWounds;
+                        if (woundCarryOver >= target.woundsPerModel) {
+                            woundCarryOver = 0;
+                            sumOfDamage++;
+                        }
                     }
                 }
             }
+            if (!sumWounds && mortalWoundSum > 0) {
+                sumOfDamage += Math.floor((mortalWoundSum + woundCarryOver) / target.woundsPerModel);
+            }
             set.push(sumOfDamage);
         }
-
         return calculateStandardDef(set, shooter, target, iterations);
     });
 };

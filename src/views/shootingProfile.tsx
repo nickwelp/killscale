@@ -1,7 +1,8 @@
-import React, { SyntheticEvent, useReducer, useState } from 'react';
+import React, { SyntheticEvent, useReducer, useState, ChangeEvent } from 'react';
 
 import CreateSet from '../controllers/Shooting';
 import { IDoctrine, IRerollSet, ITarget, IUnit } from '../models/interfaces';
+import KillScale from './KillScale';
 
 interface IUISettings {
     [key: string]: boolean;
@@ -47,9 +48,6 @@ const ShootingProfile = ({
     uiSettings,
     hideProfile,
     iterations = 3000 }: IProps) => {
-
-
-
     const { weapons = [] } = shooter;
 
     const weaponsUsed: number[] = [];
@@ -77,7 +75,6 @@ const ShootingProfile = ({
     });
     const weaponProfiles = weapons
         .map((weapon, index) => {
-
             return (
                 <li key={index} style={{ display: 'table-row', flexFlow: 'row nowrap', textAlign: 'left' }} >
                     <select
@@ -131,18 +128,11 @@ const ShootingProfile = ({
     });
 
     if (hideProfile) return null;
-    const shootingProfiles = dataSet.map((data: any, i: number) =>
-        (
-            <div style={{ fontSize: '15px' }} key={i}>
-                <small>{data.target}</small><br />
-                <small>{data.pruned.worst}</small> - {data.pruned.lowerMedian} - <strong>{data.pruned.median}</strong> - {data.pruned.upperMedian} - <small>{data.pruned.best}</small><br />
-                <div style={{ display: 'flex', flexDirection: 'row' }}>
-                    <small style={{ margin: '3px', flexGrow: 1 }}>{(Math.round((shooter.points * modelCount / data.mean) * 100) / 100)}<br /> <span style={{ fontSize: '9px' }}>pts per mean</span></small><br />
-                    <small style={{ margin: '3px', flexGrow: 1 }}>{(Math.round(100 * data.standardDeviation) / 100)} <br /><span style={{ fontSize: '9px' }}>Standard Deviation</span></small>
-                    <small style={{ margin: '3px', flexGrow: 1 }}>{data.mode.join(', ')}<br /><span style={{ fontSize: '9px' }}>mode</span></small>
-                </div>
-            </div>
-        ));
+    const shootingProfiles = dataSet.map((data: any, i: number) => {
+        return <KillScale key={i} data={data} i={i} shooter={shooter} modelCount={modelCount} />;
+    }
+
+    );
 
     return (
         <div key={shooter.name.replace(' ', '_')} style={{ width: '400px', maxWidth: '100%', margin: '5px', boxShadow: '0px 0px 1px rgba(0,0,0,.1)', fontSize: '12px' }}>
@@ -156,6 +146,7 @@ const ShootingProfile = ({
                 <ul style={{ listStyleType: 'none', textAlign: 'right', padding: 0, marginLeft: '10px' }}>{weaponProfiles}</ul>
                 {shootingProfiles}
             </div>
+
         </div>
 
     );

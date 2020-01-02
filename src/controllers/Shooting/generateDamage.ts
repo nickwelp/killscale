@@ -29,12 +29,15 @@ const generateDamage = (
                 if (fail) {
                     damCount++;
                     // woundSum is for rolling over model wound counts across low damage weapons
-                    if (damCount === woundsPerModel
-                        || ++woundCarryOver === woundsPerModel) {
-                        if (woundCarryOver === woundsPerModel || woundsPerModel === 1) woundCarryOver = 0;
-                        if (dam >= woundsPerModel) { woundCarryOver = 0; }
+                    if (damCount >= woundsPerModel) {
+                        woundCarryOver = 0;
                         sumOfDamageUnits++;
-                        // this is a clearer form of break; stops the r-for loop
+                        // this is a cleaner form of break; stops the r-for loop
+                        r += dam + 1;
+                    } else if (++woundCarryOver >= woundsPerModel) {
+                        woundCarryOver = 0;
+                        sumOfDamageUnits++;
+                        // this is a cleaner form of break; stops the r-for loop
                         r += dam + 1;
                     }
                 }

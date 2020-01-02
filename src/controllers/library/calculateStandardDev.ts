@@ -1,6 +1,7 @@
 import { ITarget, IUnit } from '../../models/interfaces';
 import { sortNumber } from '../util';
 
+
 const CalculateStandardDef = (
     set: number[],
     { name: shooterName }: IUnit,
@@ -57,8 +58,17 @@ const CalculateStandardDef = (
         mean: (Math.round(setMean * 10) / 10),
         standardDeviation: (Math.round(setStandardDeviation * 10) / 10),
         mode: largestModeKeys,
+        set: modeKey,
+        raw: {
+            median: set[Math.round(set.length / 2)],
+            lowerMedian: (lowerMedian[Math.round(lowerMedian.length / 2)]),
+            upperMedian: (upperMedian[Math.round(upperMedian.length / 2)]),
+            best: set[set.length - 1],
+            worst: set[0],
+            length: set.length
+        },
         pruned: {
-            median: prunedSet[Math.round(set.length / 2)],
+            median: prunedSet[Math.round(prunedSet.length / 2)],
             lowerMedian: (prunedLowerMedian[Math.round(prunedLowerMedian.length / 2)]),
             upperMedian: (prunedUpperMedian[Math.round(prunedUpperMedian.length / 2)]),
             best: prunedSet[prunedSet.length - 1],
@@ -71,7 +81,7 @@ const CalculateStandardDef = (
 
 export default CalculateStandardDef;
 
-interface IPrunedResults {
+interface IResults {
     median: number;
     lowerMedian: number;
     upperMedian: number;
@@ -79,11 +89,14 @@ interface IPrunedResults {
     worst: number;
     length: number;
 }
+
 export interface IStandDevReport {
     name: string;
     target: string;
     mean: number;
     standardDeviation: number;
+    set: any;
     mode: string[];
-    pruned: IPrunedResults;
+    pruned: IResults;
+    raw: IResults;
 }
