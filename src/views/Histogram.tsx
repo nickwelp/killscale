@@ -4,12 +4,11 @@ import {
 } from 'recharts';
 
 
-const Histogram = ({ set }: any) => {
+const Histogram = ({ set, setLength }: any) => {
   const data = Object.keys(set).map((key) => {
     return {
       name: key,
-      count: set[key],
-      inStandDev: set[key]
+      percentage: Math.round(((set[key] / setLength) * 10000)) / 100,
     };
   });
   return (
@@ -26,7 +25,7 @@ const Histogram = ({ set }: any) => {
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey="count" fill="#82ca9d" />
+      <Bar dataKey="percentage" fill="#82ca9d" />
     </BarChart>
   );
 };
