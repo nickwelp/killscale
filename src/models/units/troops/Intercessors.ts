@@ -41,6 +41,17 @@ export const Intercessor: IUnit = {
             AP: 0,
             strength: 4,
             damage: () => 1,
-        }
+        },
+        {
+            name: 'Stalker Bolt Rifle (Mortal Wounds on 6+s to Wound)',
+            type: 'Heavy',
+            numberOfShots: () => 1,
+            numberOfShotsLabel: '1',
+            tags: ['bolter', 'multiprofile', 'bolt rifle', 'mortal wound on 6+s to wound'],
+            uniqueIdentifier: 'bolt rifle',
+            AP: 2,
+            strength: 4,
+            damage: () => 2,
+        },
     ]
 };
