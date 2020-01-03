@@ -48,6 +48,7 @@ const ShootingProfile = ({
     uiSettings,
     hideProfile,
     iterations = 3000 }: IProps) => {
+
     const { weapons = [] } = shooter;
 
     const weaponsUsed: number[] = [];
@@ -69,7 +70,7 @@ const ShootingProfile = ({
     );
 
     const [modelCount, updateModelCount] = useState(1);
-
+    if (hideProfile) return null;
     weapons.forEach((weapon, index) => {
         weapon.shotsFiredMultiplier = state.includes(index) ? 1 : 0;
     });
@@ -97,6 +98,7 @@ const ShootingProfile = ({
                         <input
                             type={'checkbox'}
                             value={index}
+                            id={'weapon_' + shooter.name.replace(' ', '-') + '_' + index}
                             name={'weapon_' + shooter.name.replace(' ', '-') + '_' + index}
                             checked={state.includes(index)}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => dispatch({ element: e.currentTarget })}
@@ -114,7 +116,6 @@ const ShootingProfile = ({
         .filter((_, index) => state.includes(index) || !uiSettings.hideUncheckedWeapons);
     const submittedWeapons = weapons.filter((_, i) => state.includes(i));
     const submittedShotsFired = shotsFired.filter((_, i) => state.includes(i));
-
     const dataSet = CreateSet({
         shooter,
         weapons: submittedWeapons,
@@ -127,7 +128,7 @@ const ShootingProfile = ({
         shotsFired: submittedShotsFired
     });
 
-    if (hideProfile) return null;
+
     const shootingProfiles = dataSet.map((data: any, i: number) => {
         return <KillScale key={i} data={data} i={i} shooter={shooter} modelCount={modelCount} />;
     });
