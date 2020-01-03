@@ -59,6 +59,7 @@ const CalculateStandardDef = (
         standardDeviation: (Math.round(setStandardDeviation * 10) / 10),
         mode: largestModeKeys,
         set: modeKey,
+        cynicalOutcome: Math.floor(setMean - setStandardDeviation),
         raw: {
             median: set[Math.round(set.length / 2)],
             lowerMedian: (lowerMedian[Math.round(lowerMedian.length / 2)]),
@@ -95,6 +96,7 @@ export interface IStandDevReport {
     target: string;
     mean: number;
     standardDeviation: number;
+    cynicalOutcome?: number;
     set: any;
     mode: string[];
     pruned: IResults;
