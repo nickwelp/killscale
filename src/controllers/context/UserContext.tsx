@@ -178,6 +178,7 @@ const UserContext = ({ children }: IProps) => {
     const [showHelp, setShowHelp] = useState(false);
     const [showSaveData, setShowSaveData] = useState(false);
     const [showLoadData, setShowLoadData] = useState(false);
+    const [showAggregations, setShowAggregations] = useState(false);
 
     const availableTargets = (a: string[]): ITarget[] => [...userCreatedTargets, ...targets(a)];
 
@@ -302,6 +303,7 @@ const UserContext = ({ children }: IProps) => {
             showHelp, setShowHelp,
             showSaveData, setShowSaveData,
             showLoadData, setShowLoadData,
+            showAggregations, setShowAggregations,
             availableTargets,
             chooseTargets, updateChooseTargets,
             crimsonFistsPlusToHit, updateCrimsonFistsPlusToHit, setCrimsonFistsPlusToHit,

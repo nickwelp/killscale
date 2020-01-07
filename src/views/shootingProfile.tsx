@@ -139,7 +139,7 @@ const ShootingProfile = ({
     });
 
     return (
-        <div key={shooter.name.replace(' ', '_')} style={{ width: '400px', maxWidth: '100%', margin: '5px', boxShadow: '0px 0px 1px rgba(0,0,0,.1)', fontSize: '12px' }}>
+        <div key={shooter.name.replace(' ', '_')} style={{ width: '400px', maxWidth: '100%', margin: '5px', boxShadow: '0px 0px 1px rgba(0,0,0,.1)', fontSize: '12px', background: '#F2F2F2', padding: '10px' }}>
 
             <div style={{ display: 'table-row' }}>
                 <label style={{ display: 'table-cell', marginRight: '15px', position: 'relative', top: '-17px' }}>
@@ -155,8 +155,8 @@ const ShootingProfile = ({
                 </select>
                 <h5 style={{ display: 'table-cell', width: '100%' }}>{shooter.name}</h5>
             </div>
-            <div style={{ margin: '0 0 0 76px', textAlign: 'center' }}>
-                <ul style={{ listStyleType: 'none', textAlign: 'right', padding: 0, marginLeft: '10px' }}>{weaponProfiles}</ul>
+            <div style={{ textAlign: 'center' }}>
+                <ul style={{ listStyleType: 'none', textAlign: 'right', padding: 0, marginLeft: '30px' }}>{weaponProfiles}</ul>
                 {shootingProfiles}
             </div>
 

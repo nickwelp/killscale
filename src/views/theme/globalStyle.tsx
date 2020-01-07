@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   body{
-    background-color: #f2f2f2;
+    background-color: #FFFFFF;
     margin: 0;
     font-family: sans-serif;
     -webkit-font-smoothing: antialiased;

@@ -29,13 +29,15 @@ const Dashboard = () => {
         showSaveData, setShowSaveData,
         showLoadData, setShowLoadData,
         chooseTargets, updateChooseTargets,
-        showSelectAttackers, setShowSelectAttackers
+        showSelectAttackers, setShowSelectAttackers,
+        showAggregations, setShowAggregations
     } = useContext(MyUserContext);
 
     return (
         <div >
             <div style={{ marginBottom: '10px' }} className={bootstrap['row']}>
                 <label style={{ marginRight: '15px', marginLeft: '15px' }} >Show Options <input checked={showOptions} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowOptions(!!e.currentTarget.checked)} /> </label>
+                <label style={{ marginRight: '15px' }} >Show Aggregations <input checked={showAggregations} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowAggregations(!!e.currentTarget.checked)} /> </label>
                 <label style={{ marginRight: '15px' }}>Select Targets<input checked={chooseTargets} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => updateChooseTargets(!!e.currentTarget.checked)} /> </label>
                 <label style={{ marginRight: '15px' }}>Select Attacking Units <input type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowSelectAttackers(!!e.currentTarget.checked)} /></label>
                 <label style={{ marginRight: '15px' }}>Show Help <input checked={showHelp} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowHelp(!!e.currentTarget.checked)} /> </label>
@@ -50,7 +52,6 @@ const Dashboard = () => {
                     <label>Count Dead Models <input name={'deadModels'} checked={!sumWounds} value="true" onChange={() => setState(false)} type={'radio'} /></label><br />
                     {/* <p style={{ fontSize: '9px', margin: '7px' }}>Count Dead Models is good VS Hordes, while Count Wounds is better VS big things like Knights</p> */}
                 </div>
-
             </div>
             {showHelp && <HelpText />}
             {showSelectAttackers &&
@@ -62,8 +63,7 @@ const Dashboard = () => {
             {showSaveData && <SaveData />}
             {showLoadData && <LoadData />}
             {showDiagnostics && <Diagnostics />}
-
-            <TargetAggregations />
+            {showAggregations && <TargetAggregations />}
             <Display />
         </div >
     );

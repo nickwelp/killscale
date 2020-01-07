@@ -1,14 +1,11 @@
 
 import React from 'react';
 import {
-    ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Legend
+    ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label
 } from 'recharts';
 
 import { chartColors } from '../theme/chartColors';
 
-// const data = [{ x: 100, y: 200, z: 200 }, { x: 120, y: 100, z: 260 },
-// { x: 170, y: 300, z: 400 }, { x: 140, y: 250, z: 280 },
-// { x: 150, y: 400, z: 500 }, { x: 110, y: 280, z: 200 }]
 interface ITargetSet {
     set: any[];
 }
@@ -22,7 +19,6 @@ interface IProps {
 
 const scatterPlotShapes: ['circle', 'triangle', 'star'] = ['circle', 'triangle', 'star'];
 
-
 const ScatterPlot = ({ targetSets, xAxis, yAxis, targetNames }: IProps) => {
     const scatterElement = () => { //
         // @ts-ignore
@@ -34,7 +30,6 @@ const ScatterPlot = ({ targetSets, xAxis, yAxis, targetNames }: IProps) => {
                     name={targetNames[i]}
                     // @ts-ignore
                     data={targetSets[i]}
-
                     fill={chartColors(targetSets.length, i)}
                     shape={shape}
                 />);
@@ -44,10 +39,42 @@ const ScatterPlot = ({ targetSets, xAxis, yAxis, targetNames }: IProps) => {
 
     return (
         <ScatterChart width={400} height={400} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+
             <CartesianGrid />
-            <XAxis dataKey={'x'} type="number" label={'mean'} name={xAxis} unit='' />
+            <XAxis dataKey={xAxis} type="number" name={xAxis} unit=''>
+                <Label
+                    value={xAxis}
+                    offset={-5}
+                    position="bottom"
+                    fill="#5A5B5E"
+                    style={{
+                        textAnchor: 'middle',
+                        fontSize: '11px',
+                        fontWeight: 'bold',
+                        fontFamily: 'sans-serif',
+                        textTransform: 'Uppercase',
+                        top: '0px'
+                    }}
+                />
+            </XAxis>
             {/* // @ts-ignore */}
-            <YAxis dataKey={'ppm'} label={'points per mean'} type="number" name={yAxis} unit='' />
+            <YAxis dataKey={yAxis} type="number" name={yAxis} unit=''>
+                <Label
+                    value={yAxis === 'ppm' ? 'points per mean' : yAxis}
+                    offset={-1}
+                    position="left"
+                    fill="#5A5B5E"
+                    style={{
+                        textAnchor: 'middle',
+                        fontSize: '11px',
+                        fontWeight: 'bold',
+                        fontFamily: 'sans-serif',
+                        textTransform: 'Uppercase',
+                        transform: 'rotate(-90deg) translate(-195px,-142px)'
+                    }}
+                    angle={0}
+                />
+            </YAxis>
             <Legend />
             {scatterElement()}
             <Tooltip cursor={{ strokeDasharray: '3 3' }} content={(e: any) => {
@@ -55,8 +82,8 @@ const ScatterPlot = ({ targetSets, xAxis, yAxis, targetNames }: IProps) => {
                     return (
                         <div style={{ backgroundColor: '#FFF', padding: '2px', fontSize: '10px', textAlign: 'right' }}>
                             <strong>{e.payload[0].payload.attacker}</strong> <br /> attacking <br /><strong>{e.payload[0].payload.target}</strong><br />
-                            {xAxis}: {e.payload[0].payload.x} <br />
-                            {yAxis}: {e.payload[0].payload.ppm}
+                            {xAxis}: {e.payload[0].payload[xAxis]} <br />
+                            {yAxis}: {e.payload[0].payload[yAxis]}
                         </div>
                     );
                 }

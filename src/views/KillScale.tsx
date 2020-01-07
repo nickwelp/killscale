@@ -2,12 +2,12 @@ import React from 'react';
 import Histogram from './Histogram';
 
 
-const KillScale = ({ data, i, shooter, modelCount, showHistogram }: any) => {
+const KillScale = ({ data, i, showHistogram }: any) => {
     return (
         <div style={{ fontSize: '15px' }} key={i}>
-            <small>{data.target}</small><br />
-            <small>{data.pruned.worst}</small> - {data.pruned.lowerMedian} - <strong>{data.pruned.median}</strong> - {data.pruned.upperMedian} - <small>{data.pruned.best}</small><br />
-            <span style={{ fontSize: '9px' }}><small>{data.raw.worst}</small> - {data.raw.lowerMedian} - <strong>{data.raw.median}</strong> - {data.raw.upperMedian} - <small>{data.raw.best}</small></span><br />
+            <p><small><strong>{data.target}</strong></small><br />
+                <small>{data.pruned.worst}</small> - {data.pruned.lowerMedian} - <strong>{data.pruned.median}</strong> - {data.pruned.upperMedian} - <small>{data.pruned.best}</small><br />
+                <span style={{ fontSize: '9px' }}><small>{data.raw.worst}</small> - {data.raw.lowerMedian} - <strong>{data.raw.median}</strong> - {data.raw.upperMedian} - <small>{data.raw.best}</small></span><br /></p>
             <div style={{ display: 'table', textAlign: 'right', margin: 'auto' }}>
                 <small style={{ display: 'table-row' }}>
                     <span style={{ fontSize: '9px', display: 'table-cell', paddingRight: '5px' }}>Cynical Anticipation</span>
