@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import AddTarget from './AddTarget';
+import { MyUserContext } from '../controllers/context/UserContext';
+
+
 
 const SelectTargets = ({ props }: any) => {
     const {
-        targets,
+        targetFaction,
         setTargetFaction,
-        dispatch
-    } = props;
+        dispatch,
+        availableTargets
+    } = useContext(MyUserContext);
+    const targets = availableTargets(targetFaction);
     return (
         <div style={{ maxWidth: '900px', margin: '10px auto 10px auto', boxShadow: '2px 2px 5px #999', borderRadius: '3px', padding: '10px' }}>
             <h3 style={{ textAlign: 'center' }}>Select The Faction To Target, then Select the Units to Target.</h3>

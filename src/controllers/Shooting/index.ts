@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+
 import { IDoctrine, IRerollSet, ITarget, IUnit, IWeaponProfile } from '../../models/interfaces';
 import calculateStandardDef, { IStandDevReport } from '../library/calculateStandardDev';
 
@@ -6,6 +8,7 @@ import generateDamage from './generateDamage';
 import generateFailedSaves from './generateFailedSaves';
 import generateHits from './generateHits';
 import generateWounds from './generateWounds';
+import { MyUserContext } from '../context/UserContext';
 
 const cache = {};
 
@@ -31,6 +34,7 @@ const CreateSet = ({
     iterations,
     shotsFired
 }: IProps) => {
+    const { manageOutcomesState } = useContext(MyUserContext);
     const hash = JSON.stringify({ shooter, weapons, targets, sumWounds, modelCount, rerollProfile, doctrine, iterations, shotsFired });
     // @ts-ignore
     if (cache[hash]) {
@@ -39,6 +43,8 @@ const CreateSet = ({
     }
     // @ts-ignore
     else cache[hash] = processSetFunc({ shooter, weapons, targets, sumWounds, modelCount, rerollProfile, doctrine, iterations, shotsFired });
+    // @ts-ignore
+    manageOutcomesState(cache[hash]);
     // @ts-ignore
     return cache[hash];
 };
@@ -86,7 +92,7 @@ const processSetFunc = ({
             }
             set.push(sumOfDamage);
         }
-        return calculateStandardDef(set, shooter, target, iterations);
+        return calculateStandardDef(set, shooter, target, iterations, modelCount);
     });
 };
 

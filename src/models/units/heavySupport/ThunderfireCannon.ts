@@ -21,17 +21,6 @@ export const ThunderfireCannon: IUnit = {
             AP: 1,
             strength: 5,
             damage: () => 1
-        },
-        {
-            name: 'Thunderfire Cannon (fired twice)',
-            type: 'Heavy',
-            numberOfShotsLabel: '4d3 + 4d3',
-            tags: ['multiprofile'],
-            uniqueIdentifier: 'tfc',
-            numberOfShots: () => d3() + d3() + d3() + d3() + d3() + d3() + d3() + d3(),
-            AP: 1,
-            strength: 5,
-            damage: () => 1
         }
     ]
 };

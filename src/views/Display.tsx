@@ -23,16 +23,15 @@ interface IVars {
     applyHeavyWeaponMinusOneToHit: any;
     iterations: number;
 }
-interface IProps {
-    props: IVars;
 
-}
-
-const Display = ({ props }: IProps) => {
-    const { userCreatedWeaponProfiles, userCreatedAttackers } = useContext(MyUserContext);
-    const [showDebugger, updateShowDebugger] = useState(false);
+const Display = () => {
     const {
-        targets,
+        userCreatedWeaponProfiles,
+        userCreatedAttackers,
+        attackers = [],
+        availableTargets,
+        targetFaction,
+        activeAttackersList,
         targetList,
         sumWounds,
         rerollHits,
@@ -45,12 +44,14 @@ const Display = ({ props }: IProps) => {
         rerollWounds,
         rerollWoundRollsOfOne,
         hideUncheckedWeapons,
-        attackers,
-        activeAttackersList,
         IFHeavyWeaponsSuperDoctrine,
         applyHeavyWeaponMinusOneToHit,
         iterations
-    } = props;
+    } = useContext(MyUserContext);
+
+    const targets = availableTargets(targetFaction);
+    const [showDebugger, updateShowDebugger] = useState(false);
+
     const selectedTargets: ITarget[] = targets.filter((_: ITarget, i: number) => targetList.includes(i));
     const uiSettings = {
         hideUncheckedWeapons

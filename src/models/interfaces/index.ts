@@ -4,7 +4,9 @@ export interface IWeaponProfile {
     numberOfShots: () => number;
     numberOfShotsLabel: string;
     AP: number;
+    APFunction?: () => number;
     strength: number;
+    strengthFunction?: () => number;
     damage: () => number;
     damageKey?: string;
     rerollHits?: boolean;
@@ -45,6 +47,7 @@ export interface ITarget {
     toHit: number;
     points?: number;
     tags?: string[];
+    inCover?: boolean;
 }
 
 export interface IRerollSet {

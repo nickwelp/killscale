@@ -5,15 +5,15 @@ import helpImage from './images/killScaleHelp.png';
 
 const HelpText = () => (
     <div style={{ fontFamily: 'serif', margin: '5px 20px 5px 20px', fontSize: '14px', borderRadius: '5px', padding: '20px', background: '#ccccccc', boxShadow: '1px 1px 3px rgba(0,0,0,.5)' }}>
-        <p>Welcome to <strong>KillScale</strong>! Anticipating Success&trade;. KillScale simulates game processes many thousand times to generate predictions of outcomes.</p>
+        <p>Welcome to <strong>KillScale</strong>! KillScale simulates game processes many thousand times to generate predictions of outcomes.</p>
         <p>I got started on it when I observed that that people treat something like D6 shots as 2.5 rather than the actual average of 3.5, because people learn to plan around dice betraying them. My reasoning was that 3 Damage was considered more valuable than D6 damage regarding Las-Fusils VS Lascannons, while they also considered D6 damage to be greater than 2 in a different context. Another person then chimed in that the anticipatable result was 1 standard deviation away from the average. So that got me thinking:</p>
         <blockquote style={{ margin: '20px', padding: '10px', background: '#EEE' }}>
-            What is standard deviation, how can I become accustomed to it, and use it to make better decisions? Can I anticipate an <i>a posterori</i> market driven decision by anticipating that results will be 1 standard deviation worse than the actual mean?
+            What is standard deviation, how I use it to make better decisions? Can I anticipate an <i>a posterori</i> market driven decision by anticipating that results will be 1 standard deviation worse than the actual mean?
         </blockquote>
         <p>In KillScale, you select your Offensive Units, the Weapon Profiles for your Offensive Unit, and the Target Units. You also select the number of models or number of units shooting (depends on the unit).</p>
         <p>Then that interaction is simulated between 2000 and 10000 times. It starts at 3000 but have found that accuracy is not diminished at 2000. The number of simulations can be adjusted under Options. We then find the standard deviation of the outcomes.</p>
         <div>
-            <img src={helpImage} style={{ width: '500px', maxWidth: '95%', margin: 'auto' }} />
+            <img src={helpImage} style={{ width: '500px', maxWidth: '95%', margin: 'auto' }} alt={''} />
         </div>
         <p><strong>WTF is this?</strong></p>
         <ol>

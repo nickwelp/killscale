@@ -1,8 +1,8 @@
 import React, { SyntheticEvent, useReducer, useState, ChangeEvent } from 'react';
 
-import CreateSet from '../controllers/Shooting';
+// import CreateSet from '../controllers/Shooting';
 import { IDoctrine, IRerollSet, ITarget, IUnit } from '../models/interfaces';
-import KillScale from './KillScale';
+import TargetManagement from './TargetManagement';
 
 interface IUISettings {
     [key: string]: boolean;
@@ -65,11 +65,15 @@ const ShootingProfile = ({
 
     const [state, dispatch] = useReducer(reducer, weaponsUsed);
 
+
     const [shotsFired, updateShotsFired] = useState(
         weapons.map((_, index) => state.includes(index) ? 1 : 0)
     );
 
+
     const [modelCount, updateModelCount] = useState(1);
+    const [localPoints, updateLocalPoints] = useState(shooter.points);
+
     if (hideProfile) return null;
     weapons.forEach((weapon, index) => {
         weapon.shotsFiredMultiplier = state.includes(index) ? 1 : 0;
@@ -116,32 +120,42 @@ const ShootingProfile = ({
         .filter((_, index) => state.includes(index) || !uiSettings.hideUncheckedWeapons);
     const submittedWeapons = weapons.filter((_, i) => state.includes(i));
     const submittedShotsFired = shotsFired.filter((_, i) => state.includes(i));
-    const dataSet = CreateSet({
-        shooter,
-        weapons: submittedWeapons,
-        targets,
-        sumWounds,
-        modelCount,
-        rerollProfile,
-        doctrine,
-        iterations,
-        shotsFired: submittedShotsFired
-    });
 
+    const shootingProfiles = targets.map((target, i) => {
+        return <TargetManagement
+            key={i}
+            shooter={{ ...shooter, points: localPoints }}
+            weapons={submittedWeapons}
+            targets={[target]}
+            sumWounds={sumWounds}
+            modelCount={modelCount}
+            rerollProfile={rerollProfile}
+            doctrine={doctrine}
+            iterations={iterations}
+            shotsFired={submittedShotsFired}
 
-    const shootingProfiles = dataSet.map((data: any, i: number) => {
-        return <KillScale key={i} data={data} i={i} shooter={shooter} modelCount={modelCount} />;
+        />;
+
     });
 
     return (
         <div key={shooter.name.replace(' ', '_')} style={{ width: '400px', maxWidth: '100%', margin: '5px', boxShadow: '0px 0px 1px rgba(0,0,0,.1)', fontSize: '12px' }}>
+
             <div style={{ display: 'table-row' }}>
+                <label style={{ display: 'table-cell', marginRight: '15px', position: 'relative', top: '-17px' }}>
+                    <span style={{ display: 'flex', flexFlow: 'column nowrap', textAlign: 'right' }}>
+                        <span style={{ fontSize: '9px' }}>Points per</span>
+                        <select defaultValue={localPoints.toString()} onChange={(e: ChangeEvent<HTMLSelectElement>) => updateLocalPoints(parseInt(e.currentTarget.value, 10))}>
+                            {options(600)}
+                        </select>
+                    </span>
+                </label>
                 <select defaultValue={'1'} style={{ margin: '5px', display: 'table-cell' }} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => updateModelCount(parseInt(e.currentTarget.value))}>
                     {options()}
                 </select>
-                <h5 style={{ display: 'table-cell' }}>{shooter.name}</h5>
+                <h5 style={{ display: 'table-cell', width: '100%' }}>{shooter.name}</h5>
             </div>
-            <div style={{ margin: '0 20px 0 0', textAlign: 'center' }}>
+            <div style={{ margin: '0 0 0 76px', textAlign: 'center' }}>
                 <ul style={{ listStyleType: 'none', textAlign: 'right', padding: 0, marginLeft: '10px' }}>{weaponProfiles}</ul>
                 {shootingProfiles}
             </div>

@@ -4,9 +4,10 @@ import { sortNumber } from '../util';
 
 const CalculateStandardDef = (
     set: number[],
-    { name: shooterName }: IUnit,
+    { name: shooterName, points }: IUnit,
     { name: targetName }: ITarget,
-    iterations: number): IStandDevReport => {
+    iterations: number,
+    modelCount: number): IStandDevReport => {
     let sumOfSet = 0;
     const modeKey = {};
     set.forEach((int) => {
@@ -59,7 +60,10 @@ const CalculateStandardDef = (
         standardDeviation: (Math.round(setStandardDeviation * 10) / 10),
         mode: largestModeKeys,
         set: modeKey,
+        modelCount: modelCount,
+        ppm: (Math.round((points * modelCount / setMean) * 100) / 100),
         cynicalOutcome: Math.floor(setMean - setStandardDeviation),
+        remove: false,
         raw: {
             median: set[Math.round(set.length / 2)],
             lowerMedian: (lowerMedian[Math.round(lowerMedian.length / 2)]),
@@ -99,6 +103,9 @@ export interface IStandDevReport {
     cynicalOutcome?: number;
     set: any;
     mode: string[];
+    modelCount: number;
+    ppm: number;
     pruned: IResults;
     raw: IResults;
+    remove?: boolean;
 }

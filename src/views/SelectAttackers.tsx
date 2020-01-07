@@ -6,14 +6,10 @@ import AddWeapon from './AddWeapon';
 
 import { MyUserContext } from '../controllers/context/UserContext';
 import { IUnit, IWeaponProfile } from '../models/interfaces';
-interface IProps {
-    activeAttackersList: number[];
-    setActiveAttackersList: any;
-}
 
-const SelectAttackers = ({ activeAttackersList, setActiveAttackersList }: IProps) => {
+const SelectAttackers = () => {
     const [showDefaultAttackers, updateShowDefaultAttackers] = useState(false);
-    const { userCreatedAttackers, userCreatedWeaponProfiles, } = useContext(MyUserContext);
+    const { userCreatedAttackers, userCreatedWeaponProfiles, activeAttackersList, setActiveAttackersList } = useContext(MyUserContext);
 
     const listOfUserCreatedWeapons = (userCreatedWeaponProfiles: IWeaponProfile[]) => {
         return userCreatedWeaponProfiles.map(({ name }: IWeaponProfile, i: number) => {

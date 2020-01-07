@@ -11,5 +11,6 @@ import { ThunderfireCannon } from './heavySupport/ThunderfireCannon';
 import { Whirlwind } from './heavySupport/Whirlwind';
 import { Repulsor } from './transport/Repulsor';
 import { Infiltrator, Intercessor } from './troops';
+import { Obliterators } from './heavySupport/Obliterators';
 
-export const attackers = [Intercessor, Infiltrator, Invictors, ContemptorMortis, Elminators, Suppressors, Tarantula, VernerableDreadnaughts, Dreadnaughts, RepulsorExecutioner, Repulsor, Devastators, ThunderfireCannon, Whirlwind];
+export const attackers = [Intercessor, Infiltrator, Invictors, ContemptorMortis, Elminators, Suppressors, Tarantula, VernerableDreadnaughts, Dreadnaughts, RepulsorExecutioner, Repulsor, Devastators, ThunderfireCannon, Whirlwind, Obliterators];

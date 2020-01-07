@@ -1,6 +1,8 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useContext } from 'react';
 
-const UIOptions = ({ props }: any) => {
+import { MyUserContext } from '../controllers/context/UserContext';
+
+const UIOptions = () => {
     const {
         rerollHits, setRerollHits,
         devastator, setDevastor,
@@ -13,7 +15,7 @@ const UIOptions = ({ props }: any) => {
         IFHeavyWeaponsSuperDoctrine, setIFHeavyWeaponsSuperDoctrine,
         applyHeavyWeaponMinusOneToHit, setApplyHeavyWeaponMinusOneToHit,
         iterations, setIterations
-    } = props;
+    } = useContext(MyUserContext);
 
     return (
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', margin: '10px auto 10px auto', padding: '10px', boxShadow: '2px 2px 5px #999', maxWidth: '1400px', width: '90%' }}>

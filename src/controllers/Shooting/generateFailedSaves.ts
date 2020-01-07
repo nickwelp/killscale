@@ -12,7 +12,8 @@ const generateFailedSaves = (
     let failedSaves = 0;
     for (let g = 0; g < wounds; g++) {
         const dieResult = d6();
-        let { AP } = weapon;
+        let { AP, APFunction = undefined } = weapon;
+        if (APFunction) AP = APFunction();
         if (weapon.tags.includes('wound rolls 6+s resolved at AP-4') && total6ups > 0) {
             AP = 4;
             total6ups--;
@@ -27,6 +28,7 @@ const generateFailedSaves = (
         if (doctrine.devastator && (weapon.type === 'Heavy' || weapon.type === 'Grenade')) AP++;
         if (doctrine.tactical && (weapon.type === 'Rapid Fire' || weapon.type === 'Assault')) AP++;
         if (doctrine.assault && (weapon.type === 'Melee' || weapon.type === 'Pistol')) AP++;
+        if (target.inCover && !weapon.tags.includes('ignores cover')) AP--;
         const saveValue = (target.save + AP) > target.invuln ? target.invuln : (target.save + AP);
         if (dieResult < saveValue) failedSaves++;
     }

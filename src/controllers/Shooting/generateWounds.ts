@@ -5,7 +5,7 @@ import toWound from './toWound';
 const generateWounds = (
     hits: number,
     { toughness }: ITarget,
-    { tags, plusToWound, strength }: IWeaponProfile,
+    { tags, plusToWound, strength, strengthFunction = undefined }: IWeaponProfile,
     wounds = 0,
     { rerollWoundRollsOfOne }: IRerollSet
 ): [number, number, number, number] => {
@@ -13,6 +13,7 @@ const generateWounds = (
     let total6s = 0;
     let total6ups = 0;
     for (let g = 0; g < hits; g++) {
+        if (strengthFunction) strength = strengthFunction();
         let dieResult = d6();
         if (rerollWoundRollsOfOne && dieResult === 1) dieResult = d6();
         let woundModifier = 0;
