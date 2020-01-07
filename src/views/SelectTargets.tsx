@@ -4,13 +4,14 @@ import { MyUserContext } from '../controllers/context/UserContext';
 
 
 
-const SelectTargets = ({ props }: any) => {
+const SelectTargets = () => {
     const {
         targetFaction,
         setTargetFaction,
         dispatch,
         availableTargets
     } = useContext(MyUserContext);
+
     const targets = availableTargets(targetFaction);
     return (
         <div style={{ maxWidth: '900px', margin: '10px auto 10px auto', boxShadow: '2px 2px 5px #999', borderRadius: '3px', padding: '10px' }}>

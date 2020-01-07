@@ -3,26 +3,6 @@ import { MyUserContext } from '../controllers/context/UserContext';
 import { IRerollSet, ITarget, IUnit, IWeaponProfile } from '../models/interfaces';
 import ShootingProfile from './ShootingProfile';
 
-interface IVars {
-    targets: any;
-    targetList: any;
-    sumWounds: any;
-    rerollHits: any;
-    devastator: any;
-    tactical: any;
-    assault: any;
-    explodingBolter6s: any;
-    crimsonFistsPlusToHit: any;
-    rerollHitRollsOfOne: any;
-    rerollWounds: any;
-    rerollWoundRollsOfOne: any;
-    hideUncheckedWeapons: any;
-    attackers: any;
-    activeAttackersList: any;
-    IFHeavyWeaponsSuperDoctrine: any;
-    applyHeavyWeaponMinusOneToHit: any;
-    iterations: number;
-}
 
 const Display = () => {
     const {
