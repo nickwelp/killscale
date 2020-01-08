@@ -179,6 +179,7 @@ const UserContext = ({ children }: IProps) => {
     const [showSaveData, setShowSaveData] = useState(false);
     const [showLoadData, setShowLoadData] = useState(false);
     const [showAggregations, setShowAggregations] = useState(false);
+    const [showDebugger, updateShowDebugger] = useState(false);
 
     const availableTargets = (a: string[]): ITarget[] => [...userCreatedTargets, ...targets(a)];
 
@@ -310,7 +311,8 @@ const UserContext = ({ children }: IProps) => {
             activeAttackersList, updateActiveAttackersList, setActiveAttackersList,
             rerollWounds,
             dashObject,
-            showSelectAttackers, setShowSelectAttackers
+            showSelectAttackers, setShowSelectAttackers,
+            showDebugger, updateShowDebugger
         }}>
             {children}
         </MyUserContext.Provider>

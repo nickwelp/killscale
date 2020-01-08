@@ -7,7 +7,8 @@ const CalculateStandardDef = (
     { name: shooterName, points }: IUnit,
     { name: targetName }: ITarget,
     iterations: number,
-    modelCount: number): IStandDevReport => {
+    modelCount: number,
+    sumWounds: boolean): IStandDevReport => {
     let sumOfSet = 0;
     const modeKey = {};
     set.forEach((int) => {
@@ -64,6 +65,7 @@ const CalculateStandardDef = (
         ppm: (Math.round((points * modelCount / setMean) * 100) / 100),
         cynicalOutcome: Math.floor(setMean - setStandardDeviation),
         remove: false,
+        sumWounds,
         raw: {
             median: set[Math.round(set.length / 2)],
             lowerMedian: (lowerMedian[Math.round(lowerMedian.length / 2)]),
@@ -108,4 +110,5 @@ export interface IStandDevReport {
     pruned: IResults;
     raw: IResults;
     remove?: boolean;
+    sumWounds: boolean;
 }

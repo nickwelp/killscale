@@ -1,23 +1,26 @@
-import React, { useContext } from 'react';
+import React, { useContext, ChangeEvent } from 'react';
 import AddTarget from './AddTarget';
 import { MyUserContext } from '../controllers/context/UserContext';
-
-
 
 const SelectTargets = () => {
     const {
         targetFaction,
         setTargetFaction,
         dispatch,
-        availableTargets
+        availableTargets,
+        chooseTargets, updateChooseTargets,
     } = useContext(MyUserContext);
 
     const targets = availableTargets(targetFaction);
     return (
-        <div style={{ maxWidth: '900px', margin: '10px auto 10px auto', boxShadow: '2px 2px 5px #999', borderRadius: '3px', padding: '10px' }}>
-            <h3 style={{ textAlign: 'center' }}>Select The Faction To Target, then Select the Units to Target.</h3>
-            <p style={{ textAlign: 'center' }}><small>Units Added Directly via the "Add Target" button will persist despite changing target Factions.</small></p>
-            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', margin: '5px' }}>
+        <div style={{ background: '#F2F2F2', padding: '10px', marginBottom: '10px' }}>
+            <div style={{ background: '#F2F2F2', padding: '2px 2px 10px 0px', marginBottom: '0', display: 'flex', flexFlow: 'row', justifyContent: 'space-between' }}>
+                <h2>Target Selection </h2>
+                <label>close Target Selection<input checked={chooseTargets} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => updateChooseTargets(!!e.currentTarget.checked)} /></label>
+            </div>
+            <h4>Select The Faction To Target, then Select the Units to Target.</h4>
+            <p><small>Units Added Directly via the "Add Target" button will persist despite changing target Factions.</small></p>
+            <div style={{ display: 'flex', flexFlow: 'row wrap', justifyContent: 'space-around', margin: '5px' }}>
                 <div>
                     <label>Select Target Faction</label><br />
                     <select multiple={true} defaultValue={['marines']} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setTargetFaction({ element: e.currentTarget })}>

@@ -34,16 +34,34 @@ const CreateSet = ({
     iterations,
     shotsFired
 }: IProps) => {
-    const { manageOutcomesState } = useContext(MyUserContext);
+    const { outcomesState, manageOutcomesState } = useContext(MyUserContext);
     const hash = JSON.stringify({ shooter, weapons, targets, sumWounds, modelCount, rerollProfile, doctrine, iterations, shotsFired });
     // @ts-ignore
     if (cache[hash]) {
+        // @ts-ignore
+        const [report] = cache[hash];
+        let updateState = true;
+        outcomesState.forEach((cachedReport: any) => {
+            if (cachedReport.name === report.name && cachedReport.target === report.target && cachedReport.modelCount === report.modelCount && report.sumWounds === cachedReport.sumWounds) {
+                updateState = false;
+            }
+        });
+        if (updateState) {
+            // @ts-ignore
+            manageOutcomesState(cache[hash]);
+        }
         // @ts-ignore
         return cache[hash];
     }
     // @ts-ignore
     else cache[hash] = processSetFunc({ shooter, weapons, targets, sumWounds, modelCount, rerollProfile, doctrine, iterations, shotsFired });
     // @ts-ignore
+
+    // outcomesState.forEach()
+    // @ts-ignore
+
+
+
     manageOutcomesState(cache[hash]);
     // @ts-ignore
     return cache[hash];
@@ -92,7 +110,7 @@ const processSetFunc = ({
             }
             set.push(sumOfDamage);
         }
-        return calculateStandardDef(set, shooter, target, iterations, modelCount);
+        return calculateStandardDef(set, shooter, target, iterations, modelCount, sumWounds);
     });
 };
 

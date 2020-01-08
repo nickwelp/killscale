@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { MyUserContext } from '../controllers/context/UserContext';
 import { IRerollSet, ITarget, IUnit, IWeaponProfile } from '../models/interfaces';
 import ShootingProfile from './ShootingProfile';
@@ -26,11 +26,12 @@ const Display = () => {
         hideUncheckedWeapons,
         IFHeavyWeaponsSuperDoctrine,
         applyHeavyWeaponMinusOneToHit,
-        iterations
+        iterations,
+        showDebugger
     } = useContext(MyUserContext);
 
     const targets = availableTargets(targetFaction);
-    const [showDebugger, updateShowDebugger] = useState(false);
+
 
     const selectedTargets: ITarget[] = targets.filter((_: ITarget, i: number) => targetList.includes(i));
     const uiSettings = {
@@ -112,15 +113,20 @@ const Display = () => {
 
     return (
         <>
-            <div><label >Show Debugger Inforamtion<input checked={showDebugger} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => updateShowDebugger(!!e.currentTarget.checked)} /> </label> </div>
             {showDebugger &&
                 <>
                     <div style={{ display: 'flex', flexFlow: 'row wrap' }}>{debuggerPannel()}</div>
                     <div style={{ display: 'flex', flexFlow: 'row wrap', margin: '10px' }}>{debuggerWeaponPannel()}</div>
                     <div style={{ display: 'flex', flexFlow: 'row wrap', margin: '10px' }}>{debuggerAttackerPanel()}</div>
                 </>}
-            <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }} >
-                {profiles}
+            <div style={{ background: '#F2F2F2' }}>
+                <div style={{ padding: '2px 2px 10px 10px', marginBottom: '0', display: 'flex', flexFlow: 'row', justifyContent: 'space-between' }}>
+                    <h2>Dashboard</h2>
+                    <label></label>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', background: '#FFFFFF', margin: '10px' }} >
+                    {profiles}
+                </div>
             </div>
         </>
     );

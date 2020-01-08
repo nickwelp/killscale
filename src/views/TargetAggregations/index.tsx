@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, ChangeEvent } from 'react';
 import { MyUserContext } from '../../controllers/context/UserContext';
 
 import ScatterPlot from './ScatterPlot';
@@ -7,7 +7,7 @@ import { ITarget } from '../../models/interfaces';
 
 
 const TargetAggregations = () => {
-    const { outcomesState, availableTargets, targetFaction, targetList } = useContext(MyUserContext);
+    const { outcomesState, availableTargets, targetFaction, targetList, showAggregations, setShowAggregations } = useContext(MyUserContext);
     const apData: any = {};
     const availableTargetNames = availableTargets(targetFaction).filter((_: any, i: number) => targetList.includes(i)).map((tar: ITarget) => tar.name);
 
@@ -55,42 +55,47 @@ const TargetAggregations = () => {
         setXAxis(str);
     };
 
-
     return (
-        <div style={{ display: 'flex', flexFlow: 'row' }}>
-
-            <div style={{ display: 'flex', flexFlow: 'row', marginTop: '206px', transform: 'rotate(-90deg)', whiteSpace: 'nowrap', width: '40px', position: 'relative', top: '119px', height: '10px' }}>
-                <label> ppm <input name={'yAxis'} type={'checkbox'} onChange={updateYAxis} value={'ppm'} checked={'ppm' === yAxis} /></label>
-                <label> mode <input name={'yAxis'} type={'checkbox'} onChange={updateYAxis} value={'mode'} checked={'mode' === yAxis} /></label>
-                <label> standardDeviation <input name={'yAxis'} type={'checkbox'} onChange={updateYAxis} value={'standardDeviation'} checked={'standardDeviation' === yAxis} /></label>
-                <label> mean <input name={'yAxis'} type={'checkbox'} onChange={updateYAxis} value={'mean'} checked={'mean' === yAxis} /></label>
-
+        <>
+            <div style={{ background: '#F2F2F2', padding: '2px 2px 10px 10px', marginBottom: '0', display: 'flex', flexFlow: 'row', justifyContent: 'space-between' }}>
+                <h2 >Aggregations </h2>
+                <label>close Aggregations<input checked={showAggregations} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowAggregations(!!e.currentTarget.checked)} /></label>
             </div>
-            <div style={{ display: 'flex', flexFlow: 'column' }}>
-                <div style={{ display: 'flex', flexFlow: 'row' }}>
-                    <label> ppm <input name={'xAxis'} type={'checkbox'} onChange={updateXAxis} value={'ppm'} checked={'ppm' === xAxis} /></label>
-                    <label> mode <input name={'xAxis'} type={'checkbox'} onChange={updateXAxis} value={'mode'} checked={'mode' === xAxis} /></label>
-                    <label> standardDeviation <input name={'xAxis'} type={'checkbox'} onChange={updateXAxis} value={'standardDeviation'} checked={'standardDeviation' === xAxis} /></label>
-                    <label> mean <input name={'xAxis'} type={'checkbox'} onChange={updateXAxis} value={'mean'} checked={'mean' === xAxis} /></label>
+            <div style={{ display: 'flex', flexFlow: 'row', background: '#F2F2F2', marginBottom: '10px' }}>
+                <div style={{ display: 'flex', flexFlow: 'row', marginTop: '206px', transform: 'rotate(-90deg)', whiteSpace: 'nowrap', width: '40px', position: 'relative', top: '119px', height: '10px' }}>
+                    <label className={'tabbedCheck'}><input name={'yAxis'} type={'radio'} onChange={updateYAxis} value={'ppm'} checked={'ppm' === yAxis} /> <span>ppm</span> </label>
+                    <label className={'tabbedCheck'}><input name={'yAxis'} type={'radio'} onChange={updateYAxis} value={'mode'} checked={'mode' === yAxis} /> <span> mode</span> </label>
+                    <label className={'tabbedCheck'}><input name={'yAxis'} type={'radio'} onChange={updateYAxis} value={'standardDeviation'} checked={'standardDeviation' === yAxis} /> <span>standardDeviation </span></label>
+                    <label className={'tabbedCheck'}><input name={'yAxis'} type={'radio'} onChange={updateYAxis} value={'mean'} checked={'mean' === yAxis} /> <span> mean</span> </label>
                 </div>
-                <div style={{ display: 'flex', flexFlow: 'row' }}>
-                    <ScatterPlot targetSets={dataSets} key={0} xAxis={xAxis} yAxis={yAxis} targetNames={targetNames} />
-                    <div style={{ display: 'flex', flexFlow: 'column' }}>
-                        <span>Targets</span>
-                        <select defaultValue={selectedTargets} name={'selectTargetAggregations'} onChange={
-                            () => {
-                                const selectElement = document.querySelector('[name=selectTargetAggregations]');
-                                // @ts-ignore
-                                const selectIndexes = Array.from(selectElement.querySelectorAll('option:checked'), e => +e.value);
-                                updatedSelectedTargets(selectIndexes);
-                            }
-                        } multiple={true}>
-                            {targetOptions()}
-                        </select>
+                <div style={{ display: 'flex', flexFlow: 'column', paddingBottom: '10px' }}>
+                    <div style={{ display: 'flex', flexFlow: 'row' }}>
+                        <label className={'tabbedCheck'}><input name={'xAxis'} type={'radio'} onChange={updateXAxis} value={'ppm'} checked={'ppm' === xAxis} /> <span>ppm</span> </label>
+                        <label className={'tabbedCheck'}><input name={'xAxis'} type={'radio'} onChange={updateXAxis} value={'mode'} checked={'mode' === xAxis} /><span> mode</span> </label>
+                        <label className={'tabbedCheck'}><input name={'xAxis'} type={'radio'} onChange={updateXAxis} value={'standardDeviation'} checked={'standardDeviation' === xAxis} /><span> standardDeviation </span></label>
+                        <label className={'tabbedCheck'}><input name={'xAxis'} type={'radio'} onChange={updateXAxis} value={'mean'} checked={'mean' === xAxis} /><span>mean </span></label>
+                    </div>
+                    <div style={{ display: 'flex', flexFlow: 'row' }}>
+                        <div style={{ background: '#FFFFFF', borderRadius: '4px' }}>
+                            <ScatterPlot targetSets={dataSets} key={0} xAxis={xAxis} yAxis={yAxis} targetNames={targetNames} />
+                        </div>
+                        <div style={{ display: 'flex', flexFlow: 'column', margin: '5px' }}>
+                            <small>Targets</small>
+                            <select defaultValue={selectedTargets} name={'selectTargetAggregations'} onChange={
+                                () => {
+                                    const selectElement = document.querySelector('[name=selectTargetAggregations]');
+                                    // @ts-ignore
+                                    const selectIndexes = Array.from(selectElement.querySelectorAll('option:checked'), e => +e.value);
+                                    updatedSelectedTargets(selectIndexes);
+                                }
+                            } multiple={true}>
+                                {targetOptions()}
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 
 };

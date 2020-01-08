@@ -23,6 +23,33 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 3px;
     margin: 5px;
   }
+  label.tabbedCheck input ~ span {
+    font-weight: regular;
+  }
+  label.tabbedCheck input:checked ~ span {
+    font-weight: bold;
+  }
+  label.tabbedCheck input {
+    visibility: hidden;
+  }
+
+  label.optionsTabs input ~ span {
+    font-weight: regular;
+    background: #FFF;
+    padding: 10px;
+  }
+  label.optionsTabs input:checked ~ span {
+    font-weight: bold;
+    background: #F2F2F2;
+  }
+  label.optionsTabs input {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+  }
+
+
+
 `;
 
 export default GlobalStyle;

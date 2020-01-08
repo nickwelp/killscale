@@ -9,7 +9,13 @@ import { IUnit, IWeaponProfile } from '../models/interfaces';
 
 const SelectAttackers = () => {
     const [showDefaultAttackers, updateShowDefaultAttackers] = useState(false);
-    const { userCreatedAttackers, userCreatedWeaponProfiles, activeAttackersList, setActiveAttackersList } = useContext(MyUserContext);
+    const {
+        userCreatedAttackers,
+        userCreatedWeaponProfiles,
+        activeAttackersList,
+        setActiveAttackersList,
+        showSelectAttackers,
+        setShowSelectAttackers } = useContext(MyUserContext);
 
     const listOfUserCreatedWeapons = (userCreatedWeaponProfiles: IWeaponProfile[]) => {
         return userCreatedWeaponProfiles.map(({ name }: IWeaponProfile, i: number) => {
@@ -32,9 +38,13 @@ const SelectAttackers = () => {
         );
     });
     return (
-        <>
+        <div style={{ background: '#F2F2F2', marginBottom: '10px' }}>
+            <div style={{ background: '#F2F2F2', padding: '2px 2px 10px 10px', marginBottom: '0', display: 'flex', flexFlow: 'row', justifyContent: 'space-between' }}>
+                <h2>Select Attackers </h2>
+                <label>close Attackers<input checked={showSelectAttackers} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowSelectAttackers(!!e.currentTarget.checked)} /></label>
+            </div>
             <label style={{ margin: 'auto', width: '90%', display: 'block' }} >Show Default Space Marine Attackers <input checked={showDefaultAttackers} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => updateShowDefaultAttackers(!!e.currentTarget.checked)} /> </label>
-            <ul style={{ listStyleType: 'none', fontSize: 'small', display: 'flex', flexFlow: 'column wrap', width: '90%', borderRadius: '3px', boxShadow: '2px 2px 5px #999', margin: 'auto', columnCount: 2, columnGap: '20px', height: '200px', padding: '10px' }}>
+            <ul style={{ listStyleType: 'none', fontSize: 'small', display: 'flex', flexFlow: 'column wrap', margin: 'auto', columnCount: 2, columnGap: '20px', height: '200px', padding: '10px' }}>
                 {options([...attackers, ...userCreatedAttackers])}
             </ul>
             <div style={{ padding: '10px' }}>
@@ -49,7 +59,7 @@ const SelectAttackers = () => {
                 </div>
             </div>
 
-        </>
+        </div>
     );
 };
 

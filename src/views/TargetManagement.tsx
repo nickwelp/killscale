@@ -2,7 +2,6 @@ import React, { useState, ChangeEvent } from 'react';
 import CreateSet from '../controllers/Shooting';
 import KillScale from './KillScale';
 
-
 const TargetManagement = ({
     shooter,
     weapons,
@@ -13,7 +12,6 @@ const TargetManagement = ({
     doctrine,
     iterations,
     shotsFired }: any) => {
-
     const [hasCover, updateHasCover] = useState(false);
     const [localSumWounds, updateLocalSumWounds] = useState(false);
     const [showHistogram, updateShowHistogram] = useState(false);

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Dashboard from './Dashboard';
-// import cx from 'classnames';
 import bootstrap from './theme/bootstrap.module.css';
 
 const App = () => {
