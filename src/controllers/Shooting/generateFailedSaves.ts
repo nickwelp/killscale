@@ -30,7 +30,7 @@ const generateFailedSaves = (
         if (doctrine.assault && (weapon.type === 'Melee' || weapon.type === 'Pistol')) AP++;
         if (target.inCover && !weapon.tags.includes('ignores cover')) AP--;
         const saveValue = (target.save + AP) > target.invuln ? target.invuln : (target.save + AP);
-        if (dieResult < saveValue) failedSaves++;
+        if (dieResult < saveValue || dieResult === 1) failedSaves++;
     }
     return failedSaves;
 };
