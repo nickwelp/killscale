@@ -1,22 +1,15 @@
-import React, { SyntheticEvent, useReducer, useState, ChangeEvent } from 'react';
+import React, { SyntheticEvent, useReducer, useState, ChangeEvent, useContext } from 'react';
 
 
-import { IDoctrine, IRerollSet, ITarget, IUnit } from '../models/interfaces';
+import { ITarget, IUnit } from '../models/interfaces';
 import TargetManagement from './TargetManagement';
+import { MyUserContext } from '../controllers/context/UserContext';
 
-interface IUISettings {
-    [key: string]: boolean;
-}
 
 interface IProps {
     shooter: IUnit;
     targets: ITarget[];
-    sumWounds: boolean;
-    rerollProfile: IRerollSet;
-    doctrine: IDoctrine;
-    uiSettings: IUISettings;
     hideProfile: boolean;
-    iterations: number;
 }
 
 interface IDispatch {
@@ -42,13 +35,8 @@ const options = (count: number = 100) => {
 const ShootingProfile = ({
     shooter,
     targets,
-    sumWounds,
-    rerollProfile,
-    doctrine,
-    uiSettings,
-    hideProfile,
-    iterations = 3000 }: IProps) => {
-
+    hideProfile }: IProps) => {
+    const { uiSettings } = useContext(MyUserContext);
     const { weapons = [] } = shooter;
 
     const weaponsUsed: number[] = [];
@@ -127,11 +115,7 @@ const ShootingProfile = ({
             shooter={{ ...shooter, points: localPoints }}
             weapons={submittedWeapons}
             targets={[target]}
-            sumWounds={sumWounds}
             modelCount={modelCount}
-            rerollProfile={rerollProfile}
-            doctrine={doctrine}
-            iterations={iterations}
             shotsFired={submittedShotsFired}
 
         />;

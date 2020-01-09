@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, ChangeEvent } from 'react';
 import { MyUserContext } from '../controllers/context/UserContext';
-import { IRerollSet, ITarget, IUnit, IWeaponProfile } from '../models/interfaces';
+import { ITarget, IUnit, IWeaponProfile } from '../models/interfaces';
 import ShootingProfile from './ShootingProfile';
 
 
@@ -13,20 +13,6 @@ const Display = () => {
         targetFaction,
         activeAttackersList,
         targetList,
-        sumWounds,
-        rerollHits,
-        devastator,
-        tactical,
-        assault,
-        explodingBolter6s,
-        crimsonFistsPlusToHit,
-        rerollHitRollsOfOne,
-        rerollWounds,
-        rerollWoundRollsOfOne,
-        hideUncheckedWeapons,
-        IFHeavyWeaponsSuperDoctrine,
-        applyHeavyWeaponMinusOneToHit,
-        iterations,
         showDebugger
     } = useContext(MyUserContext);
 
@@ -34,34 +20,14 @@ const Display = () => {
 
 
     const selectedTargets: ITarget[] = targets.filter((_: ITarget, i: number) => targetList.includes(i));
-    const uiSettings = {
-        hideUncheckedWeapons
-    };
-    const rerollProfile: IRerollSet = {
-        rerollHits,
-        rerollHitRollsOfOne,
-        rerollWounds,
-        rerollWoundRollsOfOne,
-        explodingBolter6s,
-        crimsonFistsPlusToHit,
-        IFHeavyWeaponsSuperDoctrine,
-        applyHeavyWeaponMinusOneToHit
-    };
-    const doctrine = {
-        devastator,
-        tactical,
-        assault
-    };
+
+
+
     const profiles = [...attackers, ...userCreatedAttackers].map((shooter: IUnit, i: number) => {
         return ShootingProfile({
             shooter,
             targets: selectedTargets,
-            sumWounds,
-            rerollProfile,
-            doctrine,
-            uiSettings,
             hideProfile: !activeAttackersList.includes(i),
-            iterations
         });
     });
 
@@ -105,6 +71,10 @@ const Display = () => {
                 {'modelCount: ' + modelCount} <br />
                 {'toHit: ' + toHit} <br />
                 {'points: ' + points}<br />
+                <input type={'text'} name={'pointsAssigner'} onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                    points = parseInt(e.currentTarget.value);
+                }} />
+                <br />
                 {tags ? 'tags: ' + tags.join(', ') : ''}
             </small>
         </div>);

@@ -23,7 +23,7 @@ const SelectTargets = () => {
             <div style={{ display: 'flex', flexFlow: 'row wrap', justifyContent: 'space-around', margin: '5px' }}>
                 <div>
                     <label>Select Target Faction</label><br />
-                    <select multiple={true} defaultValue={['marines']} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setTargetFaction({ element: e.currentTarget })}>
+                    <select multiple={true} defaultValue={targetFaction} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setTargetFaction({ element: e.currentTarget })}>
                         <option value="marines">Loyalist Marines</option>
                         <option value="knight">Knights</option>
                         <option value="csm" >Chaos Marines</option>

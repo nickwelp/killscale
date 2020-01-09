@@ -1,21 +1,24 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, useContext } from 'react';
 import CreateSet from '../controllers/Shooting';
 import KillScale from './KillScale';
+import { MyUserContext } from '../controllers/context/UserContext';
 
 const TargetManagement = ({
     shooter,
     weapons,
     targets,
-    sumWounds,
     modelCount,
-    rerollProfile,
-    doctrine,
-    iterations,
     shotsFired }: any) => {
+    const {
+        sumWounds,
+        rerollProfile,
+        doctrine,
+        iterations,
+    } = useContext(MyUserContext);
     const [hasCover, updateHasCover] = useState(false);
     const [localSumWounds, updateLocalSumWounds] = useState(false);
     const [showHistogram, updateShowHistogram] = useState(false);
-    // const [showMenu, updateShowMenu] = useState(false);
+
     targets[0].inCover = hasCover;
     const [dataSet] = CreateSet({
         shooter,

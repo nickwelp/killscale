@@ -1,6 +1,6 @@
 import React, { useState, useReducer, ChangeEvent } from 'react';
 
-import { ITarget, IUnit, IWeaponProfile } from '../../models/interfaces';
+import { ITarget, IUnit, IWeaponProfile, IRerollSet } from '../../models/interfaces';
 import { decodeRollsForSavingState } from '../util';
 import { IStandDevReport } from '../library/calculateStandardDev';
 
@@ -274,7 +274,24 @@ const UserContext = ({ children }: IProps) => {
     const [showSelectAttackers, setShowSelectAttackers] = useState(false);
     /** end manage attackers */
 
-
+    const doctrine = {
+        devastator,
+        tactical,
+        assault
+    };
+    const rerollProfile: IRerollSet = {
+        rerollHits,
+        rerollHitRollsOfOne,
+        rerollWounds,
+        rerollWoundRollsOfOne,
+        explodingBolter6s,
+        crimsonFistsPlusToHit,
+        IFHeavyWeaponsSuperDoctrine,
+        applyHeavyWeaponMinusOneToHit
+    };
+    const uiSettings = {
+        hideUncheckedWeapons
+    };
     return (
         <MyUserContext.Provider value={{
             attackers: mergedAttackers,
@@ -298,7 +315,7 @@ const UserContext = ({ children }: IProps) => {
             applyHeavyWeaponMinusOneToHit, updateApplyHeavyWeaponMinusOneToHit, setApplyHeavyWeaponMinusOneToHit,
             rerollHitRollsOfOne, updateRerollHitRollsOfOne, setRerollHitRollsOfOne,
             rerollWoundRollsOfOne, updateRerollWoundRollsOfOne, setRerollWoundRollsOfOne,
-            hideUncheckedWeapons, updateHideUncheckedWeapons, setHideUncheckedWeapons,
+            hideUncheckedWeapons, updateHideUncheckedWeapons, setHideUncheckedWeapons, uiSettings,
             IFHeavyWeaponsSuperDoctrine, updateIFHeavyWeaponsSuperDoctrine, setIFHeavyWeaponsSuperDoctrine,
             showOptions, setShowOptions,
             showHelp, setShowHelp,
@@ -312,7 +329,8 @@ const UserContext = ({ children }: IProps) => {
             rerollWounds,
             dashObject,
             showSelectAttackers, setShowSelectAttackers,
-            showDebugger, updateShowDebugger
+            showDebugger, updateShowDebugger,
+            doctrine, rerollProfile
         }}>
             {children}
         </MyUserContext.Provider>
