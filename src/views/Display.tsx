@@ -17,8 +17,6 @@ const Display = () => {
     } = useContext(MyUserContext);
 
     const targets = availableTargets(targetFaction);
-
-
     const selectedTargets: ITarget[] = targets.filter((_: ITarget, i: number) => targetList.includes(i));
 
 

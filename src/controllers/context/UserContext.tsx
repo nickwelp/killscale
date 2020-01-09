@@ -6,7 +6,6 @@ import { IStandDevReport } from '../library/calculateStandardDev';
 
 import { attackers } from '../../models/units';
 
-
 import { targets } from '../../views/TargetFaction';
 
 // @ts-ignore
@@ -92,7 +91,7 @@ const UserContext = ({ children }: IProps) => {
     /* originally in dashboard */
     const [showDiagnostics, updateDiagnostics] = useState(false);
     // list of selected targets
-    const [targetList, dispatch] = useReducer(reducer, [0]);
+    const [targetList, updateTargetList] = useReducer(reducer, [0]);
     const [targetFaction, setTargetFaction] = useReducer(selectTargetFactionsReducer, ['marines']);
     const [iterations, setIterations] = useState(3000);
     const [sumWounds, setSumWounds] = useState(DashCache.sumWounds !== undefined ? DashCache.sumWounds : false);
@@ -303,7 +302,7 @@ const UserContext = ({ children }: IProps) => {
             addUserCreatedWeaponProfiles,
             outcomesState, manageOutcomesState,
             showDiagnostics, updateDiagnostics,
-            targetList, dispatch,
+            targetList, updateTargetList,
             targetFaction, setTargetFaction,
             iterations, setIterations,
             sumWounds, setSumWounds, setState,

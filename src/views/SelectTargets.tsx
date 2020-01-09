@@ -6,7 +6,7 @@ const SelectTargets = () => {
     const {
         targetFaction,
         setTargetFaction,
-        dispatch,
+        updateTargetList,
         availableTargets,
         chooseTargets, updateChooseTargets,
     } = useContext(MyUserContext);
@@ -36,7 +36,7 @@ const SelectTargets = () => {
                     <label>
                         Select Target (hold ctrl/cmd to select multiple targets):
                     </label><br />
-                    <select multiple={true} defaultValue={['0']} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => dispatch({ element: e.currentTarget })}>
+                    <select multiple={true} defaultValue={['0']} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => updateTargetList({ element: e.currentTarget })}>
                         {targets.map((t: any, i: number) => {
                             return (
                                 <option key={i} value={i}>{t.name}</option>

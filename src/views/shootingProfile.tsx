@@ -117,7 +117,6 @@ const ShootingProfile = ({
             targets={[target]}
             modelCount={modelCount}
             shotsFired={submittedShotsFired}
-
         />;
 
     });

@@ -4,8 +4,6 @@ import Display from './Display';
 import HelpText from './HelpText';
 import UIOptions from './UIOptions';
 
-
-
 import { MyUserContext } from '../controllers/context/UserContext';
 import Diagnostics from './Diagnostics';
 import LoadData from './LoadData';
@@ -15,8 +13,6 @@ import SelectTargets from './SelectTargets';
 
 import bootstrap from './theme/bootstrap.module.css';
 import TargetAggregations from './TargetAggregations';
-
-
 
 const Dashboard = () => {
     const {
@@ -36,7 +32,7 @@ const Dashboard = () => {
     return (
         <div >
             <div style={{ marginBottom: '0px' }} className={bootstrap['row'] + ' ' + bootstrap['mx-0']}>
-                <label className={'optionsTabs'} style={{ marginRight: '15px', marginLeft: '15px' }} >
+                <label className={'optionsTabs'} style={{ marginRight: '15px' }} >
                     <input checked={showOptions} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowOptions(!!e.currentTarget.checked)} />
                     <span>Show Options</span>
                 </label>
