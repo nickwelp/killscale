@@ -55,9 +55,46 @@ const TargetAggregations = () => {
         setXAxis(str);
     };
 
+    const table = () => {
+        const rows: any[] = [];
+        const targetNames = Object.keys(apData);
+
+
+        const attackerNames = Object.keys(apData[targetNames[0]]);
+
+        const nameSeq = targetNames.map((name, i) => {
+            return (<div key={i} style={{ display: 'table-cell', paddingRight: '3px' }}>{name}</div>);
+        })
+        rows.push(
+            <div style={{ display: 'table-row', fontSize: '11px' }}>
+                <div style={{ display: 'table-cell' }}>
+                    +
+                </div>
+                {nameSeq}
+            </div>
+        );
+
+
+
+        attackerNames.forEach(attacker => {
+            let norm = 0;
+            const cells: any[] = [];
+            cells.push(<div style={{ display: 'table-cell', paddingRight: '4px' }}>{attacker} </div>);
+            targetNames.forEach((target, index) => {
+                if (index === 0) {
+                    norm = apData[target][attacker].mean;
+                }
+                cells.push(<div style={{ display: 'table-cell', borderBottom: '1px solid #888', borderRight: '1px dashed #888', textAlign: 'center' }}>{Math.round(apData[target][attacker].mean * 100 / norm) / 100}</div>);
+            });
+            rows.push(<div style={{ display: 'table-row', fontSize: '11px' }}>
+                {cells}
+            </div>);
+        });
+        return rows;
+    }
     return (
         <>
-            <div style={{ background: '#F2F2F2', padding: '2px 2px 10px 10px', marginBottom: '0', display: 'flex', flexFlow: 'row', justifyContent: 'space-between' }}>
+            <div style={{ background: '#F2F2F2', padding: '2px 2px 10px 10px', marginBottom: '0', display: 'flex', flexFlow: 'row wrap', justifyContent: 'space-between' }}>
                 <h2 >Aggregations </h2>
                 <label>close Aggregations<input checked={showAggregations} type={'checkbox'} onChange={(e: ChangeEvent<HTMLInputElement>) => setShowAggregations(!!e.currentTarget.checked)} /></label>
             </div>
@@ -92,6 +129,11 @@ const TargetAggregations = () => {
                                 {targetOptions()}
                             </select>
                         </div>
+                    </div>
+                </div>
+                <div style={{ padding: '10px', fontSize: '12px' }}>
+                    <div style={{ display: 'table' }}>
+                        {table()}
                     </div>
                 </div>
             </div>
