@@ -2,7 +2,7 @@ import React, { SyntheticEvent, useReducer, useState, ChangeEvent, useContext } 
 
 
 import { ITarget, IUnit } from '../models/interfaces';
-import TargetManagement from './TargetManagement';
+import TargetManagement from './Target/TargetManagement';
 import { MyUserContext } from '../controllers/context/UserContext';
 
 

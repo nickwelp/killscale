@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useContext, useState } from 'react';
 
 import { attackers } from '../models/units';
-import AddAttacker from './AddAttacker';
-import AddWeapon from './AddWeapon';
+import AddAttacker from './InputInterfaces/AddAttacker';
+import AddWeapon from './InputInterfaces/AddWeapon';
 
 import { MyUserContext } from '../controllers/context/UserContext';
 import { IUnit, IWeaponProfile } from '../models/interfaces';

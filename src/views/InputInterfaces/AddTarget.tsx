@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 
-import { MyUserContext } from '../controllers/context/UserContext';
-import { ITarget } from '../models/interfaces';
+import { MyUserContext } from '../../controllers/context/UserContext';
+import { ITarget } from '../../models/interfaces';
 
 const AddTarget = () => {
     const [viewAddTarget, updateViewAddTarget] = useState(false);
@@ -50,10 +50,15 @@ const AddTarget = () => {
         const modelCount = parseInt((document.querySelector('[name=modelCount]') ? document.querySelector('[name=modelCount]').value : '1'), 10);
         // @ts-ignore
         const toHit = parseInt((document.querySelector('[name=toHit]') ? document.querySelector('[name=toHit]').value : '0'), 10);
+        // @ts-ignore
+        const points = parseInt((document.querySelector('[name=points]') ? document.querySelector('[name=points]').value : '10'), 10);
+        // @ts-ignore
+        const faction = (document.querySelector('[name=faction]') ? document.querySelector('[name=faction]').value : 'marines');
         // // @ts-ignore
         // const points = parseInt((document.querySelector('[name=points]') ? document.querySelector('[name=points]').value : '100'), 10);
         // @ts-ignore
         const tags = (document.querySelector('[name=keywords]') ? document.querySelector('[name=keywords]').value : '100').split(',').map(e => e.trim());
+
         const target: ITarget = {
             name,
             FNP,
@@ -63,7 +68,8 @@ const AddTarget = () => {
             woundsPerModel,
             modelCount,
             toHit,
-            // points,
+            faction,
+            points,
             tags,
         };
         addUserCreatedTarget(target);
@@ -76,6 +82,11 @@ const AddTarget = () => {
                 <p><strong>Add Target Profile</strong></p>
                 <form style={{ display: 'flex', flexFlow: 'column nowrap' }}>
                     <label>Name of Unit <input type={'text'} name={'name'} id={'name'} /></label>
+                    <label>Points (per model or per unit, up to you)
+                        <select name={'points'} defaultValue={'100'}>
+                            {options(600)}
+                        </select>
+                    </label>
                     <label>FNP +++<select name={'FNP'}>
                         <option value="7">None</option>
                         <option value="6">6+++</option>
@@ -102,17 +113,17 @@ const AddTarget = () => {
                         <option value="1">1+</option>
                         <option value="0">0+</option>
                     </select></label>
-                    <label>Toughness<select name={'toughness'}>
-                        {options(10, 4)}
+                    <label>Toughness<select name={'toughness'} defaultValue={'4'}>
+                        {options(10)}
                     </select></label>
                     <label>Wounds Per model
-                        <select name="woundsPerModel" >
-                            {options(40, 1)}
+                        <select name="woundsPerModel" defaultValue={'1'}>
+                            {options(40)}
                         </select>
                     </label>
                     <label>Model Count
-                        <select name="modelCount" >
-                            {options(40, 1)}
+                        <select name="modelCount" defaultValue={'1'}>
+                            {options(40)}
                         </select>
                     </label>
                     <label>To Hit (ie Plague Bearers being -2 to hit, usually 0)
@@ -124,11 +135,19 @@ const AddTarget = () => {
                             <option value="-4">-4</option>
                         </select>
                     </label>
-                    {/* <label>Points (approximate)
-                        <select name="points" >
-                            {options(600, 100)}
+                    <label>Faction <br />
+                        <select multiple={false} name='faction' defaultValue={'marines'}>
+                            <option value="marines">Loyalist Marines</option>
+                            <option value="knight">Knights</option>
+                            <option value="csm" >Chaos Marines</option>
+                            <option value="ig" >Imperial Guard</option>
+                            <option value="orks" >Orks</option>
+                            <option value="deamons" >Deamons</option>
+                            <option value="darkeldar" >Dark Eldar</option>
+                            <option value="eldar" >Eldar</option>
+                            <option value="harlequins" >Harlequins</option>
                         </select>
-                    </label> */}
+                    </label>
                     <label>
                         Keywords (comma seperate caps don't matter) <br />
                         ie "Vehicle, Fly, rat" <br />

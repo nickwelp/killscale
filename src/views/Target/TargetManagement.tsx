@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent, useContext } from 'react';
-import CreateSet from '../controllers/Shooting';
-import KillScale from './KillScale';
-import { MyUserContext } from '../controllers/context/UserContext';
+import CreateSet from '../../controllers/Shooting';
+import KillScale from '../KillScale';
+import { MyUserContext } from '../../controllers/context/UserContext';
 
 const TargetManagement = ({
     shooter,

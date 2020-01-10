@@ -1,5 +1,5 @@
 import React, { useContext, ChangeEvent } from 'react';
-import AddTarget from './AddTarget';
+import AddTarget from './InputInterfaces/AddTarget';
 import { MyUserContext } from '../controllers/context/UserContext';
 
 const SelectTargets = () => {

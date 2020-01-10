@@ -5,7 +5,7 @@ import { sortNumber } from '../util';
 const CalculateStandardDef = (
     set: number[],
     { name: shooterName, points }: IUnit,
-    { name: targetName }: ITarget,
+    { name: targetName, inCover = false }: ITarget,
     iterations: number,
     modelCount: number,
     sumWounds: boolean): IStandDevReport => {
@@ -65,6 +65,8 @@ const CalculateStandardDef = (
         ppm: (Math.round((points * modelCount / setMean) * 100) / 100),
         cynicalOutcome: Math.floor(setMean - setStandardDeviation),
         remove: false,
+        targetPoints: points,
+        inCover,
         sumWounds,
         raw: {
             median: set[Math.round(set.length / 2)],
@@ -111,4 +113,6 @@ export interface IStandDevReport {
     raw: IResults;
     remove?: boolean;
     sumWounds: boolean;
+    inCover: boolean;
+    targetPoints: number;
 }

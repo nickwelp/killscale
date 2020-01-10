@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 
-import { MyUserContext } from '../controllers/context/UserContext';
-import { decodeRollsForSavingState } from '../controllers/util';
-import { IWeaponProfile } from '../models/interfaces';
+import { MyUserContext } from '../../controllers/context/UserContext';
+import { decodeRollsForSavingState } from '../../controllers/util';
+import { IWeaponProfile } from '../../models/interfaces';
 
 const AddWeapon = () => {
     const [viewAddWeaponProfile, updateViewAddWeaponProfile] = useState(false);

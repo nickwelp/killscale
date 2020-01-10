@@ -10,7 +10,7 @@ import generateHits from './generateHits';
 import generateWounds from './generateWounds';
 import { MyUserContext } from '../context/UserContext';
 
-const cache = {};
+export const cache = {};
 
 interface IProps {
     shooter: IUnit;
@@ -42,7 +42,11 @@ const CreateSet = ({
         const [report] = cache[hash];
         let updateState = true;
         outcomesState.forEach((cachedReport: any) => {
-            if (cachedReport.name === report.name && cachedReport.target === report.target && cachedReport.modelCount === report.modelCount && report.sumWounds === cachedReport.sumWounds) {
+            if (cachedReport.name === report.name
+                && cachedReport.target === report.target
+                && cachedReport.modelCount === report.modelCount
+                && report.sumWounds === cachedReport.sumWounds
+                && report.inCover === cachedReport.inCover) {
                 updateState = false;
             }
         });

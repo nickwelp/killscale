@@ -6,7 +6,7 @@ import { IStandDevReport } from '../library/calculateStandardDev';
 
 import { attackers } from '../../models/units';
 
-import { targets } from '../../views/TargetFaction';
+import { targets } from '../../views/Target/TargetFaction';
 
 // @ts-ignore
 export const MyUserContext = React.createContext();

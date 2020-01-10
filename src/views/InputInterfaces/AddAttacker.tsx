@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 
-import { MyUserContext } from '../controllers/context/UserContext';
-import { IUnit, IWeaponProfile } from '../models/interfaces';
+import { MyUserContext } from '../../controllers/context/UserContext';
+import { IUnit, IWeaponProfile } from '../../models/interfaces';
 
 const AddAttacker = () => {
     const [viewAddAttackerProfile, updateViewAddAttackerProfile] = useState(false);
