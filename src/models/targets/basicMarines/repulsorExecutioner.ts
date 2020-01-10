@@ -10,6 +10,7 @@ const repulsorExecutioner: ITarget = {
     invuln: 7,
     toHit: 0,
     toughness: 8,
+    faction: 'marines'
 };
 
 export default repulsorExecutioner;   

@@ -10,6 +10,7 @@ const genericKnightRotate: ITarget = {
     invuln: 4,
     toHit: 0,
     toughness: 8,
+    faction: 'knight'
 };
 
 export default genericKnightRotate;

@@ -9,6 +9,7 @@ const plagueBearers: ITarget = {
     invuln: 5,
     toHit: -2,
     toughness: 4,
+    faction: 'daemons'
 };
 
 export default plagueBearers;   

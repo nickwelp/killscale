@@ -10,6 +10,7 @@ const ironHandsRepulsorExecutioner: ITarget = {
     invuln: 5,
     toHit: 0,
     toughness: 8,
+    faction: 'marines'
 };
 
 export default ironHandsRepulsorExecutioner;   

@@ -9,6 +9,7 @@ const guardsmen: ITarget = {
     invuln: 7,
     toHit: 0,
     toughness: 3,
+    faction: 'ig'
 };
 
 export default guardsmen;   

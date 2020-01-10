@@ -9,6 +9,7 @@ const boyz: ITarget = {
     invuln: 7,
     toHit: 0,
     toughness: 4,
+    faction: 'orks'
 };
 
 export default boyz;   

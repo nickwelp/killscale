@@ -9,6 +9,7 @@ const cultists: ITarget = {
     invuln: 7,
     toHit: 0,
     toughness: 3,
+    faction: 'csm'
 };
 
 export default cultists;   

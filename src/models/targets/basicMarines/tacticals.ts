@@ -9,6 +9,7 @@ const tacticals: ITarget = {
     invuln: 7,
     toHit: 0,
     toughness: 4,
+    faction: 'marines'
 };
 
 export default tacticals;   

@@ -10,6 +10,7 @@ const DeathShroudTerminators: ITarget = {
     toHit: -1,
     toughness: 5,
     points: 156,
+    faction: 'csm'
 };
 
 export default DeathShroudTerminators;   

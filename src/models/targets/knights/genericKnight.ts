@@ -10,6 +10,7 @@ const genericKnight: ITarget = {
     invuln: 5,
     toHit: 0,
     toughness: 8,
+    faction: 'knight'
 };
 
 export default genericKnight;

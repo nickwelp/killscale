@@ -9,7 +9,8 @@ const leviathan: ITarget = {
     invuln: 4,
     toHit: 0,
     toughness: 8,
-    tags: ['vehicle']
+    tags: ['vehicle'],
+    faction: 'marines'
 };
 
 export default leviathan;   

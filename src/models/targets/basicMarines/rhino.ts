@@ -9,7 +9,8 @@ const rhino: ITarget = {
     invuln: 7,
     toHit: 0,
     toughness: 7,
-    tags: ['vehicle']
+    tags: ['vehicle'],
+    faction: 'marines'
 };
 
 export default rhino;   

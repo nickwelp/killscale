@@ -48,6 +48,7 @@ export interface ITarget {
     points?: number;
     tags?: string[];
     inCover?: boolean;
+    faction: string;
 }
 
 export interface IRerollSet {
