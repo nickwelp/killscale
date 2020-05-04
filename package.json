@@ -7,18 +7,29 @@
     "@types/node": "12.7.9",
     "@types/react": "16.9.4",
     "@types/react-dom": "16.9.1",
+    "@types/react-router-dom": "^5.1.2",
+    "@types/recharts": "^1.8.4",
     "@types/styled-components": "^4.1.19",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.2",
+    "recharts": "^2.0.0-beta.1",
     "styled-components": "^4.4.0",
+    "tslint": "^5.20.1",
     "typescript": "3.6.3"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "pushToS3": "aws s3 sync ./build s3://www.killscale.com",
+    "clearCloudFrontCache": "aws cloudfront create-invalidation --distribution-id E6L2AMWW5VY7W --paths '/*'",
+    "lint": "tslint -p ./",
+    "deploy": "yarn test && yarn build && yarn pushToS3 && yarn clearCloudFrontCache"
   },
   "eslintConfig": {
     "extends": "react-app"

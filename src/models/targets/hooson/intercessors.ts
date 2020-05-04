@@ -1,7 +1,7 @@
 import { ITarget } from '../../interfaces';
 
 const intercessors: ITarget = {
-    name: "Intercessors",
+    name: 'Intercessors',
     save: 3,
     woundsPerModel: 2,
     modelCount: 5,
@@ -9,6 +9,7 @@ const intercessors: ITarget = {
     invuln: 7,
     toHit: 0,
     toughness: 4,
-}
+    faction: 'marines'
+};
 
 export default intercessors;   

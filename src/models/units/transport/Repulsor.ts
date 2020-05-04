@@ -1,5 +1,5 @@
+import { d3 } from '../../../controllers/util';
 import { IUnit } from '../../interfaces';
-import { d6, d3 } from '../../../controllers/util';
 
 
 export const Repulsor: IUnit = {
@@ -8,6 +8,8 @@ export const Repulsor: IUnit = {
     points: 302,
     tags: ['vehicle', 'hover', 'fly'],
     modelCountPerUnit: 1,
+    weaponSkill: 3,
+    balisticSkill: 3,
     weapons: [
         {
             name: 'Heavy Onslaught Gatling Cannon',
@@ -17,7 +19,6 @@ export const Repulsor: IUnit = {
             uniqueIdentifier: 'turrent1',
             numberOfShots: () => 12,
             AP: 1,
-            toHit: 3,
             strength: 5,
             damage: () => 1
         },
@@ -29,7 +30,6 @@ export const Repulsor: IUnit = {
             uniqueIdentifier: 'turrent8',
             numberOfShots: () => 6,
             AP: 1,
-            toHit: 3,
             strength: 5,
             damage: () => 1
         },
@@ -37,11 +37,10 @@ export const Repulsor: IUnit = {
             name: 'Icarus Ironhail Heavy Stubber',
             type: 'Heavy',
             numberOfShotsLabel: '3',
-            tags: ['antiflier', 'multiprofile'],
+            tags: ['antiflier', 'multiprofile', '+1 to hit vs fliers, -1 to hit vs all others'],
             uniqueIdentifier: 'turrent2',
             numberOfShots: () => 3,
             AP: 1,
-            toHit: 3,
             strength: 4,
             damage: () => 1
         },
@@ -53,7 +52,6 @@ export const Repulsor: IUnit = {
             uniqueIdentifier: 'turrent3',
             numberOfShots: () => 3,
             AP: 1,
-            toHit: 3,
             strength: 4,
             damage: () => 1
         },
@@ -65,7 +63,6 @@ export const Repulsor: IUnit = {
             uniqueIdentifier: 'turrent',
             numberOfShots: () => 2,
             AP: 1,
-            toHit: 3,
             strength: 6,
             damage: () => d3()
         },
@@ -77,21 +74,19 @@ export const Repulsor: IUnit = {
             uniqueIdentifier: 'turrent5',
             numberOfShots: () => 6,
             AP: 1,
-            toHit: 3,
             strength: 5,
             damage: () => 1
         },
         {
-            name: 'Storm Bolter (rapid firing) x2',
+            name: 'Storm Bolter x2',
             type: 'Rapid Fire',
-            numberOfShotsLabel: '4 x2',
+            numberOfShotsLabel: '2',
             tags: ['bolter', 'multiprofile'],
             uniqueIdentifier: 'turrent6',
-            numberOfShots: () => 8,
+            numberOfShots: () => 4,
             AP: 1,
-            toHit: 3,
             strength: 4,
             damage: () => 1
         },
     ]
-}
+};

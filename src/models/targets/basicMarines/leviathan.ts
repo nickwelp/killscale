@@ -1,7 +1,7 @@
 import { ITarget } from '../../interfaces';
 
 const leviathan: ITarget = {
-    name: "chapterless Leviathan Dreadnaught",
+    name: 'chapterless Leviathan Dreadnaught',
     save: 2,
     woundsPerModel: 16,
     modelCount: 1,
@@ -9,6 +9,8 @@ const leviathan: ITarget = {
     invuln: 4,
     toHit: 0,
     toughness: 8,
-}
+    tags: ['vehicle'],
+    faction: 'marines'
+};
 
 export default leviathan;   

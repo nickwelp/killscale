@@ -1,7 +1,7 @@
 import { ITarget } from '../../interfaces';
 
 const ironHandsRepulsorExecutioner: ITarget = {
-    name: "Iron Hands Repulsor Executioner (5++/6+++)",
+    name: 'Iron Hands Repulsor Executioner (5++/6+++)',
     save: 3,
     tags: ['vehicle'],
     woundsPerModel: 16,
@@ -10,6 +10,7 @@ const ironHandsRepulsorExecutioner: ITarget = {
     invuln: 5,
     toHit: 0,
     toughness: 8,
-}
+    faction: 'marines'
+};
 
 export default ironHandsRepulsorExecutioner;   

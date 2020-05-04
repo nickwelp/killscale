@@ -12,6 +12,6 @@ export const cacheFunction = (a: (b: any) => any, data: any): any => {
             cache[hash] = val;
             return val;
         }
-    }
+    };
 
 };

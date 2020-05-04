@@ -7,6 +7,8 @@ export const VernerableDreadnaughts: IUnit = {
     points: 130,
     tags: ['vehicle'],
     modelCountPerUnit: 1,
+    weaponSkill: 3,
+    balisticSkill: 2,
     weapons: [
         {
             name: 'Twin Heavy Bolters',
@@ -15,7 +17,6 @@ export const VernerableDreadnaughts: IUnit = {
             numberOfShots: () => 6,
             numberOfShotsLabel: '6',
             AP: 1,
-            toHit: 2,
             strength: 5,
             damage: () => 1,
         },
@@ -26,9 +27,8 @@ export const VernerableDreadnaughts: IUnit = {
             numberOfShotsLabel: '4',
             numberOfShots: () => 4,
             AP: 1,
-            toHit: 2,
             strength: 7,
             damage: () => 2,
         }
     ]
-}
+};

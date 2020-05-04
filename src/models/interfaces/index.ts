@@ -4,9 +4,11 @@ export interface IWeaponProfile {
     numberOfShots: () => number;
     numberOfShotsLabel: string;
     AP: number;
+    APFunction?: () => number;
     strength: number;
+    strengthFunction?: () => number;
     damage: () => number;
-    toHit: number;
+    damageKey?: string;
     rerollHits?: boolean;
     rerollHitRollsOfOne?: boolean;
     rerollWounds?: boolean;
@@ -15,6 +17,7 @@ export interface IWeaponProfile {
     plusToWound?: number;
     tags: string[];
     uniqueIdentifier?: string;
+    shotsFiredMultiplier?: number;
 }
 
 export interface IUnit {
@@ -23,17 +26,20 @@ export interface IUnit {
     points: number;
     modelCountPerUnit: number;
     woundsPerModel?: number;
-    FNP?: number; //7 is none
-    invuln?: number; //7 is none
+    FNP?: number; // 7 is none
+    invuln?: number; // 7 is none
     save?: number;
-    weapons: IWeaponProfile[];
+    weapons?: IWeaponProfile[];
+    weaponIndexes?: number[]; // for local storage retrieving
     tags: string[];
+    weaponSkill: number;
+    balisticSkill: number;
 }
 
 export interface ITarget {
     name: string;
-    FNP: number; //7 is none
-    invuln: number; //7 is none
+    FNP: number; // 7 is none
+    invuln: number; // 7 is none
     save: number;
     toughness: number;
     woundsPerModel: number;
@@ -41,6 +47,8 @@ export interface ITarget {
     toHit: number;
     points?: number;
     tags?: string[];
+    inCover?: boolean;
+    faction: string;
 }
 
 export interface IRerollSet {
@@ -50,6 +58,9 @@ export interface IRerollSet {
     rerollWoundRollsOfOne: boolean;
     explodingBolter6s: boolean;
     crimsonFistsPlusToHit: boolean;
+    IFHeavyWeaponsSuperDoctrine?: boolean;
+    applyHeavyWeaponMinusOneToHit?: boolean;
+
 }
 
 export interface IDoctrine {

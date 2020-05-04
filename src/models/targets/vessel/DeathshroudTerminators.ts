@@ -1,7 +1,7 @@
 import { ITarget } from '../../interfaces';
 
 const DeathShroudTerminators: ITarget = {
-    name: "Deathshroud Terminators",
+    name: 'Deathshroud Terminators',
     save: 2,
     woundsPerModel: 2,
     modelCount: 3,
@@ -10,6 +10,7 @@ const DeathShroudTerminators: ITarget = {
     toHit: -1,
     toughness: 5,
     points: 156,
-}
+    faction: 'csm'
+};
 
 export default DeathShroudTerminators;   

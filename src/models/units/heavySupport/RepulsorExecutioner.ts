@@ -1,13 +1,15 @@
-import { IUnit } from '../../interfaces';
 import { d6 } from '../../../controllers/util';
+import { IUnit } from '../../interfaces';
 
 
 export const RepulsorExecutioner: IUnit = {
     name: 'Repulsor Executioner',
     description: '',
     points: 336,
+    weaponSkill: 3,
     tags: ['vehicle', 'hover', 'fly'],
     modelCountPerUnit: 1,
+    balisticSkill: 3,
     weapons: [
         {
             name: 'Heavy Laser Destroyer',
@@ -17,7 +19,6 @@ export const RepulsorExecutioner: IUnit = {
             uniqueIdentifier: 'turrent',
             numberOfShots: () => 2,
             AP: 4,
-            toHit: 3,
             strength: 10,
             damage: () => {
                 const roll = d6();
@@ -33,7 +34,6 @@ export const RepulsorExecutioner: IUnit = {
             uniqueIdentifier: 'turrent',
             numberOfShots: () => 4,
             AP: 4,
-            toHit: 3,
             strength: 10,
             damage: () => {
                 const roll = d6();
@@ -49,7 +49,6 @@ export const RepulsorExecutioner: IUnit = {
             uniqueIdentifier: 'turrent',
             numberOfShots: () => d6(),
             AP: 4,
-            toHit: 3,
             strength: 8,
             damage: () => 1
         },
@@ -61,35 +60,9 @@ export const RepulsorExecutioner: IUnit = {
             uniqueIdentifier: 'turrent',
             numberOfShots: () => d6(),
             AP: 4,
-            toHit: 3,
             strength: 9,
             damage: () => 2
         },
-        {
-            name: 'Macro Plasma Incinerator (standard) (fired twice)',
-            type: 'Heavy',
-            numberOfShotsLabel: 'd6 x2',
-            tags: ['turrent', 'multiprofile'],
-            uniqueIdentifier: 'turrent',
-            numberOfShots: () => d6() + d6(),
-            AP: 4,
-            toHit: 3,
-            strength: 8,
-            damage: () => 1
-        },
-        {
-            name: 'Macro Plasma Incinerator (overcharged) (fired twice)',
-            type: 'Heavy',
-            numberOfShotsLabel: 'd6 x2',
-            tags: ['turrent', 'multiprofile'],
-            uniqueIdentifier: 'turrent',
-            numberOfShots: () => d6() + d6(),
-            AP: 4,
-            toHit: 3,
-            strength: 9,
-            damage: () => 2
-        },
-
         {
             name: 'Frag Storm Grenade Launcher x2',
             type: 'Assault',
@@ -98,7 +71,6 @@ export const RepulsorExecutioner: IUnit = {
             uniqueIdentifier: '',
             numberOfShots: () => d6() + d6(),
             AP: 0,
-            toHit: 3,
             strength: 4,
             damage: () => 1,
         },
@@ -110,7 +82,6 @@ export const RepulsorExecutioner: IUnit = {
             uniqueIdentifier: '',
             numberOfShots: () => 12,
             AP: 1,
-            toHit: 3,
             strength: 5,
             damage: () => 1,
         },
@@ -122,7 +93,6 @@ export const RepulsorExecutioner: IUnit = {
             uniqueIdentifier: '',
             numberOfShots: () => 3,
             AP: 1,
-            toHit: 3,
             strength: 4,
             damage: () => 1,
         },
@@ -134,7 +104,6 @@ export const RepulsorExecutioner: IUnit = {
             uniqueIdentifier: '',
             numberOfShots: () => 6,
             AP: 1,
-            toHit: 3,
             strength: 5,
             damage: () => 1,
         },
@@ -146,19 +115,6 @@ export const RepulsorExecutioner: IUnit = {
             uniqueIdentifier: 'rfmode',
             numberOfShots: () => 4,
             AP: 0,
-            toHit: 3,
-            strength: 4,
-            damage: () => 1,
-        },
-        {
-            name: 'Stormbolters x2 (rapid firing)',
-            type: 'Rapid Fire',
-            numberOfShotsLabel: '8',
-            tags: ['bolter', 'multiprofile'],
-            uniqueIdentifier: 'rfmode',
-            numberOfShots: () => 8,
-            AP: 0,
-            toHit: 3,
             strength: 4,
             damage: () => 1,
         },
@@ -166,13 +122,12 @@ export const RepulsorExecutioner: IUnit = {
             name: 'Twin Icarus Ironhail Heavy Stubber',
             type: 'Heavy',
             numberOfShotsLabel: '6',
-            tags: ['antiflier'],
+            tags: ['antiflier', '+1 to hit vs fliers, -1 to hit vs all others'],
             uniqueIdentifier: '',
             numberOfShots: () => 6,
             AP: 1,
-            toHit: 4,
             strength: 4,
             damage: () => 1,
         }
     ]
-}
+};

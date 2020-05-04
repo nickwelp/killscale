@@ -1,5 +1,5 @@
-import { IUnit } from '../../interfaces';
 import { d3, d6 } from '../../../controllers/util';
+import { IUnit } from '../../interfaces';
 
 
 export const ContemptorMortis: IUnit = {
@@ -8,6 +8,8 @@ export const ContemptorMortis: IUnit = {
     points: 160,
     tags: ['vehicle'],
     modelCountPerUnit: 1,
+    weaponSkill: 2,
+    balisticSkill: 2,
     weapons: [
         {
             name: 'Two Twin Heavy Bolters',
@@ -17,7 +19,6 @@ export const ContemptorMortis: IUnit = {
             uniqueIdentifier: 'loadout',
             numberOfShots: () => 12,
             AP: 1,
-            toHit: 2,
             strength: 5,
             damage: () => 1,
         },
@@ -29,7 +30,6 @@ export const ContemptorMortis: IUnit = {
             uniqueIdentifier: 'loadout',
             numberOfShots: () => 4,
             AP: 3,
-            toHit: 2,
             strength: 9,
             damage: () => d6(),
         },
@@ -41,7 +41,6 @@ export const ContemptorMortis: IUnit = {
             uniqueIdentifier: 'loadout',
             numberOfShots: () => 12,
             AP: 1,
-            toHit: 2,
             strength: 7,
             damage: () => 1,
         },
@@ -53,7 +52,6 @@ export const ContemptorMortis: IUnit = {
             uniqueIdentifier: 'loadout',
             numberOfShots: () => (d3() + d3()),
             AP: 3,
-            toHit: 2,
             strength: 8,
             damage: () => 2,
         },
@@ -65,7 +63,6 @@ export const ContemptorMortis: IUnit = {
             uniqueIdentifier: 'loadout',
             numberOfShots: () => (d3() + d3()),
             AP: 3,
-            toHit: 2,
             strength: 7,
             damage: () => 1,
         },
@@ -77,7 +74,6 @@ export const ContemptorMortis: IUnit = {
             uniqueIdentifier: 'loadout',
             numberOfShots: () => 8,
             AP: 1,
-            toHit: 2,
             strength: 7,
             damage: () => 2,
         },
@@ -89,25 +85,12 @@ export const ContemptorMortis: IUnit = {
             uniqueIdentifier: 'loadout',
             numberOfShots: () => 2,
             AP: 4,
-            toHit: 2,
             strength: 7,
             damage: () => {
                 const roll = d6();
                 const reroll = d6();
                 return roll > reroll ? roll : reroll;
             },
-        },
-        {
-            name: 'Cyclone Missile - Frag',
-            type: 'Heavy',
-            tags: ['multiprofile', 'cyclone missile'],
-            uniqueIdentifier: 'cyclone missile',
-            numberOfShotsLabel: '2d3',
-            numberOfShots: () => (d3() + d3()),
-            AP: 0,
-            toHit: 2,
-            strength: 4,
-            damage: () => 1,
         },
         {
             name: 'Cyclone Missile - Krak',
@@ -117,9 +100,19 @@ export const ContemptorMortis: IUnit = {
             numberOfShotsLabel: '2',
             numberOfShots: () => 2,
             AP: 2,
-            toHit: 2,
-            strength: 4,
+            strength: 8,
             damage: () => d6(),
-        }
+        },
+        {
+            name: 'Cyclone Missile - Frag',
+            type: 'Heavy',
+            tags: ['multiprofile', 'cyclone missile'],
+            uniqueIdentifier: 'cyclone missile',
+            numberOfShotsLabel: '2d3',
+            numberOfShots: () => (d3() + d3()),
+            AP: 0,
+            strength: 4,
+            damage: () => 1,
+        },
     ]
-}
+};
